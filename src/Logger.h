@@ -1,6 +1,6 @@
 /**
  * @file    Logger.h
- * @brief   A simple Logger class
+ * @brief   A simple thread-safe Logger class
  *
  * Copyright (c) 2013 Sebastien Rombauts (sebastien.rombauts@gmail.com)
  *
@@ -14,7 +14,9 @@
 #include <string>
 
 /**
- * @brief   A simple logger class
+ * @brief   A simple thread-safe logger class
+ *
+ *
  *
  * @author  2013/02/02 SRombauts
  */
@@ -27,12 +29,13 @@ public:
     Logger(const char* apName, Log::Level aLevel = Log::eDebug);
     ~Logger(void);
 
-    Log debug(void);
-    Log info(void);
-    Log notice(void);
-    Log warning(void);
-    Log error(void);
-    Log crash(void);
+    // Utility const method to produce Log objets, used to collect the stream to output
+    Log debug(void) const;
+    Log info(void) const;
+    Log notice(void) const;
+    Log warning(void) const;
+    Log error(void) const;
+    Log critic(void) const;
 
     inline void setLevel (Log::Level aLevel) {
         mLevel = aLevel;
@@ -49,7 +52,7 @@ private:
     /// @}
 
     // To be used only for Log class
-    void print(const Log& aLog);
+    void output(const Log& aLog) const;
 
     static const char* toString (Log::Level aLevel);
 

@@ -9,30 +9,51 @@
 */
 #include "Logger.h"
 
+
+class Tester {
+public:
+    Tester() :
+        mLogger("Tester")
+    {
+    }
+
+    void constTest (void) const {
+        mLogger.debug().test("test") << ", toto.";
+    }
+
+private:
+    Logger mLogger;
+};
+
+
+
 /**
  * @brief Simple example program
  */
 int main (void)
 {
-   Logger logger("TestLog");
+    Tester tester;
+    tester.constTest();
 
-   logger.debug().test("One, ").test("two.");
-   logger.notice().test("Info.");
-   logger.info().test("Notice.");
-   logger.notice().test("Notice.");
-   logger.warning().test("Warning.");
+    Logger logger("TestLog");
 
-   logger.setLevel(Log::eWarning);
+    logger.debug() << "One, " << "two.";
+    logger.notice().test("Info.");
+    logger.info().test("Notice.");
+    logger.notice().test("Notice.");
+    logger.warning().test("Warning.");
 
-   logger.debug().test("Three, ").test("four.");
-   logger.info().test("Three, ").test("four.");
-   logger.notice().test("Three, ").test("four.");
-   logger.warning().test("Three, ").test("four.");
-   logger.error().test("Three, ").test("four.");
-   logger.crash().test("Three, ").test("four.");
+    logger.setLevel(Log::eWarning);
 
-   logger.setLevel(Log::eDebug);
-   logger.debug().test("Five, ").test("six.");
+    logger.debug().test("Three, ").test("four.");
+    logger.info().test("Three, ").test("four.");
+    logger.notice().test("Three, ").test("four.");
+    logger.warning().test("Three, ").test("four.");
+    logger.error().test("Three, ").test("four.");
+    logger.critic().test("Crash.");
 
-   return 0;
+    logger.setLevel(Log::eDebug);
+    logger.debug().test("Five, ").test("six.");
+
+    return 0;
 }

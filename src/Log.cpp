@@ -1,6 +1,6 @@
 /**
  * @file    Log.cpp
- * @brief   A RAII log object constructed by the Logger class
+ * @brief   A RAII (private) log object constructed by the Logger class
  *
  * Copyright (c) 2013 Sebastien Rombauts (sebastien.rombauts@gmail.com)
  *
@@ -10,14 +10,19 @@
 
 #include "Log.h"
 #include "Logger.h"
+#include "time.h"
 
 
-Log::Log(Logger& aLogger, Level aSeverity, bool abIsActive) :
+
+Log::Log(const Logger& aLogger, Level aSeverity, bool abIsActive) :
     mLogger(aLogger),
     mSeverity(aSeverity),
+    mTime(-1),
     mpStream(NULL)
 {
+
     if (abIsActive) {
+        time(&mTime);
         mpStream = new(std::ostringstream);
     }
 }
@@ -25,7 +30,7 @@ Log::Log(Logger& aLogger, Level aSeverity, bool abIsActive) :
 Log::~Log(void)
 {
     if (NULL != mpStream) {
-        mLogger.print(*this);
+        mLogger.output(*this);
 
         delete mpStream;
         mpStream = NULL;
