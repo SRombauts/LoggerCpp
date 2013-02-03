@@ -35,32 +35,32 @@ Logger::~Logger(void)
 // Utility const method to produce Log objets, used to collect the stream to output
 Log Logger::debug(void) const
 {
-    Log log(*this, Log::eDebug, (Log::eDebug >= mLevel));
+    Log log(*this, Log::eDebug);
     return log;
 }
 Log Logger::info(void) const
 {
-    Log log(*this, Log::eInfo, (Log::eInfo >= mLevel));
+    Log log(*this, Log::eInfo);
     return log;
 }
 Log Logger::notice(void) const
 {
-    Log log(*this, Log::eNotice, (Log::eNotice >= mLevel));
+    Log log(*this, Log::eNotice);
     return log;
 }
 Log Logger::warning(void) const
 {
-    Log log(*this, Log::eWarning, (Log::eWarning >= mLevel));
+    Log log(*this, Log::eWarning);
     return log;
 }
 Log Logger::error(void) const
 {
-    Log log(*this, Log::eError, (Log::eError >= mLevel));
+    Log log(*this, Log::eError);
     return log;
 }
 Log Logger::critic(void) const
 {
-    Log log(*this, Log::eCritic, (Log::eCritic >= mLevel));
+    Log log(*this, Log::eCritic);
     return log;
 }
 

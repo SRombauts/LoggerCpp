@@ -14,14 +14,14 @@
 
 
 
-Log::Log(const Logger& aLogger, Level aSeverity, bool abIsActive) :
+Log::Log(const Logger& aLogger, Level aSeverity) :
     mLogger(aLogger),
     mSeverity(aSeverity),
     mTime(-1),
     mpStream(NULL)
 {
 
-    if (abIsActive) {
+    if (aSeverity >= aLogger.mLevel) {
         time(&mTime);
         mpStream = new(std::ostringstream);
     }

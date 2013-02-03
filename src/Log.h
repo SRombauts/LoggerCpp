@@ -60,7 +60,7 @@ public:
 
 private:
     // Private constructor, reserved for the Logger class
-    Log(const Logger& aLogger, Level aSeverity, bool abIsActive);
+    Log(const Logger& aLogger, Level aSeverity);
 
     /// @{ Non-copyable object
     Log(Log&);
