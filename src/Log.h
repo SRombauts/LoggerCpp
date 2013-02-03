@@ -45,9 +45,6 @@ public:
     };
 
 public:
-    // TODO SRombauts : testing features
-    Log& test(const char* apText);
-
     // Output stream operator
     template <typename T>
     Log& operator<< (const T& aValue)

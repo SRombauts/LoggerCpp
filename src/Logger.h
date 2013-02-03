@@ -16,7 +16,9 @@
 /**
  * @brief   A simple thread-safe logger class
  *
- *
+ * This Logger is designed to be easy to use and efficient.
+ * It can be used as a member variable, and will not consume much cpu
+ * if the log severity is below the Logger current level.
  *
  * @author  2013/02/02 SRombauts
  */

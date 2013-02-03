@@ -37,12 +37,3 @@ Log::~Log(void)
     }
 
 }
-
-
-Log& Log::test(const char* apText)
-{
-    if (NULL != mpStream) {
-        *mpStream << apText;
-    }
-    return (*this);
-}

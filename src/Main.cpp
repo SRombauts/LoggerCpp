@@ -10,6 +10,10 @@
 #include "Logger.h"
 
 
+
+/**
+ * @brief Simple test class
+ */
 class Tester {
 public:
     Tester() :
@@ -18,7 +22,7 @@ public:
     }
 
     void constTest (void) const {
-        mLogger.debug().test("test") << ", toto.";
+        mLogger.debug() << "log within a const method";
     }
 
 private:
@@ -38,22 +42,22 @@ int main (void)
     Logger logger("TestLog");
 
     logger.debug() << "One, " << "two.";
-    logger.notice().test("Info.");
-    logger.info().test("Notice.");
-    logger.notice().test("Notice.");
-    logger.warning().test("Warning.");
+    logger.notice() << "Info.";
+    logger.info() << "Notice.";
+    logger.notice() << "Notice.";
+    logger.warning() << "Warning.";
 
     logger.setLevel(Log::eWarning);
 
-    logger.debug().test("Three, ").test("four.");
-    logger.info().test("Three, ").test("four.");
-    logger.notice().test("Three, ").test("four.");
-    logger.warning().test("Three, ").test("four.");
-    logger.error().test("Three, ").test("four.");
-    logger.critic().test("Crash.");
+    logger.debug() << "Three" << "four.";
+    logger.info() << "Three, " << "four.";
+    logger.notice() << "Three, " << "four.";
+    logger.warning() << "Three, " << "four.";
+    logger.error() << "Three, " << "four.";
+    logger.critic() << "Crash.";
 
     logger.setLevel(Log::eDebug);
-    logger.debug().test("Five, ").test("six.");
+    logger.debug() << "Five, " << "six.";
 
     return 0;
 }
