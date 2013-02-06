@@ -64,8 +64,8 @@ private:
     Log(const Logger& aLogger, Level aSeverity);
 
     /// @{ Non-copyable object
-    Log(Log&);
-    void operator=(Log&);
+    Log(const Log&);
+    void operator=(const Log&);
     /// @}
 
 private:
