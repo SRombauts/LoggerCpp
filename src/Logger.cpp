@@ -13,6 +13,7 @@
 #include <iostream>
 #include <cstdio>
 #include <cassert>
+#include <ctime>
 
 
 /**
@@ -35,33 +36,27 @@ Logger::~Logger(void)
 // Utility const method to produce Log objets, used to collect the stream to output
 Log Logger::debug(void) const
 {
-    Log log(*this, Log::eDebug);
-    return log;
+    return Log(*this, Log::eDebug);
 }
 Log Logger::info(void) const
 {
-    Log log(*this, Log::eInfo);
-    return log;
+    return Log(*this, Log::eInfo);
 }
 Log Logger::notice(void) const
 {
-    Log log(*this, Log::eNotice);
-    return log;
+    return Log(*this, Log::eNotice);
 }
 Log Logger::warning(void) const
 {
-    Log log(*this, Log::eWarning);
-    return log;
+    return Log(*this, Log::eWarning);
 }
 Log Logger::error(void) const
 {
-    Log log(*this, Log::eError);
-    return log;
+    return Log(*this, Log::eError);
 }
 Log Logger::critic(void) const
 {
-    Log log(*this, Log::eCritic);
-    return log;
+    return Log(*this, Log::eCritic);
 }
 
 

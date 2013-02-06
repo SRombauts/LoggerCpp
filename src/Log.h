@@ -10,6 +10,7 @@
 #pragma once
 
 #include <sstream>
+#include <iomanip>
 
 // forward declaration
 class Logger;

@@ -48,17 +48,16 @@ int main (void)
 
     logger.setLevel(Log::eWarning);
 
-    logger.debug() << "Three" << "four.";
-    logger.info() << "Three, " << "four.";
-    logger.notice() << "Three, " << "four.";
-    logger.warning() << "Three, " << "four.";
-    logger.error() << "Three, " << "four.";
-    logger.critic() << "Crash.";
+    logger.debug()  << "Debug.";
+    logger.info()   << "Info.";
+    logger.notice() << "Notice.";
+    logger.warning()<< "Warning.";
+    logger.error()  << "Error.";
+    logger.critic() << "Critic.";
 
     logger.setLevel(Log::eDebug);
-    logger.debug() << "Variable = " << std::hex << 0x75af << " test";
-    logger.setLevel(Log::eInfo);
-    logger.debug() << "Variable = " << std::hex << 0x75af << " test";
+    logger.debug() << "Variable = " << std::hex << 0x75af0 << " test";
+    logger.debug() << "Variable = " << std::right << std::setfill('0') << std::setw(8) << 0x75af0 << " test";
 
     return 0;
 }
