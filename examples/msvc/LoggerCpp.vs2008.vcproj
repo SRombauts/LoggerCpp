@@ -2,9 +2,9 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
-	Name="Logger"
+	Name="LoggerCpp"
 	ProjectGUID="{55109E5D-9402-4204-BAC7-6AC0649F8C98}"
-	RootNamespace="Logger"
+	RootNamespace="LoggerCpp"
 	Keyword="Win32Proj"
 	TargetFrameworkVersion="196613"
 	>
