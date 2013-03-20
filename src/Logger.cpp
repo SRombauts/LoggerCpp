@@ -1,5 +1,6 @@
 /**
  * @file    Logger.cpp
+ * @ingroup LoggerCpp
  * @brief   A simple thread-safe Logger class
  *
  * Copyright (c) 2013 Sebastien Rombauts (sebastien.rombauts@gmail.com)
@@ -60,10 +61,19 @@ Log Logger::critic(void) const
 }
 
 
-// To be used only by Log class
+/**
+ * @brief Output the Log. Used by the Log class destructor.
+ *
+ * @param[in] aLog  The Log to output
+ *
+ * @todo redirect the Log to a LogManager class
+ * @todo the LogManager class will dispatch it to LogOutputMemory/LogOutputConsole/LogOutputFile
+ */
 void Logger::output(const Log& aLog) const
 {
-    struct tm* timeinfo = localtime(&aLog.mTime);
+    time_t datetime;
+    time(&datetime);
+    struct tm* timeinfo = localtime(&datetime);
     assert (NULL != timeinfo);
 
     // uses fprintf for atomic thread-safe operation
@@ -75,7 +85,9 @@ void Logger::output(const Log& aLog) const
 }
 
 
-// Level to String conversion
+/**
+ * @brief Level to String conversion
+*/
 const char* Logger::toString (Log::Level aLevel)
 {
     const char* pString = NULL;

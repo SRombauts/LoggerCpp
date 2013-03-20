@@ -1,5 +1,6 @@
 /**
  * @file    Logger.h
+ * @ingroup LoggerCpp
  * @brief   A simple thread-safe Logger class
  *
  * Copyright (c) 2013 Sebastien Rombauts (sebastien.rombauts@gmail.com)
@@ -20,7 +21,7 @@
  * It can be used as a member variable, and will not consume much cpu
  * if the log severity is below the Logger current level.
  *
- * @author  2013/02/02 SRombauts
+ * @todo Move mName and mLevel to a mChannelPtr returned by the LogManager
  */
 class Logger
 {
@@ -53,13 +54,13 @@ private:
     void operator=(Logger&);
     /// @}
 
-    // To be used only for Log class
+    // To be used only by the Log class
     void output(const Log& aLog) const;
 
     static const char* toString (Log::Level aLevel);
 
 private:
-    std::string mName;
-    Log::Level  mLevel;
+    std::string mName;  //!< Name of the LogChannel
+    Log::Level  mLevel; //!< Current severity level of the LogChannel
 };
 

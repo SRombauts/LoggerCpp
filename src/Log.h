@@ -1,5 +1,6 @@
 /**
  * @file    Log.h
+ * @ingroup LoggerCpp
  * @brief   A RAII (private) log object constructed by the Logger class
  *
  * Copyright (c) 2013 Sebastien Rombauts (sebastien.rombauts@gmail.com)
@@ -28,14 +29,15 @@ class Logger;
  *
  * It contains all required information for further formating, printing and transmitting
  * by the Logger class.
- *
- * @author  02/02/2013 SRombauts
  */
 class Log
 {
     friend class Logger;
 
 public:
+    /**
+     * @brief Enumeration of the severity levels
+     */
     enum Level {
         eDebug = 0,
         eInfo,
@@ -69,9 +71,8 @@ private:
     /// @}
 
 private:
-   const Logger&        mLogger;
-   Level                mSeverity;
-   time_t               mTime;
-   std::ostringstream*  mpStream;
+   const Logger&        mLogger;    //!< Reference to the parent Logger
+   Level                mSeverity;  //!< Severity of this Log
+   std::ostringstream*  mpStream;   //!< The underlying string stream
 };
 

@@ -1,11 +1,11 @@
 /**
- * (c) INEO Systrans 2013
- *
  * @file    Main.cpp
- *
  * @brief   Test program for my simple logger system
  *
- * @author  02/02/2013 SRombauts
+ * Copyright (c) 2013 Sebastien Rombauts (sebastien.rombauts@gmail.com)
+ *
+ * Distributed under the MIT License (MIT) (See accompanying file LICENSE.txt
+ * or copy at http://opensource.org/licenses/MIT)
 */
 #include "../src/Logger.h"
 
