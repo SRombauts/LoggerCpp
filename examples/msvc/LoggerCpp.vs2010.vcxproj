@@ -91,6 +91,7 @@
   <ItemGroup>
     <ClInclude Include="..\..\src\Log.h" />
     <ClInclude Include="..\..\src\Logger.h" />
+    <ClInclude Include="..\..\src\LoggerCpp.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,14 +1,13 @@
 /**
  * @file    Main.cpp
- * @brief   Test program for my simple logger system
+ * @brief   Example program for the simple LoggerC++ system
  *
  * Copyright (c) 2013 Sebastien Rombauts (sebastien.rombauts@gmail.com)
  *
  * Distributed under the MIT License (MIT) (See accompanying file LICENSE.txt
  * or copy at http://opensource.org/licenses/MIT)
 */
-#include "../src/Logger.h"
-
+#include "../src/LoggerCpp.h"
 
 
 /**
@@ -26,7 +25,7 @@ public:
     }
 
 private:
-    Logger mLogger;
+    Logger mLogger; //!< A named logger to produce log
 };
 
 
