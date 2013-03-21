@@ -16,7 +16,7 @@
 
 /// @todo try first for the C++11 std::shared_ptr, or the minimal shared_ptr implementation
 #include <boost/shared_ptr.hpp>
-#define shared_ptr   boost::shared_ptr
+#define shared_ptr  boost::shared_ptr
 
 
 /**
@@ -27,27 +27,27 @@ struct Channel
     friend class Logger;
 
 public:
-    /// @todo doc
-    typedef shared_ptr<Channel>  Ptr;
+    /// @brief Shared Pointer to a Channel
+    typedef shared_ptr<Channel> Ptr;
 
 public:
     // Constructor, and non virtual destructor
     Channel(const char* apName, Log::Level aLevel = Log::eDebug);
     ~Channel(void);
 
-    /// @todo doc
+    /// @brief Name of the Channel
+    inline const std::string& getName(void) const {
+        return mName;
+    }
+
+    /// @brief Set the current output Log::Level of the Channel
     inline void setLevel (Log::Level aLevel) {
         mLevel = aLevel;
     }
 
-    /// @todo doc
+    /// @brief Current Log::Level of the Channel
     inline Log::Level getLevel(void) const {
         return mLevel;
-    }
-
-    /// @todo doc
-    inline const std::string& getName(void) const {
-        return mName;
     }
 
 private:
@@ -63,6 +63,6 @@ private:
 
 private:
     std::string mName;  //!< Name of the Channel
-    Log::Level  mLevel; //!< Current severity level of the Channel
+    Log::Level  mLevel; //!< Current Log::Level of the Channel
 };
 

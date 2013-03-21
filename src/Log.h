@@ -20,7 +20,7 @@ class Logger;
 /**
  * @brief   A RAII (private) log object constructed by the Logger class
  *
- * This represents a full line of log, at a certain level of severity.
+ * This represents a full line of log, at a certain Log::Level of severity.
  *
  * It is constructed and initialized by a call to Logger::debug(),
  * Logger::info(), ... or Logger::critic().
@@ -61,15 +61,22 @@ public:
     // Public non virtual destructor
     ~Log(void);
 
-    /// @todo doc
-    inline Level GetSeverity(void) const {
-       return mSeverity;
+    /// @brief Severity Level of this Log
+    inline Level getSeverity(void) const {
+        return mSeverity;
     }
 
-    /// @todo doc
-    inline const std::ostringstream& GetStream(void) const {
-       return *mpStream;
+    /// @brief The underlying string stream
+    inline const std::ostringstream& getStream(void) const {
+        return *mpStream;
     }
+
+    /**
+     * @brief Convert a Level to its string representation
+     *
+     * @param[in] aLevel Log severity Level to convert
+    */
+    static const char* toString(Log::Level aLevel);
 
 private:
     // Private constructor, reserved for the Logger class

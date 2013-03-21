@@ -21,7 +21,7 @@
  * @brief Initialize a Channel utility object
  *
  * @param[in] apChannelName    String to identify origin of Log output by this Channel
- * @param[in] aChannelLevel    The minimum level of severity from which to output Log
+ * @param[in] aChannelLevel    The default minimum Log::Level of severity from which to output Log
  */
 Channel::Channel(const char* apChannelName, Log::Level aChannelLevel /* = eDebug */) :
     mName(apChannelName),
@@ -32,7 +32,6 @@ Channel::Channel(const char* apChannelName, Log::Level aChannelLevel /* = eDebug
 Channel::~Channel(void)
 {
 }
-
 
 
 /**
@@ -54,29 +53,7 @@ void Channel::output(const Log& aLog) const
     fprintf(stdout, "%.4u-%.2u-%.2u %.2u:%.2u:%.2u  %-20s %s  %s\n",
             (timeinfo->tm_year+1900), timeinfo->tm_mon, timeinfo->tm_mday,
             timeinfo->tm_hour, timeinfo->tm_min, timeinfo->tm_sec,
-            mName.c_str(), toString(aLog.GetSeverity()), (aLog.GetStream()).str().c_str());
+            mName.c_str(), Log::toString(aLog.getSeverity()), (aLog.getStream()).str().c_str());
     fflush(stdout);
 }
 
-
-/**
- * @brief Level to String conversion
- *
- * @todo remove duplicate
-*/
-const char* Channel::toString (Log::Level aLevel)
-{
-    const char* pString = NULL;
-
-    switch (aLevel) {
-    case Log::eDebug:   pString = "DBUG"; break;
-    case Log::eInfo:    pString = "INFO"; break;
-    case Log::eNotice:  pString = "NOTE"; break;
-    case Log::eWarning: pString = "WARN"; break;
-    case Log::eError:   pString = "EROR"; break;
-    case Log::eCritic:  pString = "CRIT"; break;
-    default:            pString = "????"; break;
-    }
-
-    return pString;
-}

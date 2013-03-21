@@ -20,11 +20,9 @@
  *
  * This Logger is designed to be easy to use and efficient.
  * It can be used as a member variable, and will not consume much CPU
- * if the log severity is below the Logger current level.
+ * if the log severity is below the Logger current Log::Level.
  *
  * @note A Logger object is copyable without any limitations
- *
- * @todo Move mName and mLevel to a mChannelPtr returned by the LogManager
  */
 class Logger
 {
@@ -32,7 +30,7 @@ class Logger
 
 public:
     // Constructor, and non virtual destructor
-    Logger(const char* apChannelName, Log::Level aChannelLevel = Log::eDebug);
+    Logger(const char* apChannelName);
     ~Logger(void);
 
     // A Logger is copyable with its a default copy constructor and copy operator without any problem
@@ -45,25 +43,25 @@ public:
     Log error(void) const;
     Log critic(void) const;
 
-    inline void setLevel(Log::Level aLevel) {
-       mChannelPtr->setLevel(aLevel);
-    }
-
-    inline Log::Level getLevel(void) const {
-        return mChannelPtr->getLevel();
-    }
-
+    /// @brief Name of the underlying Channel
     inline const std::string& getName(void) const {
         return mChannelPtr->getName();
     }
 
+    /// @brief Set the current output Log::Level of the underlying Channel
+    inline void setLevel(Log::Level aLevel) {
+        mChannelPtr->setLevel(aLevel);
+    }
+
+    /// @brief Current Log::Level of the underlying Channel
+    inline Log::Level getLevel(void) const {
+        return mChannelPtr->getLevel();
+    }
 
 private:
     // To be used only by the Log class
     void output(const Log& aLog) const;
 
-    static const char* toString(Log::Level aLevel);
-
-    Channel::Ptr  mChannelPtr;
+    Channel::Ptr  mChannelPtr;   //!< Shared pointer to the underlying Channel
 };
 

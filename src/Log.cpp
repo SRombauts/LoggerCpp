@@ -21,7 +21,7 @@ Log::Log(const Logger& aLogger, Level aSeverity) :
     mSeverity(aSeverity),
     mpStream(NULL)
 {
-    // Construct a stream only if the severity of the Log is above its Logger level
+    // Construct a stream only if the severity of the Log is above its Logger Log::Level
     if (aSeverity >= aLogger.getLevel ())
     {
         mpStream = new(std::ostringstream);
@@ -40,4 +40,23 @@ Log::~Log(void)
         delete mpStream;
         mpStream = NULL;
     }
+}
+
+
+// Convert a Level to its string representation
+const char* Log::toString (Log::Level aLevel)
+{
+    const char* pString = NULL;
+
+    switch (aLevel) {
+        case Log::eDebug:   pString = "DBUG"; break;
+        case Log::eInfo:    pString = "INFO"; break;
+        case Log::eNotice:  pString = "NOTE"; break;
+        case Log::eWarning: pString = "WARN"; break;
+        case Log::eError:   pString = "EROR"; break;
+        case Log::eCritic:  pString = "CRIT"; break;
+        default:            pString = "????"; break;
+    }
+
+    return pString;
 }

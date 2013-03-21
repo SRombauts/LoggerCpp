@@ -21,12 +21,11 @@
  * @brief Initialize a Logger utility object
  *
  * @param[in] apChannelName    String to identify origin of Log output by this Logger
- * @param[in] aChannelLevel    The minimum level of severity from which to output Log
  */
-Logger::Logger(const char* apChannelName, Log::Level aChannelLevel /* = eDebug */)
+Logger::Logger(const char* apChannelName)
 {
-   /// @todo LogManager::getChannel(apChannelName)
-   mChannelPtr.reset(new Channel(apChannelName, aChannelLevel));
+    /// @todo LogManager::getChannel(apChannelName)
+    mChannelPtr.reset(new Channel(apChannelName));
 }
 
 Logger::~Logger(void)
@@ -68,28 +67,6 @@ Log Logger::critic(void) const
  */
 void Logger::output(const Log& aLog) const
 {
-   mChannelPtr->output(aLog);
+    mChannelPtr->output(aLog);
 }
 
-
-/**
- * @brief Level to String conversion
- *
- * @todo remove duplicate
-*/
-const char* Logger::toString (Log::Level aLevel)
-{
-    const char* pString = NULL;
-
-    switch (aLevel) {
-       case Log::eDebug:   pString = "DBUG"; break;
-       case Log::eInfo:    pString = "INFO"; break;
-       case Log::eNotice:  pString = "NOTE"; break;
-       case Log::eWarning: pString = "WARN"; break;
-       case Log::eError:   pString = "EROR"; break;
-       case Log::eCritic:  pString = "CRIT"; break;
-       default:            pString = "????"; break;
-    }
-
-    return pString;
-}
