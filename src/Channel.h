@@ -22,18 +22,27 @@
 /**
  * @brief   The named channel shared by Logger objects using the same name
  */
-struct Channel
+class Channel
 {
-    friend class Logger;
-
 public:
     /// @brief Shared Pointer to a Channel
     typedef shared_ptr<Channel> Ptr;
 
 public:
-    // Constructor, and non virtual destructor
-    Channel(const char* apName, Log::Level aLevel = Log::eDebug);
-    ~Channel(void);
+    /**
+     * @brief Initialize a nammed Channel
+     *
+     * @param[in] apChannelName    String to identify origin of Log output by this Channel
+     * @param[in] aChannelLevel    The default minimum Log::Level of severity from which to output Log
+     */
+    Channel(const char* apChannelName, Log::Level aChannelLevel = Log::eDebug) :
+        mName(apChannelName),
+        mLevel(aChannelLevel)
+    {}
+
+    /// @brief Non virtual destructor
+    ~Channel(void) {
+    }
 
     /// @brief Name of the Channel
     inline const std::string& getName(void) const {
@@ -55,11 +64,6 @@ private:
     Channel(Channel&);
     void operator=(Channel&);
     /// @}
-
-    // To be used only by the Logger class
-    void output(const Log& aLog) const;
-
-    static const char* toString (Log::Level aLevel);
 
 private:
     std::string mName;  //!< Name of the Channel

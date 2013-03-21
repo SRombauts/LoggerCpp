@@ -182,6 +182,10 @@
 				RelativePath="..\..\src\Logger.cpp"
 				>
 			</File>
+			<File
+				RelativePath="..\..\src\Manager.cpp"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
@@ -202,6 +206,10 @@
 			</File>
 			<File
 				RelativePath="..\..\src\LoggerCpp.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\Manager.h"
 				>
 			</File>
 		</Filter>

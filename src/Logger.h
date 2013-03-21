@@ -13,8 +13,6 @@
 #include "Log.h"
 #include "Channel.h"
 
-#include <string>
-
 /**
  * @brief   A simple thread-safe logger class
  *
@@ -62,6 +60,7 @@ private:
     // To be used only by the Log class
     void output(const Log& aLog) const;
 
+private:
     Channel::Ptr  mChannelPtr;   //!< Shared pointer to the underlying Channel
 };
 

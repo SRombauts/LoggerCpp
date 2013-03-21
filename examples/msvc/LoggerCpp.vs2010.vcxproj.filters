@@ -23,7 +23,7 @@
     <ClCompile Include="..\Main.cpp">
       <Filter>Main</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\Channel.cpp">
+    <ClCompile Include="..\..\src\Manager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -38,6 +38,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Channel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Manager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

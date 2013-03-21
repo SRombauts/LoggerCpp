@@ -10,11 +10,9 @@
  */
 
 #include "Logger.h"
+#include "Manager.h"
 
-#include <iostream>
-#include <cstdio>
 #include <cassert>
-#include <ctime>
 
 
 /**
@@ -24,8 +22,11 @@
  */
 Logger::Logger(const char* apChannelName)
 {
-    /// @todo LogManager::getChannel(apChannelName)
-    mChannelPtr.reset(new Channel(apChannelName));
+    assert(NULL != apChannelName);
+
+    mChannelPtr = Manager::get(apChannelName);
+
+    assert(mChannelPtr);
 }
 
 Logger::~Logger(void)
@@ -67,6 +68,6 @@ Log Logger::critic(void) const
  */
 void Logger::output(const Log& aLog) const
 {
-    mChannelPtr->output(aLog);
+    Manager::output(mChannelPtr, aLog);
 }
 
