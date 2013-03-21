@@ -11,6 +11,7 @@
 #pragma once
 
 #include "Log.h"
+#include "Channel.h"
 
 #include <string>
 
@@ -18,8 +19,10 @@
  * @brief   A simple thread-safe logger class
  *
  * This Logger is designed to be easy to use and efficient.
- * It can be used as a member variable, and will not consume much cpu
+ * It can be used as a member variable, and will not consume much CPU
  * if the log severity is below the Logger current level.
+ *
+ * @note A Logger object is copyable without any limitations
  *
  * @todo Move mName and mLevel to a mChannelPtr returned by the LogManager
  */
@@ -29,8 +32,10 @@ class Logger
 
 public:
     // Constructor, and non virtual destructor
-    Logger(const char* apName, Log::Level aLevel = Log::eDebug);
+    Logger(const char* apChannelName, Log::Level aChannelLevel = Log::eDebug);
     ~Logger(void);
+
+    // A Logger is copyable with its a default copy constructor and copy operator without any problem
 
     // Utility const method to produce Log objets, used to collect the stream to output
     Log debug(void) const;
@@ -40,27 +45,25 @@ public:
     Log error(void) const;
     Log critic(void) const;
 
-    inline void setLevel (Log::Level aLevel) {
-        mLevel = aLevel;
+    inline void setLevel(Log::Level aLevel) {
+       mChannelPtr->setLevel(aLevel);
     }
 
-    inline std::string& getName () {
-        return mName;
+    inline Log::Level getLevel(void) const {
+        return mChannelPtr->getLevel();
     }
+
+    inline const std::string& getName(void) const {
+        return mChannelPtr->getName();
+    }
+
 
 private:
-    /// @{ Non-copyable object
-    Logger(Logger&);
-    void operator=(Logger&);
-    /// @}
-
     // To be used only by the Log class
     void output(const Log& aLog) const;
 
-    static const char* toString (Log::Level aLevel);
+    static const char* toString(Log::Level aLevel);
 
-private:
-    std::string mName;  //!< Name of the LogChannel
-    Log::Level  mLevel; //!< Current severity level of the LogChannel
+    Channel::Ptr  mChannelPtr;
 };
 

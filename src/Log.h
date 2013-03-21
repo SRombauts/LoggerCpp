@@ -32,7 +32,7 @@ class Logger;
  */
 class Log
 {
-    friend class Logger;
+   friend class Logger;
 
 public:
     /**
@@ -60,6 +60,16 @@ public:
 
     // Public non virtual destructor
     ~Log(void);
+
+    /// @todo doc
+    inline Level GetSeverity(void) const {
+       return mSeverity;
+    }
+
+    /// @todo doc
+    inline const std::ostringstream& GetStream(void) const {
+       return *mpStream;
+    }
 
 private:
     // Private constructor, reserved for the Logger class

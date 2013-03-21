@@ -22,7 +22,7 @@ Log::Log(const Logger& aLogger, Level aSeverity) :
     mpStream(NULL)
 {
     // Construct a stream only if the severity of the Log is above its Logger level
-    if (aSeverity >= aLogger.mLevel)
+    if (aSeverity >= aLogger.getLevel ())
     {
         mpStream = new(std::ostringstream);
     }
