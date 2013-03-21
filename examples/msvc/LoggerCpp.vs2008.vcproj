@@ -171,6 +171,10 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
+				RelativePath="..\..\src\Channel.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\Log.cpp"
 				>
 			</File>
@@ -185,11 +189,19 @@
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
 			<File
+				RelativePath="..\..\src\Channel.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\Log.h"
 				>
 			</File>
 			<File
 				RelativePath="..\..\src\Logger.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\LoggerCpp.h"
 				>
 			</File>
 		</Filter>
