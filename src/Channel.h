@@ -19,6 +19,10 @@
 #define shared_ptr  boost::shared_ptr
 
 
+namespace Log
+{
+
+
 /**
  * @brief   The named channel shared by Logger objects using the same name
  */
@@ -70,3 +74,5 @@ private:
     Log::Level  mLevel; //!< Current Log::Level of the Channel
 };
 
+
+} // namespace Log

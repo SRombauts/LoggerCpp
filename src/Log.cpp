@@ -13,6 +13,10 @@
 #include "Logger.h"
 
 
+namespace Log
+{
+
+
 /**
  * @brief Construct a RAII (private) log object for the Logger class
 */
@@ -60,3 +64,6 @@ const char* Log::toString (Log::Level aLevel)
 
     return pString;
 }
+
+
+} // namespace Log

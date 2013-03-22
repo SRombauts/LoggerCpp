@@ -17,6 +17,10 @@
 #include <ctime>
 
 
+namespace Log
+{
+
+
 Manager::ChannelMap Manager::mChannelMap;
 
 
@@ -64,4 +68,7 @@ void Manager::output(const Channel::Ptr& aChannelPtr, const Log& aLog)
             aChannelPtr->getName().c_str(), Log::toString(aLog.getSeverity()), (aLog.getStream()).str().c_str());
     fflush(stdout);
 }
+
+
+} // namespace Log
 

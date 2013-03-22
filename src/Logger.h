@@ -13,6 +13,11 @@
 #include "Log.h"
 #include "Channel.h"
 
+
+namespace Log
+{
+
+
 /**
  * @brief   A simple thread-safe logger class
  *
@@ -63,4 +68,7 @@ private:
 private:
     Channel::Ptr  mChannelPtr;   //!< Shared pointer to the underlying Channel
 };
+
+
+} // namespace Log
 

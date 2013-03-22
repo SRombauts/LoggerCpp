@@ -16,6 +16,10 @@
 #include <string>
 
 
+namespace Log
+{
+
+
 /**
  * @brief The static class that manage the registered channels and outputs
  *
@@ -39,3 +43,5 @@ private:
     static ChannelMap   mChannelMap;    //!< Map of shared pointer of Channel objects
 };
 
+
+} // namespace Log

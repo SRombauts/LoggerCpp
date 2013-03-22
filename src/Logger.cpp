@@ -15,6 +15,10 @@
 #include <cassert>
 
 
+namespace Log
+{
+
+
 /**
  * @brief Initialize a Logger utility object
  *
@@ -70,4 +74,7 @@ void Logger::output(const Log& aLog) const
 {
     Manager::output(mChannelPtr, aLog);
 }
+
+
+} // namespace Log
 

@@ -25,7 +25,7 @@ public:
     }
 
 private:
-    Logger mLogger; //!< A named logger to produce log
+    Log::Logger mLogger; //!< A named logger to produce log
 };
 
 
@@ -38,14 +38,14 @@ int main (void)
     Tester tester;
     tester.constTest();
 
-    Logger logger("TestLog");
+    Log::Logger logger("TestLog");
 
     logger.debug()  << "Debug.";
     logger.info()   << "Info.";
     logger.notice() << "Notice.";
     logger.warning()<< "Warning.";
 
-    logger.setLevel(Log::eWarning);
+    logger.setLevel(Log::Log::eWarning);
 
     logger.debug()  << "Debug.";
     logger.info()   << "Info.";
@@ -54,20 +54,20 @@ int main (void)
     logger.error()  << "Error.";
     logger.critic() << "Critic.";
 
-    logger.setLevel(Log::eDebug);
+    logger.setLevel(Log::Log::eDebug);
     logger.debug() << "Variable = " << std::hex << 0x75af0 << " test";
     logger.debug() << "Variable = " << std::right << std::setfill('0') << std::setw(8) << 76035 << " test";
 
-    Logger logger2("TestLog");
-    Logger logger3("OtherChannel");
+    Log::Logger logger2("TestLog");
+    Log::Logger logger3("OtherChannel");
     logger.debug() << "First logger to the Channel";
     logger2.debug() << "Second logger to the Channel";
     logger3.debug() << "Third logger, other Channel";
-    logger.setLevel(Log::eInfo);
+    logger.setLevel(Log::Log::eInfo);
     logger.debug() << "first logger inhibited";
     logger2.debug() << "second logger also disabled";
     logger3.debug() << "third logger still active";
-    logger.setLevel(Log::eDebug);
+    logger.setLevel(Log::Log::eDebug);
     logger.debug() << "first logger re-activated";
     logger2.debug() << "second logger also re-activated";
     logger3.debug() << "third logger always active";

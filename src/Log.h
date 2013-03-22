@@ -13,6 +13,11 @@
 #include <sstream>
 #include <iomanip>
 
+
+namespace Log
+{
+
+
 // forward declaration
 class Logger;
 
@@ -92,4 +97,7 @@ private:
    Level                mSeverity;  //!< Severity of this Log
    std::ostringstream*  mpStream;   //!< The underlying string stream
 };
+
+
+} // namespace Log
 
