@@ -175,6 +175,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\src\Config.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\Log.cpp"
 				>
 			</File>
@@ -186,6 +190,14 @@
 				RelativePath="..\..\src\Manager.cpp"
 				>
 			</File>
+			<File
+				RelativePath="..\..\src\OutputConsole.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\OutputFile.cpp"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
@@ -194,6 +206,10 @@
 			>
 			<File
 				RelativePath="..\..\src\Channel.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\Config.h"
 				>
 			</File>
 			<File
@@ -210,6 +226,18 @@
 			</File>
 			<File
 				RelativePath="..\..\src\Manager.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\Output.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\OutputConsole.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\OutputFile.h"
 				>
 			</File>
 		</Filter>
