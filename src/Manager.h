@@ -13,6 +13,7 @@
 #include "Log.h"
 #include "Channel.h"
 #include "Output.h"
+#include "Config.h"
 
 
 namespace Log
@@ -32,7 +33,7 @@ namespace Log
 struct Manager
 {
 public:
-    static void         configure(void);
+    static void         configure(const Config::Vector& aConfigList);
     static void         terminate(void);
 
     static Channel::Ptr get(const char* apChannelName);

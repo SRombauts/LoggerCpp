@@ -25,18 +25,32 @@ Output::Vector  Manager::mOutputList;
 
 /**
  * @brief Create and configure the Output objects
+ *
+ * @param[in] aConfigList   List of Config for Output objets
 */
-void Manager::configure(void)
+void Manager::configure(const Config::Vector& aConfigList)
 {
-    //const char* pTypeName = typeid(OutputConsole).name();
-    Config::Ptr configPtr;
-    Output::Ptr outputPtr(new OutputConsole(configPtr));
-    mOutputList.push_back(outputPtr);
+    Config::Vector::const_iterator  iConfig;
 
-    configPtr.reset (new Config(""));
-    configPtr->setValue("filename", "log.txt");
-    outputPtr.reset(new OutputFile(configPtr));
-    mOutputList.push_back(outputPtr);
+    for (iConfig  = aConfigList.begin();
+         iConfig != aConfigList.end();
+         ++iConfig)
+    {
+        Output::Ptr outputPtr;
+        if ((*iConfig)->getName() == typeid(OutputConsole).name())
+        {
+            outputPtr.reset(new OutputConsole((*iConfig)));
+        }
+        else if ((*iConfig)->getName() == typeid(OutputFile).name())
+        {
+            outputPtr.reset(new OutputFile((*iConfig)));
+        }
+        else
+        {
+            throw std::runtime_error("Unknown Output name");
+        }
+        mOutputList.push_back(outputPtr);
+    }
 }
 
 

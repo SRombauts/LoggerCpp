@@ -35,11 +35,19 @@ private:
  */
 int main (void)
 {
+    /// @todo Add basic helpers function to the Config class ; a Factory, setString(), setInt(), setSize()...
+    Log::Config::Vector configList;
+    Log::Config::Ptr    configConsolePtr(new Log::Config("class Log::OutputConsole"));
+    configList.push_back(configConsolePtr);
+    Log::Config::Ptr    configFilePtr(new Log::Config("class Log::OutputFile"));
+    configFilePtr->setValue("filename", "log.txt");
+    configList.push_back(configFilePtr);
+
     Log::Logger logger("TestLog");
 
     logger.debug() << "NO logs before configure";
     // Configure the Log Manager (create the Output objects)
-    Log::Manager::configure();
+    Log::Manager::configure(configList);
 
     Tester tester;
     tester.constTest();

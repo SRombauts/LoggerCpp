@@ -27,7 +27,7 @@ OutputFile::OutputFile(const Config::Ptr& aConfigPtr) :
     assert(aConfigPtr);
 
     const Config::Values& values = aConfigPtr->getValues();
-    /// @todo : add basic helpers function to the Config class
+    /// @todo Add basic helpers function to the Config class ; getString(), getInt(), getSize()...
     Config::Values::const_iterator iValue;
     iValue = values.find("filename");
     if (values.end() == iValue)
@@ -38,6 +38,7 @@ OutputFile::OutputFile(const Config::Ptr& aConfigPtr) :
     {
         throw std::runtime_error("OutputFile: no 'filename' provided");
     }
+    /// @todo Add other parameters : max_size, numer_of_file...
     mpFile = fopen(iValue->second.c_str(), "wb");
     if (NULL == mpFile)
     {

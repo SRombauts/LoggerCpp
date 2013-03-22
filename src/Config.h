@@ -34,8 +34,8 @@ class Config
 public:
     /// @brief Shared Pointer to a Config object
     typedef shared_ptr<Config>                  Ptr;
-    /// @brief Map of Config objects
-    typedef std::map<std::string, Ptr>          Map;
+    /// @brief List of Config objects
+    typedef std::vector<Ptr>                    Vector;
     /// @brief Map of string values
     typedef std::map<std::string, std::string>  Values;
 
