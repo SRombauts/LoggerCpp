@@ -1,7 +1,7 @@
 /**
  * @file    OutputConsole.cpp
  * @ingroup LoggerCpp
- * @brief   Output to the standard console using printf
+ * @brief   Output to the standard console using fprintf() with stdout
  *
  * Copyright (c) 2013 Sebastien Rombauts (sebastien.rombauts@gmail.com)
  *
@@ -20,6 +20,13 @@
 namespace Log
 {
 
+OutputConsole::OutputConsole(const Config::Ptr& aConfigPtr)
+{
+}
+
+OutputConsole::~OutputConsole()
+{
+}
 
 /**
  * @brief Output the Log to the standard console using printf

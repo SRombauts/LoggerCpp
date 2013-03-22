@@ -1,7 +1,7 @@
 /**
- * @file    OutputConsole.h
+ * @file    OutputFile.h
  * @ingroup LoggerCpp
- * @brief   Output to the standard console using fprintf() with stdout
+ * @brief   Output to the a file using fprintf
  *
  * Copyright (c) 2013 Sebastien Rombauts (sebastien.rombauts@gmail.com)
  *
@@ -19,15 +19,18 @@ namespace Log
 
 
 /**
- * @brief Output to the standard console using fprintf() with stdout
+ * @brief Output to the standard console using printf
  */
-class OutputConsole : public Output
+class OutputFile : public Output
 {
 public:
-    OutputConsole(const Config::Ptr& aConfigPtr);
-    virtual ~OutputConsole();
+    OutputFile(const Config::Ptr& aConfigPtr);
+    virtual ~OutputFile();
 
     virtual void output(const Channel::Ptr& aChannelPtr, const Log& aLog) const;
+
+private:
+    FILE* mpFile;
 };
 
 

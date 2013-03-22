@@ -31,6 +31,9 @@ namespace Log
 class Output
 {
 public:
+   virtual ~Output() {}
+
+public:
     /// @brief Shared Pointer to an Output
     typedef shared_ptr<Output>  Ptr;
     /// @brief List of Output objects
@@ -43,6 +46,12 @@ public:
      * @param[in] aLog          The Log to output
      */
     virtual void output(const Channel::Ptr& aChannelPtr, const Log& aLog) const = 0;
+
+    /// @brief Return the type name of the Output object
+    inline const char* name() const {
+        return typeid(this).name();
+    }
+
 };
 
 

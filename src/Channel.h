@@ -31,7 +31,7 @@ namespace Log
 class Channel
 {
 public:
-    /// @brief Shared Pointer to a Channel
+    /// @brief Shared Pointer to a Channel object
     typedef shared_ptr<Channel>         Ptr;
     /// @brief Map of shared pointer of Channel objects
     typedef std::map<std::string, Ptr>  Map;

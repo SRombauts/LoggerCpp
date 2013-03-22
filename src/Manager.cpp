@@ -12,6 +12,7 @@
 #include "Manager.h"
 
 #include "OutputConsole.h"
+#include "OutputFile.h"
 
 
 namespace Log
@@ -22,14 +23,20 @@ Channel::Map    Manager::mChannelMap;
 Output::Vector  Manager::mOutputList;
 
 
-
 /**
  * @brief Create and configure the Output objects
 */
 void Manager::configure(void)
 {
-    Output::Ptr OutputPtr(new OutputConsole());
-    mOutputList.push_back(OutputPtr);
+    //const char* pTypeName = typeid(OutputConsole).name();
+    Config::Ptr configPtr;
+    Output::Ptr outputPtr(new OutputConsole(configPtr));
+    mOutputList.push_back(outputPtr);
+
+    configPtr.reset (new Config(""));
+    configPtr->setValue("filename", "log.txt");
+    outputPtr.reset(new OutputFile(configPtr));
+    mOutputList.push_back(outputPtr);
 }
 
 
