@@ -12,7 +12,9 @@
 
 #include "Log.h"
 
+#include <map>
 #include <string>
+
 
 /// @todo try first for the C++11 std::shared_ptr, or the minimal shared_ptr implementation
 #include <boost/shared_ptr.hpp>
@@ -30,11 +32,13 @@ class Channel
 {
 public:
     /// @brief Shared Pointer to a Channel
-    typedef shared_ptr<Channel> Ptr;
+    typedef shared_ptr<Channel>         Ptr;
+    /// @brief Map of shared pointer of Channel objects
+    typedef std::map<std::string, Ptr>  Map;
 
 public:
     /**
-     * @brief Initialize a nammed Channel
+     * @brief Initialize a named Channel
      *
      * @param[in] apChannelName    String to identify origin of Log output by this Channel
      * @param[in] aChannelLevel    The default minimum Log::Level of severity from which to output Log

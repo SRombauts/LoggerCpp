@@ -17,9 +17,9 @@
 #pragma once
 
 
-
 // Include useful headers of LoggerC++
 #include "Logger.h"
+#include "Manager.h"
 
 
 /**

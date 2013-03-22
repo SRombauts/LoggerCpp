@@ -10,10 +10,9 @@
  */
 #pragma once
 
+#include "Log.h"
 #include "Channel.h"
-
-#include <map>
-#include <string>
+#include "Output.h"
 
 
 namespace Log
@@ -26,21 +25,22 @@ namespace Log
  *  The Manager keeps a map of all the named Channel objects
  * and share them on demand by new Logger objects created with the same name.
  *
- * @todo Thus the Manager is able to change the Log::Level of selected Channel objectq.
+ * @todo Thus the Manager is able to change the Log::Level of selected Channel object.
  *
- * @todo The Manager also keep a list of all enabled Output object to output the Log objects.
+ * The Manager also keep a list of all configured Output object to output the Log objects.
  */
 struct Manager
 {
 public:
+    static void         configure(void);
+    static void         terminate(void);
+
     static Channel::Ptr get(const char* apChannelName);
     static void         output(const Channel::Ptr& aChannelPtr, const Log& aLog);
 
 private:
-    /// @brief Map of shared pointer of Channel objects
-    typedef std::map<std::string, Channel::Ptr> ChannelMap;
-
-    static ChannelMap   mChannelMap;    //!< Map of shared pointer of Channel objects
+    static Channel::Map     mChannelMap;    //!< Map of shared pointer of Channel objects
+    static Output::Vector   mOutputList;    //!< List of Output objects
 };
 
 

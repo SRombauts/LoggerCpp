@@ -11,17 +11,36 @@
 
 #include "Manager.h"
 
-#include <iostream>
-#include <cstdio>
-#include <cassert>
-#include <ctime>
+#include "OutputConsole.h"
 
 
 namespace Log
 {
 
 
-Manager::ChannelMap Manager::mChannelMap;
+Channel::Map    Manager::mChannelMap;
+Output::Vector  Manager::mOutputList;
+
+
+
+/**
+ * @brief Create and configure the Output objects
+*/
+void Manager::configure(void)
+{
+    Output::Ptr OutputPtr(new OutputConsole());
+    mOutputList.push_back(OutputPtr);
+}
+
+
+/**
+ * @brief Destroy the Output objects
+*/
+void Manager::terminate(void)
+{
+    // This effectively destroys the Output
+    mOutputList.clear();
+}
 
 
 /**
@@ -34,7 +53,7 @@ Manager::ChannelMap Manager::mChannelMap;
 Channel::Ptr Manager::get(const char* apChannelName)
 {
     Channel::Ptr            ChannelPtr;
-    ChannelMap::iterator    iChannelPtr = mChannelMap.find(apChannelName);
+    Channel::Map::iterator  iChannelPtr = mChannelMap.find(apChannelName);
 
     if (mChannelMap.end() != iChannelPtr) {
         ChannelPtr = iChannelPtr->second;
@@ -46,27 +65,26 @@ Channel::Ptr Manager::get(const char* apChannelName)
     return ChannelPtr;
 }
 
+
 /**
  * @brief Output the Log to all the active Output objects.
  *
+ * Dispatch the Log to OutputConsole/OutputFile/OutputVS/OutputMemory...
+ *
  * @param[in] aChannelPtr   The underlying Channel of the Log
  * @param[in] aLog          The Log to output
- *
- * @todo the LogManager class will dispatch it to LogOutputConsole/LogOutputFile/LogOutputVS/LogOutputMemory/
  */
 void Manager::output(const Channel::Ptr& aChannelPtr, const Log& aLog)
 {
-    time_t datetime;
-    time(&datetime);
-    struct tm* timeinfo = localtime(&datetime);
-    assert (NULL != timeinfo);
+    Output::Vector::iterator    iOutputPtr;
 
-    // uses fprintf for atomic thread-safe operation
-    fprintf(stdout, "%.4u-%.2u-%.2u %.2u:%.2u:%.2u  %-20s %s  %s\n",
-            (timeinfo->tm_year+1900), timeinfo->tm_mon, timeinfo->tm_mday,
-            timeinfo->tm_hour, timeinfo->tm_min, timeinfo->tm_sec,
-            aChannelPtr->getName().c_str(), Log::toString(aLog.getSeverity()), (aLog.getStream()).str().c_str());
-    fflush(stdout);
+    /// @todo get the current time once for all Output objects
+    for (iOutputPtr  = mOutputList.begin();
+         iOutputPtr != mOutputList.end();
+         iOutputPtr++)
+    {
+        (*iOutputPtr)->output(aChannelPtr, aLog);
+    }
 }
 
 

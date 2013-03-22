@@ -35,10 +35,14 @@ private:
  */
 int main (void)
 {
+    Log::Logger logger("TestLog");
+
+    logger.debug() << "NO logs before configure";
+    // Configure the Log Manager (create the Output objects)
+    Log::Manager::configure();
+
     Tester tester;
     tester.constTest();
-
-    Log::Logger logger("TestLog");
 
     logger.debug()  << "Debug.";
     logger.info()   << "Info.";
@@ -71,6 +75,10 @@ int main (void)
     logger.debug() << "first logger re-activated";
     logger2.debug() << "second logger also re-activated";
     logger3.debug() << "third logger always active";
+
+    // Terminate the Log Manager (destroy the Output objects)
+    Log::Manager::terminate();
+    logger.debug() << "NO more logs here";
 
     return 0;
 }
