@@ -38,8 +38,8 @@ OutputFile::OutputFile(const Config::Ptr& aConfigPtr) :
     {
         throw std::runtime_error("OutputFile: no 'filename' provided");
     }
-    /// @todo Add other parameters : max_size, numer_of_file...
-    mpFile = fopen(iValue->second.c_str(), "wb");
+    /// @todo Add other parameters : max_size, numer_of_file, append vs create...
+    mpFile = fopen(iValue->second.c_str(), "ab");
     if (NULL == mpFile)
     {
         throw std::runtime_error("OutputFile: file not opened");
