@@ -14,6 +14,8 @@
 #include "OutputConsole.h"
 #include "OutputFile.h"
 
+#include <stdexcept>
+
 
 namespace Log
 {
@@ -26,18 +28,17 @@ Output::Vector  Manager::mOutputList;
 /**
  * @brief Create and configure the Output objects
  *
- * @param[in] aConfigList   List of Config for Output objets
+ * @param[in] aConfigList   List of Config for Output objects
 */
 void Manager::configure(const Config::Vector& aConfigList)
 {
     // List of all Output class ; those names are in the form 
     // - "class Log::OutputConsole" under Visual Studio 2010
-    // - @todo GCC
+    // - "N3Log13OutputConsoleE" under GCC
     std::string outputConsole = typeid(OutputConsole).name();
     std::string outputFile    = typeid(OutputFile).name();
 
     Config::Vector::const_iterator  iConfig;
-
     for (iConfig  = aConfigList.begin();
          iConfig != aConfigList.end();
          ++iConfig)

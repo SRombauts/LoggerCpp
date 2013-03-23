@@ -11,6 +11,7 @@
 #pragma once
 
 #include <string>
+#include <vector>
 #include <map>
 
 /// @todo try first for the C++11 std::shared_ptr, or the minimal shared_ptr implementation
