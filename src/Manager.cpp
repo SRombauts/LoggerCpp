@@ -30,18 +30,27 @@ Output::Vector  Manager::mOutputList;
 */
 void Manager::configure(const Config::Vector& aConfigList)
 {
+    // List of all Output class ; those names are in the form 
+    // - "class Log::OutputConsole" under Visual Studio 2010
+    // - @todo GCC
+    std::string outputConsole = typeid(OutputConsole).name();
+    std::string outputFile    = typeid(OutputFile).name();
+
     Config::Vector::const_iterator  iConfig;
 
     for (iConfig  = aConfigList.begin();
          iConfig != aConfigList.end();
          ++iConfig)
     {
-        Output::Ptr outputPtr;
-        if ((*iConfig)->getName() == typeid(OutputConsole).name())
+        Output::Ptr         outputPtr;
+        const std::string&  configName = (*iConfig)->getName();
+
+        // Compare the provided Output name with the known class name
+        if (std::string::npos != outputConsole.find(configName))
         {
             outputPtr.reset(new OutputConsole((*iConfig)));
         }
-        else if ((*iConfig)->getName() == typeid(OutputFile).name())
+        else if (std::string::npos != outputFile.find(configName))
         {
             outputPtr.reset(new OutputFile((*iConfig)));
         }

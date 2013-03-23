@@ -37,9 +37,9 @@ int main (void)
 {
     /// @todo Add basic helpers function to the Config class ; a Factory, setString(), setInt(), setSize()...
     Log::Config::Vector configList;
-    Log::Config::Ptr    configConsolePtr(new Log::Config("class Log::OutputConsole"));
+    Log::Config::Ptr    configConsolePtr(new Log::Config("OutputConsole"));
     configList.push_back(configConsolePtr);
-    Log::Config::Ptr    configFilePtr(new Log::Config("class Log::OutputFile"));
+    Log::Config::Ptr    configFilePtr(new Log::Config("OutputFile"));
     configFilePtr->setValue("filename", "log.txt");
     configList.push_back(configFilePtr);
 
