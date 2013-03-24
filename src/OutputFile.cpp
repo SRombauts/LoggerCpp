@@ -10,8 +10,8 @@
  */
 
 #include "OutputFile.h"
+#include "Stream.h"
 
-#include <iostream>
 #include <cstdio>
 #include <cassert>
 #include <ctime>
@@ -31,10 +31,8 @@ OutputFile::OutputFile(const Config::Ptr& aConfigPtr) :
     mpFile = fopen(filename.c_str(), "ab");
     if (NULL == mpFile)
     {
-        /// @todo use a LOGGER_THROW macro
-        std::string errmsg = "OutputFile: file not opened ";
-        errmsg += filename;
-        throw std::runtime_error(errmsg);
+        /// @todo use a specific Exception class
+        throw std::runtime_error(Stream() << "OutputFile: file \"" << filename << "\" not opened");
     }
 }
 
