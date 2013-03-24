@@ -12,6 +12,8 @@
 #include "Config.h"
 #include "Stream.h"
 
+#include <stdexcept>
+
 
 namespace Log
 {
