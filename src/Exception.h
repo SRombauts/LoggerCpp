@@ -10,6 +10,8 @@
  */
 #pragma once
 
+#include "Formatter.h"
+
 #include <stdexcept>
 #include <cassert>
 
@@ -49,6 +51,20 @@ public:
     {
     }
 };
+
+
+/// @brief Stringify 1/2 : convert an integer to a string (using the following macro)
+#define TOSTRING(x) _XSTRING(x)
+/// @brief Stringify 2/2 : convert an integer to a string (inner macro)
+#define _XSTRING(x) #x
+
+#ifdef __FUNCTION__
+/// @brief Define __func__ under Windows, to use the same name as with GCC
+#define __func__    __FUNCTION__
+#endif
+
+/// @brief Helper macro to throw an Exception with file/line/function information, using the string stream Formatter
+#define LOGGER_THROW(x) throw Exception(Formatter() << __FILE__ << ":" << TOSTRING(__LINE__) << ": " << __func__ << "(): " << x)
 
 
 }  // namespace Log

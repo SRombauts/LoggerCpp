@@ -45,9 +45,16 @@ int main (void)
 
     Log::Logger logger("TestLog");
 
-    logger.debug() << "NO logs before configure";
     // Configure the Log Manager (create the Output objects)
-    Log::Manager::configure(configList);
+    try
+    {
+        logger.debug() << "NO logs before configure";
+        Log::Manager::configure(configList);
+    }
+    catch (std::exception& e)
+    {
+        std::cerr << e.what();
+    }
 
     Tester tester;
     tester.constTest();

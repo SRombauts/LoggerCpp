@@ -10,7 +10,6 @@
  */
 
 #include "Config.h"
-#include "Formatter.h"
 #include "Exception.h"
 
 
@@ -36,7 +35,7 @@ const std::string& Config::getString(const char* apKey) const
     Config::Values::const_iterator iValue = mValues.find(apKey);
     if (mValues.end() == iValue)
     {
-        throw Exception(Formatter() << "Config::getString(\"" << apKey << "\") no existing value");
+        LOGGER_THROW("no value for the \"" << apKey << "\" key");
     }
     return iValue->second;
 }

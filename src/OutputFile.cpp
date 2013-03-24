@@ -10,7 +10,6 @@
  */
 
 #include "OutputFile.h"
-#include "Formatter.h"
 #include "Exception.h"
 
 #include <cstdio>
@@ -31,7 +30,7 @@ OutputFile::OutputFile(const Config::Ptr& aConfigPtr) :
     mpFile = fopen(filename.c_str(), "ab");
     if (NULL == mpFile)
     {
-        throw Exception(Formatter() << "OutputFile: file \"" << filename << "\" not opened");
+        LOGGER_THROW("file \"" << filename << "\" not opened");
     }
 }
 
