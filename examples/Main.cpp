@@ -41,6 +41,10 @@ int main (void)
     configList.push_back(configConsolePtr);
     Log::Config::Ptr    configFilePtr(new Log::Config("OutputFile"));
     configFilePtr->setValue("filename", "log.txt");
+#ifdef WIN32
+    Log::Config::Ptr    configDebugPtr(new Log::Config("OutputDebug"));
+    configList.push_back(configDebugPtr);
+#endif
     configList.push_back(configFilePtr);
 
     Log::Logger logger("TestLog");

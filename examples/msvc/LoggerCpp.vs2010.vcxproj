@@ -91,6 +91,7 @@
     <ClCompile Include="..\..\src\Logger.cpp" />
     <ClCompile Include="..\..\src\Manager.cpp" />
     <ClCompile Include="..\..\src\OutputConsole.cpp" />
+    <ClCompile Include="..\..\src\OutputDebug.cpp" />
     <ClCompile Include="..\..\src\OutputFile.cpp" />
     <ClCompile Include="..\Main.cpp" />
   </ItemGroup>
@@ -105,6 +106,7 @@
     <ClInclude Include="..\..\src\Manager.h" />
     <ClInclude Include="..\..\src\Output.h" />
     <ClInclude Include="..\..\src\OutputConsole.h" />
+    <ClInclude Include="..\..\src\OutputDebug.h" />
     <ClInclude Include="..\..\src\OutputFile.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

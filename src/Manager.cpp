@@ -13,6 +13,9 @@
 
 #include "OutputConsole.h"
 #include "OutputFile.h"
+#ifdef WIN32
+#include "OutputDebug.h"
+#endif
 
 #include <stdexcept>
 
@@ -37,6 +40,9 @@ void Manager::configure(const Config::Vector& aConfigList)
     // - "N3Log13OutputConsoleE" under GCC
     std::string outputConsole = typeid(OutputConsole).name();
     std::string outputFile    = typeid(OutputFile).name();
+#ifdef WIN32
+    std::string outputDebug   = typeid(OutputDebug).name();
+#endif
 
     Config::Vector::const_iterator  iConfig;
     for (iConfig  = aConfigList.begin();
@@ -55,6 +61,12 @@ void Manager::configure(const Config::Vector& aConfigList)
         {
             outputPtr.reset(new OutputFile((*iConfig)));
         }
+#ifdef WIN32
+        else if (std::string::npos != outputDebug.find(configName))
+        {
+            outputPtr.reset(new OutputDebug((*iConfig)));
+        }
+#endif
         else
         {
             throw std::runtime_error("Unknown Output name");
