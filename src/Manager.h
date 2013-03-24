@@ -21,7 +21,8 @@ namespace Log
 
 
 /**
- * @brief The static class that manage the registered channels and outputs
+ * @brief   The static class that manage the registered channels and outputs
+ * @ingroup LoggerCpp
  *
  *  The Manager keeps a map of all the named Channel objects
  * and share them on demand by new Logger objects created with the same name.

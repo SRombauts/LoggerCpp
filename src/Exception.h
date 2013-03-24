@@ -36,7 +36,8 @@ namespace Log
 {
 
 /**
- * @brief Encapsulation of an error message based on std::runtime_error.
+ * @brief   Encapsulation of an error message based on std::runtime_error.
+ * @ingroup LoggerCpp
  */
 class Exception : public std::runtime_error
 {

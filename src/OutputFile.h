@@ -19,7 +19,8 @@ namespace Log
 
 
 /**
- * @brief Output to the standard console using printf
+ * @brief   Output to the standard console using printf
+ * @ingroup LoggerCpp
  */
 class OutputFile : public Output
 {

@@ -19,7 +19,8 @@ namespace Log
 
 
 /**
- * @brief Output to the standard console using fprintf() with stdout
+ * @brief   Output to the standard console using fprintf() with stdout
+ * @ingroup LoggerCpp
  */
 class OutputConsole : public Output
 {

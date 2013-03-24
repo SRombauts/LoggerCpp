@@ -29,6 +29,7 @@ class Logger;
 
 /**
  * @brief   Configuration for an Output object
+ * @ingroup LoggerCpp
  */
 class Config
 {

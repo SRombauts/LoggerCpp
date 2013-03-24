@@ -27,6 +27,7 @@ namespace Log
 
 /**
  * @brief   Interface of an Output
+ * @ingroup LoggerCpp
  */
 class Output
 {

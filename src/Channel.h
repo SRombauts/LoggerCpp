@@ -27,6 +27,7 @@ namespace Log
 
 /**
  * @brief   The named channel shared by Logger objects using the same name
+ * @ingroup LoggerCpp
  */
 class Channel
 {

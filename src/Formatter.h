@@ -19,6 +19,7 @@ namespace Log
 
 /**
  * @brief   A standard string stream formatter with implicit string conversion
+ * @ingroup LoggerCpp
  *
  *  It is constructed and initialized by a call to the Formatter() constructor.
  * Is is then used by successive standard stream call "<<" to insert data into the stream.

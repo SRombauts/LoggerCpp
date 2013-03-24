@@ -24,6 +24,7 @@ class Logger;
 
 /**
  * @brief   A RAII (private) log object constructed by the Logger class
+ * @ingroup LoggerCpp
  *
  * This represents a full line of log, at a certain Log::Level of severity.
  *

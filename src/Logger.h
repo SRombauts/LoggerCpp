@@ -14,12 +14,17 @@
 #include "Channel.h"
 
 
+/**
+ * @brief   LoggerC++ (LoggerCpp) is a simple, elegant and efficient C++ logger library.
+ * @ingroup LoggerCpp
+*/
 namespace Log
 {
 
 
 /**
  * @brief   A simple thread-safe logger class
+ * @ingroup LoggerCpp
  *
  * This Logger is designed to be easy to use and efficient.
  * It can be used as a member variable, and will not consume much CPU

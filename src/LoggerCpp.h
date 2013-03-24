@@ -23,7 +23,8 @@
 
 
 /**
- * @brief Version numbers for LoggerC++
+ * @brief   Version numbers for LoggerC++
+ * @ingroup LoggerCpp
  *
  * The [LOGGERCPP_VERSION] C preprocessor macro in the LoggerCpp.h header
  * evaluates to a string literal that is the LoggerC++ version in the
