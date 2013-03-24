@@ -26,23 +26,15 @@ OutputFile::OutputFile(const Config::Ptr& aConfigPtr) :
 {
     assert(aConfigPtr);
 
-    const Config::Values& values = aConfigPtr->getValues();
-    /// @todo Add basic helpers function to the Config class ; getString(), getInt(), getSize()...
-    Config::Values::const_iterator iValue;
-    iValue = values.find("filename");
-    if (values.end() == iValue)
-    {
-        throw std::runtime_error("OutputFile: no 'filename' provided");
-    }
-    if (iValue->second.empty())
-    {
-        throw std::runtime_error("OutputFile: no 'filename' provided");
-    }
     /// @todo Add other parameters : max_size, numer_of_file, append vs create...
-    mpFile = fopen(iValue->second.c_str(), "ab");
+    const std::string& filename = aConfigPtr->getString("filename");
+    mpFile = fopen(filename.c_str(), "ab");
     if (NULL == mpFile)
     {
-        throw std::runtime_error("OutputFile: file not opened");
+        /// @todo use a LOGGER_THROW macro
+        std::string errmsg = "OutputFile: file not opened ";
+        errmsg += filename;
+        throw std::runtime_error(errmsg);
     }
 }
 

@@ -15,23 +15,31 @@
 namespace Log
 {
 
-
-/**
- * @brief
-*/
+// Constructor
 Config::Config(const char* apName) :
     mName(apName)
 {
 }
 
 
-/**
- * @brief
-*/
+// Destructor
 Config::~Config(void)
 {
 }
 
 
+// Get a string value
+const std::string& Config::getString(const char* apKey) const
+{
+    Config::Values::const_iterator iValue = mValues.find(apKey);
+    if (mValues.end() == iValue)
+    {
+        /// @todo use a LOGGER_THROW macro
+        std::string errmsg = "no value for ";
+        errmsg += apKey;
+        throw std::runtime_error(errmsg);
+    }
+    return iValue->second;
+}
 
 } // namespace Log

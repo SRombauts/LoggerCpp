@@ -41,8 +41,14 @@ public:
     typedef std::map<std::string, std::string>  Values;
 
 public:
-    // Constructor and non virtual destructor
-     Config(const char* apName);
+    /**
+     * @brief Constructor
+     *
+     * @param[in] apName Name of the Config object
+    */
+    Config(const char* apName);
+
+    /// @brief Non virtual destructor
     ~Config(void);
 
     /// @brief Get the name of this Config object
@@ -55,10 +61,26 @@ public:
         return mValues;
     }
 
-    /// @brief Set a string value
-    inline void setValue(const char* apName, const char* apValue) {
-        mValues[apName] = apValue;
+    /**
+     * @brief Set a string value
+     *
+     * @param[in] apKey     String key identifying the string value
+     * @param[in] apValue   String value associated to the given key
+     */
+    inline void setValue(const char* apKey, const char* apValue) {
+        mValues[apKey] = apValue;
     }
+
+    /**
+     * @brief Get a string value
+     *
+     *  Throw a std::runtime_error if the key does not exists.
+     *
+     * @param[in] apKey String key identifying the string value
+     *
+     * @return String value associated to the given key
+     */
+    const std::string& getString(const char* apKey) const;
 
 private:
    std::string  mName;      //!< Name of the Config
