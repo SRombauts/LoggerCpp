@@ -171,10 +171,6 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
-				RelativePath="..\..\src\Channel.cpp"
-				>
-			</File>
-			<File
 				RelativePath="..\..\src\Config.cpp"
 				>
 			</File>
@@ -210,6 +206,14 @@
 			</File>
 			<File
 				RelativePath="..\..\src\Config.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\Exception.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\Formatter.h"
 				>
 			</File>
 			<File

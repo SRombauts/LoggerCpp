@@ -10,9 +10,8 @@
  */
 
 #include "Config.h"
-#include "Stream.h"
-
-#include <stdexcept>
+#include "Formatter.h"
+#include "Exception.h"
 
 
 namespace Log
@@ -37,8 +36,7 @@ const std::string& Config::getString(const char* apKey) const
     Config::Values::const_iterator iValue = mValues.find(apKey);
     if (mValues.end() == iValue)
     {
-        /// @todo use a specific Exception class
-        throw std::runtime_error(Stream() << "Config::getString(\"" << apKey << "\") no existing value");
+        throw Exception(Formatter() << "Config::getString(\"" << apKey << "\") no existing value");
     }
     return iValue->second;
 }

@@ -10,12 +10,12 @@
  */
 
 #include "OutputFile.h"
-#include "Stream.h"
+#include "Formatter.h"
+#include "Exception.h"
 
 #include <cstdio>
 #include <cassert>
 #include <ctime>
-#include <stdexcept>
 
 
 namespace Log
@@ -31,8 +31,7 @@ OutputFile::OutputFile(const Config::Ptr& aConfigPtr) :
     mpFile = fopen(filename.c_str(), "ab");
     if (NULL == mpFile)
     {
-        /// @todo use a specific Exception class
-        throw std::runtime_error(Stream() << "OutputFile: file \"" << filename << "\" not opened");
+        throw Exception(Formatter() << "OutputFile: file \"" << filename << "\" not opened");
     }
 }
 

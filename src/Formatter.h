@@ -1,5 +1,5 @@
 /**
- * @file    Stream.h
+ * @file    Formatter.h
  * @ingroup LoggerCpp
  * @brief   A standard string stream formatter with implicit string conversion
  *
@@ -20,20 +20,20 @@ namespace Log
 /**
  * @brief   A standard string stream formatter with implicit string conversion
  *
- *  It is constructed and initialized by a call to the Stream() constructor.
+ *  It is constructed and initialized by a call to the Formatter() constructor.
  * Is is then used by successive standard stream call "<<" to insert data into the stream.
  * It is ultimatly implicitly converted to std::string when required.
  *
  *  A typical use case is to format a std::exception string message :
- * - throw std::runtime_error(Stream() << "no value for key '" << apKey << "'");
+ * - throw std::runtime_error(Formatter() << "no value for key '" << apKey << "'");
  */
-class Stream
+class Formatter
 {
 public:
     /// @brief Constructor
-    Stream(void)    {}
+    Formatter(void)    {}
     /// @brief Non virtual destructor
-    ~Stream(void)   {}
+    ~Formatter(void)   {}
 
     /**
      * @brief stream inserter operator
@@ -41,7 +41,7 @@ public:
      * @param[in] aValue    Value to be formatted and insterted into the string stream
      */
     template <typename T>
-    Stream& operator<< (const T& aValue)
+    Formatter& operator<< (const T& aValue)
     {
         mStream << aValue;
         return (*this);
@@ -55,8 +55,8 @@ public:
 
 private:
     /// @{ Non-copyable object
-    Stream(const Stream&);
-    void operator=(const Stream&);
+    Formatter(const Formatter&);
+    void operator=(const Formatter&);
     /// @}
 
 private:

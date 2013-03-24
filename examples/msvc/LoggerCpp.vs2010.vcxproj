@@ -97,6 +97,8 @@
   <ItemGroup>
     <ClInclude Include="..\..\src\Channel.h" />
     <ClInclude Include="..\..\src\Config.h" />
+    <ClInclude Include="..\..\src\Exception.h" />
+    <ClInclude Include="..\..\src\Formatter.h" />
     <ClInclude Include="..\..\src\Log.h" />
     <ClInclude Include="..\..\src\Logger.h" />
     <ClInclude Include="..\..\src\LoggerCpp.h" />
