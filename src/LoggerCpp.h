@@ -35,5 +35,5 @@
  * with the value (X*1000000 + Y*1000 + Z) where X, Y, and Z are the same
  * numbers used in [LOGGERCPP_VERSION].
  */
-#define LOGGERCPP_VERSION             "0.0.0"
-#define LOGGERCPP_VERSION_NUMBER      0000000
+#define LOGGERCPP_VERSION             "0.1.0"
+#define LOGGERCPP_VERSION_NUMBER      0001000
