@@ -34,7 +34,7 @@ Log::Log(const Logger& aLogger, Level aSeverity) :
 
 
 /**
- * @brief Output the Log string stream
+ * @brief Destructor : output the Log string stream
 */
 Log::~Log(void)
 {

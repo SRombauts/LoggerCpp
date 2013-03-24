@@ -11,7 +11,7 @@
 #pragma once
 
 #include <sstream>
-#include <iomanip>
+#include <iomanip>  // For easy use of parametric manipulators (setfill, setprecision) by client code
 
 
 namespace Log
@@ -53,7 +53,11 @@ public:
     };
 
 public:
-    // Output stream operator
+    /**
+     * @brief stream inserter operator
+     *
+     * @param[in] aValue    Value to be formatted and insterted into the Log string stream
+     */
     template <typename T>
     Log& operator<< (const T& aValue)
     {
