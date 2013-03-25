@@ -60,7 +60,7 @@ void Time::make(void)
     month   = timeinfo->tm_mon + 1;
     day     = timeinfo->tm_mday ;
     hour    = timeinfo->tm_hour;
-    minute  = timeinfo->tm_min
+    minute  = timeinfo->tm_min;
     second  = timeinfo->tm_sec;
     ms      = now.tv_usec / 1000;
     us      = now.tv_usec % 1000;
