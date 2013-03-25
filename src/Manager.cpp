@@ -92,6 +92,8 @@ void Manager::terminate(void)
  * Create a new Channel or get the existing one. 
  *
  * @param[in] apChannelName String to identify the underlying Channel of a Logger
+ *
+ * @return Pointer to the corresponding Channel (never NULL)
 */
 Channel::Ptr Manager::get(const char* apChannelName)
 {

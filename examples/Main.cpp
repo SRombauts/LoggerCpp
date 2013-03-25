@@ -86,11 +86,11 @@ int main (void)
     logger.debug() << "First logger to the Channel";
     logger2.debug() << "Second logger to the Channel";
     logger3.debug() << "Third logger, other Channel";
-    logger.setLevel(Log::Log::eInfo);
+    Log::Manager::get("TestLog")->setLevel(Log::Log::eInfo);
     logger.debug() << "first logger inhibited";
     logger2.debug() << "second logger also disabled";
     logger3.debug() << "third logger still active";
-    logger.setLevel(Log::Log::eDebug);
+    Log::Manager::get("TestLog")->setLevel(Log::Log::eDebug);
     logger.debug() << "first logger re-activated";
     logger2.debug() << "second logger also re-activated";
     logger3.debug() << "third logger always active";
