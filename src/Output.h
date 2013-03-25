@@ -10,7 +10,7 @@
  */
 #pragma once
 
-#include "Log.h"
+
 #include "Channel.h"
 
 #include <vector>
@@ -24,6 +24,8 @@
 namespace Log
 {
 
+// Forward declaration
+class Log;
 
 /**
  * @brief   Interface of an Output

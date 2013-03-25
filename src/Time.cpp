@@ -22,16 +22,48 @@ namespace Log
 {
 
 
-/// @todo Set to current time
-Time::Time(void)
+/// @brief Constructor
+Time::Time(void) :
+    year(0),
+    month(0),
+    day(0),
+    hour(0),
+    minute(0),
+    second(0),
+    ms(0),
+    us(0)
+{
+}
+
+
+/// @brief Set to current time
+void Time::make(void)
 {
 #ifdef WIN32
     SYSTEMTIME now;
     GetLocalTime(&now);
+
+    year    = now.wYear;
+    month   = now.wMonth;
+    day     = now.wDay;
+    hour    = now.wHour;
+    minute  = now.wMinute;
+    second  = now.wSecond;
+    ms      = now.wMilliseconds;
+    us      = 0;
 #else
     struct timeval now;
     gettimeofday(&now, NULL);
-    struct tm* timeinfo = localtime(&now);
+    struct tm* timeinfo = localtime(&now.tv_sec);
+
+    year    = timeinfo->tm_year + 1900;
+    month   = timeinfo->tm_mon + 1;
+    day     = timeinfo->tm_mday ;
+    hour    = timeinfo->tm_hour;
+    minute  = timeinfo->tm_min
+    second  = timeinfo->tm_sec;
+    ms      = now.tv_usec / 1000;
+    us      = now.tv_usec % 1000;
 #endif
 }
 

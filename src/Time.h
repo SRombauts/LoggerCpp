@@ -23,13 +23,16 @@ struct Time
 {
     Time(void);
 
-    int ms;      /* milliseconds */
-    int sec;     /* seconds [0,59] */
-    int min;     /* minutes [0,59] */
-    int hour;    /* hours   [0,23] */
-    int day;     /* day     [1,31] */
-    int month;   /* month   [1,12] */
-    int year;    /* year    [0,30827]*/
+    void make(void);
+
+    int year;    //!< year    [0,30827]
+    int month;   //!< month   [1,12]
+    int day;     //!< day     [1,31]
+    int hour;    //!< hour    [0,23]
+    int minute;  //!< minute  [0,59]
+    int second;  //!< second  [0,59]
+    int ms;      //!< millisecond
+    int us;      //!< microsecond
 };
 
 

@@ -39,6 +39,7 @@ Log::Log(const Logger& aLogger, Level aSeverity) :
 Log::~Log(void)
 {
     if (NULL != mpStream) {
+        mTime.make();
         mLogger.output(*this);
 
         delete mpStream;

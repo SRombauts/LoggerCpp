@@ -15,10 +15,7 @@
 
 #include <Windows.h>
 
-#include <iostream>
 #include <cstdio>
-#include <cassert>
-#include <ctime>
 
 
 namespace Log
@@ -40,18 +37,13 @@ OutputDebug::~OutputDebug()
  */
 void OutputDebug::output(const Channel::Ptr& aChannelPtr, const Log& aLog) const
 {
-    char buffer[256];
-    time_t datetime;
-    time(&datetime);
-    struct tm* timeinfo = localtime(&datetime);
-    assert (NULL != timeinfo);
+    const Time&         time = aLog.getTime();
+    char                buffer[256];
 
-    std::string log = aLog.getStream().str();
-
-    // uses fprintf for atomic thread-safe operation
-    _snprintf(buffer, 256, "%.4u-%.2u-%.2u %.2u:%.2u:%.2u  %-20s %s  %s\n",
-            (timeinfo->tm_year+1900), timeinfo->tm_mon, timeinfo->tm_mday,
-            timeinfo->tm_hour, timeinfo->tm_min, timeinfo->tm_sec,
+    // uses snprintf for atomic thread-safe operation
+    _snprintf(buffer, 256, "%.4u-%.2u-%.2u %.2u:%.2u:%.2u.%.3u  %-20s %s  %s\n",
+            time.year, time.month, time.day,
+            time.hour, time.minute, time.second, time.ms,
             aChannelPtr->getName().c_str(), Log::toString(aLog.getSeverity()), (aLog.getStream()).str().c_str());
     buffer[255] = '\0';
     OutputDebugStringA(buffer);

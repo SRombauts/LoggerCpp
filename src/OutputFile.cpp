@@ -13,8 +13,6 @@
 #include "Exception.h"
 
 #include <cstdio>
-#include <cassert>
-#include <ctime>
 
 
 namespace Log
@@ -52,15 +50,12 @@ OutputFile::~OutputFile()
  */
 void OutputFile::output(const Channel::Ptr& aChannelPtr, const Log& aLog) const
 {
-    time_t datetime;
-    time(&datetime);
-    struct tm* timeinfo = localtime(&datetime);
-    assert (NULL != timeinfo);
+    const Time& time = aLog.getTime();
 
     // uses fprintf for atomic thread-safe operation
-    fprintf(mpFile, "%.4u-%.2u-%.2u %.2u:%.2u:%.2u  %-20s %s  %s\n",
-            (timeinfo->tm_year+1900), timeinfo->tm_mon, timeinfo->tm_mday,
-            timeinfo->tm_hour, timeinfo->tm_min, timeinfo->tm_sec,
+    fprintf(mpFile, "%.4u-%.2u-%.2u %.2u:%.2u:%.2u.%.3u  %-20s %s  %s\n",
+            time.year, time.month, time.day,
+            time.hour, time.minute, time.second, time.ms,
             aChannelPtr->getName().c_str(), Log::toString(aLog.getSeverity()), (aLog.getStream()).str().c_str());
     fflush(stdout);
 }

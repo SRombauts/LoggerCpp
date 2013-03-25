@@ -10,6 +10,8 @@
  */
 #pragma once
 
+#include "Time.h"
+
 #include <sstream>
 #include <iomanip>  // For easy use of parametric manipulators (setfill, setprecision) by client code
 
@@ -76,6 +78,11 @@ public:
         return mSeverity;
     }
 
+    /// @brief Timestamp of this Log
+    inline const Time& getTime(void) const {
+        return mTime;
+    }
+
     /// @brief The underlying string stream
     inline const std::ostringstream& getStream(void) const {
         return *mpStream;
@@ -100,6 +107,7 @@ private:
 private:
    const Logger&        mLogger;    //!< Reference to the parent Logger
    Level                mSeverity;  //!< Severity of this Log
+   Time                 mTime;      //!< Timestamp of the output
    std::ostringstream*  mpStream;   //!< The underlying string stream
 };
 
