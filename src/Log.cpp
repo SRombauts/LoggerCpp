@@ -17,25 +17,19 @@ namespace Log
 {
 
 
-/**
- * @brief Construct a RAII (private) log object for the Logger class
-*/
+// Construct a RAII (private) log object for the Logger class
 Log::Log(const Logger& aLogger, Level aSeverity) :
     mLogger(aLogger),
     mSeverity(aSeverity),
     mpStream(NULL)
 {
     // Construct a stream only if the severity of the Log is above its Logger Log::Level
-    if (aSeverity >= aLogger.getLevel ())
-    {
+    if (aSeverity >= aLogger.getLevel ()) {
         mpStream = new(std::ostringstream);
     }
 }
 
-
-/**
- * @brief Destructor : output the Log string stream
-*/
+// Destructor : output the Log string stream
 Log::~Log(void)
 {
     if (NULL != mpStream) {
@@ -46,7 +40,6 @@ Log::~Log(void)
         mpStream = NULL;
     }
 }
-
 
 // Convert a Level to its string representation
 const char* Log::toString (Log::Level aLevel)

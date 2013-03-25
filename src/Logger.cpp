@@ -19,11 +19,7 @@ namespace Log
 {
 
 
-/**
- * @brief Initialize a Logger utility object
- *
- * @param[in] apChannelName    String to identify origin of Log output by this Logger
- */
+// Initialize a Logger utility object
 Logger::Logger(const char* apChannelName)
 {
     assert(NULL != apChannelName);
@@ -33,10 +29,10 @@ Logger::Logger(const char* apChannelName)
     assert(mChannelPtr);
 }
 
+// Non virtual destructor
 Logger::~Logger(void)
 {
 }
-
 
 // Utility const method to produce Log objets, used to collect the stream to output
 Log Logger::debug(void) const
@@ -64,12 +60,7 @@ Log Logger::critic(void) const
     return Log(*this, Log::eCritic);
 }
 
-
-/**
- * @brief Output the Log. Used by the Log class destructor.
- *
- * @param[in] aLog  The Log to output
- */
+// To be used only by the Log class
 void Logger::output(const Log& aLog) const
 {
     Manager::output(mChannelPtr, aLog);

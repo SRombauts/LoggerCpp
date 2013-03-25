@@ -16,28 +16,27 @@
 namespace Log
 {
 
+
 // Constructor
 Config::Config(const char* apName) :
     mName(apName)
 {
 }
 
-
 // Destructor
 Config::~Config(void)
 {
 }
 
-
 // Get a string value
 const std::string& Config::getString(const char* apKey) const
 {
     Config::Values::const_iterator iValue = mValues.find(apKey);
-    if (mValues.end() == iValue)
-    {
+    if (mValues.end() == iValue) {
         LOGGER_THROW("no value for the \"" << apKey << "\" key");
     }
     return iValue->second;
 }
+
 
 } // namespace Log

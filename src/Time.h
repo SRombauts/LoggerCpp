@@ -18,11 +18,19 @@ namespace Log
 /**
  * @brief   Current time precise to the millisecond.
  * @ingroup LoggerCpp
+ *
+ * Using a struct to enable easy direct access to public members.
  */
 struct Time
 {
+    /**
+     * @brief Constructor
+     */
     Time(void);
 
+    /**
+     * @brief Set to current time
+     */
     void make(void);
 
     int year;    //!< year    [0,30827]

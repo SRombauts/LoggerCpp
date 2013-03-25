@@ -28,11 +28,7 @@ Channel::Map    Manager::mChannelMap;
 Output::Vector  Manager::mOutputList;
 
 
-/**
- * @brief Create and configure the Output objects
- *
- * @param[in] aConfigList   List of Config for Output objects
-*/
+// Create and configure the Output objects.
 void Manager::configure(const Config::Vector& aConfigList)
 {
     // List of all Output class ; those names are in the form 
@@ -53,48 +49,29 @@ void Manager::configure(const Config::Vector& aConfigList)
         const std::string&  configName = (*iConfig)->getName();
 
         // Compare the provided Output name with the known class name
-        if (std::string::npos != outputConsole.find(configName))
-        {
+        if (std::string::npos != outputConsole.find(configName)) {
             outputPtr.reset(new OutputConsole((*iConfig)));
-        }
-        else if (std::string::npos != outputFile.find(configName))
-        {
+        } else if (std::string::npos != outputFile.find(configName)) {
             outputPtr.reset(new OutputFile((*iConfig)));
-        }
 #ifdef WIN32
-        else if (std::string::npos != outputDebug.find(configName))
-        {
+        } else if (std::string::npos != outputDebug.find(configName)) {
             outputPtr.reset(new OutputDebug((*iConfig)));
-        }
 #endif
-        else
-        {
+        } else {
             throw std::runtime_error("Unknown Output name");
         }
         mOutputList.push_back(outputPtr);
     }
 }
 
-
-/**
- * @brief Destroy the Output objects
-*/
+// Destroy the Output objects.
 void Manager::terminate(void)
 {
-    // This effectively destroys the Output
+    // This effectively destroys the Output objects
     mOutputList.clear();
 }
 
-
-/**
- * @brief Return the Channel corresponding to the provided name
- *
- * Create a new Channel or get the existing one. 
- *
- * @param[in] apChannelName String to identify the underlying Channel of a Logger
- *
- * @return Pointer to the corresponding Channel (never NULL)
-*/
+// Return the Channel corresponding to the provided name
 Channel::Ptr Manager::get(const char* apChannelName)
 {
     Channel::Ptr            ChannelPtr;
@@ -110,15 +87,7 @@ Channel::Ptr Manager::get(const char* apChannelName)
     return ChannelPtr;
 }
 
-
-/**
- * @brief Output the Log to all the active Output objects.
- *
- * Dispatch the Log to OutputConsole/OutputFile/OutputVS/OutputMemory...
- *
- * @param[in] aChannelPtr   The underlying Channel of the Log
- * @param[in] aLog          The Log to output
- */
+// Output the Log to all the active Output objects.
 void Manager::output(const Channel::Ptr& aChannelPtr, const Log& aLog)
 {
     Output::Vector::iterator    iOutputPtr;

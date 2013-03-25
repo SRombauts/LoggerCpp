@@ -22,7 +22,7 @@ namespace Log
 {
 
 
-/// @brief Constructor
+/// Constructor
 Time::Time(void) :
     year(0),
     month(0),
@@ -36,7 +36,7 @@ Time::Time(void) :
 }
 
 
-/// @brief Set to current time
+/// Set to current time
 void Time::make(void)
 {
 #ifdef WIN32

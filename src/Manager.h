@@ -34,11 +34,47 @@ namespace Log
 struct Manager
 {
 public:
+    /**
+     * @brief Create and configure the Output objects.
+     *
+     * @param[in] aConfigList   List of Config for Output objects
+     */
     static void         configure(const Config::Vector& aConfigList);
+
+    /**
+     * @brief Destroy the Output objects.
+     * 
+     * Clear the Output list to release the ownership.
+     */
     static void         terminate(void);
 
+    /**
+     * @brief Return the Channel corresponding to the provided name
+     *
+     * Create a new Channel or get the existing one. 
+     *
+     * @param[in] apChannelName String to identify the underlying Channel of a Logger
+     *
+     * @return Pointer to the corresponding Channel (never NULL)
+     */
     static Channel::Ptr get(const char* apChannelName);
+
+    /**
+     * @brief Output the Log to all the active Output objects.
+     *
+     * Dispatch the Log to OutputConsole/OutputFile/OutputVS/OutputMemory...
+     *
+     * @param[in] aChannelPtr   The underlying Channel of the Log
+     * @param[in] aLog          The Log to output
+     */
     static void         output(const Channel::Ptr& aChannelPtr, const Log& aLog);
+
+    /**
+     * @brief Map of shared pointer of Channel objects
+     */
+    static inline Channel::Map  getChannelMap(void) {
+        return mChannelMap;
+    }
 
 private:
     static Channel::Map     mChannelMap;    //!< Map of shared pointer of Channel objects

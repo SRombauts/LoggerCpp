@@ -70,7 +70,9 @@ public:
         return (*this);
     }
 
-    // Public non virtual destructor
+    /**
+     * @brief Destructor : output the Log string stream
+     */
     ~Log(void);
 
     /// @brief Severity Level of this Log
@@ -92,11 +94,16 @@ public:
      * @brief Convert a Level to its string representation
      *
      * @param[in] aLevel Log severity Level to convert
-    */
+     */
     static const char* toString(Log::Level aLevel);
 
 private:
-    // Private constructor, reserved for the Logger class
+    /**
+     * @brief Construct a RAII (private) log object for the Logger class
+     *
+     * @param[in] aLogger   Reference to the parent Logger
+     * @param[in] aSeverity Severity of this Log
+     */
     Log(const Logger& aLogger, Level aSeverity);
 
     /// @{ Non-copyable object

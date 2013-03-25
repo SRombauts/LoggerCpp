@@ -37,19 +37,27 @@ class Logger
     friend class Log;
 
 public:
-    // Constructor, and non virtual destructor
+    /**
+     * @brief Initialize a Logger utility object
+     *
+     * @param[in] apChannelName    String to identify origin of Log output by this Logger
+     */
     Logger(const char* apChannelName);
+    /**
+     * @brief Non virtual destructor
+     */
     ~Logger(void);
 
     // A Logger is copyable with its a default copy constructor and copy operator without any problem
 
-    // Utility const method to produce Log objets, used to collect the stream to output
+    /// @{ Utility const method to produce Log objets, used to collect the stream to output
     Log debug(void) const;
     Log info(void) const;
     Log notice(void) const;
     Log warning(void) const;
     Log error(void) const;
     Log critic(void) const;
+    /// @}
 
     /// @brief Name of the underlying Channel
     inline const std::string& getName(void) const {
@@ -67,7 +75,11 @@ public:
     }
 
 private:
-    // To be used only by the Log class
+    /**
+     * @brief Output the Log. Used by the Log class destructor.
+     *
+     * @param[in] aLog  The Log to output
+     */
     void output(const Log& aLog) const;
 
 private:

@@ -17,20 +17,18 @@
 namespace Log
 {
 
+
+// Constructor
 OutputConsole::OutputConsole(const Config::Ptr& aConfigPtr)
 {
 }
 
+// Destructor
 OutputConsole::~OutputConsole()
 {
 }
 
-/**
- * @brief Output the Log to the standard console using printf
- *
- * @param[in] aChannelPtr   The underlying Channel of the Log
- * @param[in] aLog          The Log to output
- */
+// Output the Log to the standard console using fprintf
 void OutputConsole::output(const Channel::Ptr& aChannelPtr, const Log& aLog) const
 {
     const Time& time = aLog.getTime();

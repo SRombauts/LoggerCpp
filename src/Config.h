@@ -46,7 +46,7 @@ public:
      * @brief Constructor
      *
      * @param[in] apName Name of the Config object
-    */
+     */
     Config(const char* apName);
 
     /// @brief Non virtual destructor

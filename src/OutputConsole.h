@@ -25,9 +25,18 @@ namespace Log
 class OutputConsole : public Output
 {
 public:
+    /// @brief Constructor : no config
     OutputConsole(const Config::Ptr& aConfigPtr);
+
+    /// @brief Destructor
     virtual ~OutputConsole();
 
+    /**
+     * @brief Output the Log to the standard console using fprintf
+     *
+     * @param[in] aChannelPtr   The underlying Channel of the Log
+     * @param[in] aLog          The Log to output
+     */
     virtual void output(const Channel::Ptr& aChannelPtr, const Log& aLog) const;
 };
 

@@ -21,20 +21,18 @@
 namespace Log
 {
 
+
+// Constructor
 OutputDebug::OutputDebug(const Config::Ptr& aConfigPtr)
 {
 }
 
+// Destructor
 OutputDebug::~OutputDebug()
 {
 }
 
-/**
- * @brief Output the Log to the Visual Studio debugger using OutputDebugString()
- *
- * @param[in] aChannelPtr   The underlying Channel of the Log
- * @param[in] aLog          The Log to output
- */
+// Output the Log to the Visual Studio debugger using OutputDebugString()
 void OutputDebug::output(const Channel::Ptr& aChannelPtr, const Log& aLog) const
 {
     const Time&         time = aLog.getTime();

@@ -25,9 +25,18 @@ namespace Log
 class OutputDebug : public Output
 {
 public:
+    /// @brief Constructor : no config
     OutputDebug(const Config::Ptr& aConfigPtr);
+
+    /// @brief Destructor
     virtual ~OutputDebug();
 
+    /**
+     * @brief Output the Log to the Visual Studio debugger using OutputDebugString()
+     *
+     * @param[in] aChannelPtr   The underlying Channel of the Log
+     * @param[in] aLog          The Log to output
+     */
     virtual void output(const Channel::Ptr& aChannelPtr, const Log& aLog) const;
 };
 

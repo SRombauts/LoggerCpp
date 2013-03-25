@@ -18,6 +18,8 @@
 namespace Log
 {
 
+
+// Open the output file
 OutputFile::OutputFile(const Config::Ptr& aConfigPtr) :
     mpFile(NULL)
 {
@@ -32,6 +34,8 @@ OutputFile::OutputFile(const Config::Ptr& aConfigPtr) :
     }
 }
 
+
+// Close the file
 OutputFile::~OutputFile()
 {
     if (NULL != mpFile)
@@ -42,12 +46,7 @@ OutputFile::~OutputFile()
 }
 
 
-/**
- * @brief Output the Log to the standard console using printf
- *
- * @param[in] aChannelPtr   The underlying Channel of the Log
- * @param[in] aLog          The Log to output
- */
+// Output the Log to the standard console using printf
 void OutputFile::output(const Channel::Ptr& aChannelPtr, const Log& aLog) const
 {
     const Time& time = aLog.getTime();
