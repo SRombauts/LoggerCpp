@@ -12,6 +12,8 @@
 #include "Config.h"
 #include "Exception.h"
 
+#include <cstdlib>
+
 
 namespace Log
 {

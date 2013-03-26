@@ -92,7 +92,6 @@ void Manager::output(const Channel::Ptr& aChannelPtr, const Log& aLog)
 {
     Output::Vector::iterator    iOutputPtr;
 
-    /// @todo get the current time once for all Output objects
     for (iOutputPtr  = mOutputList.begin();
          iOutputPtr != mOutputList.end();
          iOutputPtr++)
