@@ -23,7 +23,7 @@ namespace Log
  *
  *  It is constructed and initialized by a call to the Formatter() constructor.
  * Is is then used by successive standard stream call "<<" to insert data into the stream.
- * It is ultimatly implicitly converted to std::string when required.
+ * It is ultimately implicitly converted to std::string when required.
  *
  *  A typical use case is to format a std::exception string message :
  * - throw std::runtime_error(Formatter() << "no value for key '" << apKey << "'");
@@ -39,7 +39,7 @@ public:
     /**
      * @brief stream inserter operator
      *
-     * @param[in] aValue    Value to be formatted and insterted into the string stream
+     * @param[in] aValue    Value to be formatted and inserted into the string stream
      */
     template <typename T>
     Formatter& operator<< (const T& aValue)

@@ -16,13 +16,11 @@
 #include <string>
 
 
-/// @todo try first for the C++11 std::shared_ptr, or the minimal shared_ptr implementation
-#include <boost/shared_ptr.hpp>
-#define shared_ptr  boost::shared_ptr
-
-
 namespace Log
 {
+
+// This include "boost/shared_ptr.hpp" if LOGGER_USE_BOOST_SHARED_PTR is defined, and define "shared_ptr" (ie. Log::shared_ptr)
+#include "shared_ptr.hpp"
 
 
 /**
