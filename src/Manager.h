@@ -70,7 +70,7 @@ public:
     static void         output(const Channel::Ptr& aChannelPtr, const Log& aLog);
 
     /**
-     * @brief Map of shared pointer of Channel objects
+     * @brief Return the map of shared pointer of Channel objects
      */
     static inline Channel::Map  getChannelMap(void) {
         return mChannelMap;

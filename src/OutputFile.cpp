@@ -25,13 +25,15 @@ OutputFile::OutputFile(const Config::Ptr& aConfigPtr) :
 {
     assert(aConfigPtr);
 
-    /// @todo Add other parameters : max_size, numer_of_file, append vs create...
-    const std::string& filename = aConfigPtr->getString("filename");
+    /// @todo Save parameters to members
+    std::string filename = aConfigPtr->get("filename", "log.txt");
     mpFile = fopen(filename.c_str(), "ab");
     if (NULL == mpFile)
     {
         LOGGER_THROW("file \"" << filename << "\" not opened");
     }
+    /// @todo Add other parameters : max_size, numer_of_file, append vs create...
+    long max_size = aConfigPtr->get("max_size", 1024*1024);
 }
 
 

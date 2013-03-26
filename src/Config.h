@@ -73,15 +73,24 @@ public:
     }
 
     /**
-     * @brief Get a string value
+     * @brief Get a string value, or return the provided default one
      *
-     *  Throw a std::runtime_error if the key does not exists.
-     *
-     * @param[in] apKey String key identifying the string value
+     * @param[in] apKey             String key identifying the string value
+     * @param[in] apDefaultValue    String default value 
      *
      * @return String value associated to the given key
      */
-    const std::string& getString(const char* apKey) const;
+    const char* get(const char* apKey, const char* apDefaultValue) const;
+
+    /**
+     * @brief Get a long value, or return the provided default one
+     *
+     * @param[in] apKey         String key identifying the string value
+     * @param[in] aDefaultValue Long default value 
+     *
+     * @return Long value associated to the given key
+     */
+    long get(const char* apKey, long aDefaultValue) const;
 
 private:
    std::string  mName;      //!< Name of the Config

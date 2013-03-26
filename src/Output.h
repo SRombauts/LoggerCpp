@@ -34,6 +34,7 @@ class Log;
 class Output
 {
 public:
+   /// @brief Virtual destructor
    virtual ~Output() {}
 
 public:
