@@ -10,10 +10,32 @@
 #pragma once
 
 
-/// @todo try first for the C++11 std::shared_ptr, or the minimal shared_ptr implementation
+// Use Boost only if explicitly told
 #ifdef LOGGER_USE_BOOST_SHARED_PTR
-#include <boost/shared_ptr.hpp>
-#define shared_ptr  boost::shared_ptr
+    #include <boost/shared_ptr.hpp>
+    #define shared_ptr  boost::shared_ptr
+// Detect whether the compiler supports C++11 shared_ptr or its TR1 pre-version.
+#elif (defined(__GNUC__) && (__GNUC__ > 4 || \
+      (__GNUC__ == 4 && __GNUC_MINOR__ > 2)) && \
+      defined(__GXX_EXPERIMENTAL_CXX0X__))
+    // GCC 4.3
+    #include <memory>
+    #define shared_ptr  std::shared_ptr
+#elif (defined(__GNUC__) && (__GNUC__ == 4) && \
+      defined(__GXX_EXPERIMENTAL_CXX0X__))
+    // GCC 4.0/4.1/4.2
+    #include <tr1/memory>
+    #define shared_ptr  std::tr1:shared_ptr
+#elif defined(__clang__)
+    __has_feature(cxx_nullptr) // what is the most appropriate feature to check for shared_ptr support in Clang ?
+    #include <memory>
+    #define shared_ptr  std::shared_ptr
+#elif defined(_MSC_VER) && (_MSC_VER >= 1600) // (Visual Studio 2010 : compile by default in C++11 mode)
+    #include <memory>
+    #define shared_ptr  std::shared_ptr
+#elif defined(_MSC_VER) && (_MSC_VER >= 1500) // (Visual Studio 2008 : TR1 is provided with the Service Pack 1)
+    #include <memory>
+    #define shared_ptr  std::tr1:shared_ptr
 #else
 
 
