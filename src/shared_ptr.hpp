@@ -2,6 +2,11 @@
  * @file  shared_ptr.hpp
  * @brief shared_ptr is a minimal implementation of smart pointer, a subset of the C++11 std::shared_ptr or boost::shared_ptr.
  *
+ *  This file includes "boost/shared_ptr.hpp" if LOGGER_USE_BOOST_SHARED_PTR is defined,
+ * or <memory> (or <tr1/memory>) when C++11 (or experimental C++0x) is available,
+ * and typedef a "shared_ptr" inside the current namespace (ie. Log::shared_ptr).
+ *  If no std::shared_ptr is available, it uses the provided minimal shared_ptr implementation.
+ *
  * Copyright (c) 2013 Sebastien Rombauts (sebastien.rombauts@gmail.com)
  *
  * Distributed under the MIT License (MIT) (See accompanying file LICENSE.txt
@@ -10,32 +15,40 @@
 #pragma once
 
 
-// Use Boost only if explicitly told
+//
+// Try to detect the better shared_ptr to use, and then typedef an alias in the current namespace
+// => if you include this "shared_ptr.hpp" file inside your own namespace you will
+//    get a kind of universal easy to use "shared_ptr" type
+//
 #ifdef LOGGER_USE_BOOST_SHARED_PTR
+    // Use Boost only if explicitly told
     #include <boost/shared_ptr.hpp>
-    #define shared_ptr  boost::shared_ptr
+    typedef shared_ptr  boost::shared_ptr;
 // Detect whether the compiler supports C++11 shared_ptr or its TR1 pre-version.
 #elif (defined(__GNUC__) && (__GNUC__ > 4 || \
       (__GNUC__ == 4 && __GNUC_MINOR__ > 2)) && \
       defined(__GXX_EXPERIMENTAL_CXX0X__))
-    // GCC 4.3
+    // GCC 4.3 and following have std::shared_ptr support when called with -std=c++0x (or -std=c++11 starting with GCC 4.7)
     #include <memory>
-    #define shared_ptr  std::shared_ptr
+    typedef shared_ptr  std::shared_ptr
 #elif (defined(__GNUC__) && (__GNUC__ == 4) && \
       defined(__GXX_EXPERIMENTAL_CXX0X__))
-    // GCC 4.0/4.1/4.2
+    // GCC 4.0/4.1/4.2 have std::shared_ptr support when when called with -std=c++0x
     #include <tr1/memory>
-    #define shared_ptr  std::tr1:shared_ptr
+    typedef shared_ptr  std::tr1:shared_ptr;
 #elif defined(__clang__)
-    __has_feature(cxx_nullptr) // what is the most appropriate feature to check for shared_ptr support in Clang ?
+    // Clang 2.9 and above ? What is the most appropriate feature to check for shared_ptr support in Clang ?
+    __has_feature(cxx_nullptr)
     #include <memory>
-    #define shared_ptr  std::shared_ptr
-#elif defined(_MSC_VER) && (_MSC_VER >= 1600) // (Visual Studio 2010 : compile by default in C++11 mode)
+    typedef shared_ptr  std::shared_ptr;
+#elif defined(_MSC_VER) && (_MSC_VER >= 1600)
+    // Visual Studio 2010 compile by default in C++11 mode
     #include <memory>
-    #define shared_ptr  std::shared_ptr
-#elif defined(_MSC_VER) && (_MSC_VER >= 1500) // (Visual Studio 2008 : TR1 is provided with the Service Pack 1)
+    typedef shared_ptr  std::shared_ptr;
+#elif defined(_MSC_VER) && (_MSC_VER >= 1500)
+    // Visual Studio 2008 : beware, TR1 is provided with the Service Pack 1 only !
     #include <memory>
-    #define shared_ptr  std::tr1:shared_ptr
+    typedef shared_ptr  std::tr1:shared_ptr;
 #else
 
 

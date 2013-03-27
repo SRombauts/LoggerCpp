@@ -20,7 +20,10 @@ namespace Log
 {
 
 
-// This include "boost/shared_ptr.hpp" if LOGGER_USE_BOOST_SHARED_PTR is defined, and define "shared_ptr" (ie. Log::shared_ptr)
+// This include "boost/shared_ptr.hpp" if LOGGER_USE_BOOST_SHARED_PTR is defined,
+// or <memory> (or <tr1/memory>) when C++11 (or experimental C++0x) is available,
+// or a custom minimal shared_ptr implementation,
+// and typedef a "shared_ptr" inside the current namespace (ie. Log::shared_ptr)
 #include "shared_ptr.hpp"
 
 // Forward declaration
