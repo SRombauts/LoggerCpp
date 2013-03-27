@@ -92,7 +92,7 @@ public:
      *
      * @return Long value associated to the given key
      */
-    long get(const char* apKey, long aDefaultValue) const;
+    long get(const char* apKey, const long aDefaultValue) const;
 
 private:
    std::string  mName;      //!< Name of the Config

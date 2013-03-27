@@ -25,6 +25,14 @@ OutputFile::OutputFile(const Config::Ptr& aConfigPtr) :
 {
     assert(aConfigPtr);
 
+    /// @todo Add other parameters : max_size, numer_of_file, append vs create...
+    // max_startup_size : at startup, size of the file above wich to create a new file instead of appending to it.
+    // Default (0) creates a new file at each startup (never append to an existing one)
+    long max_startup_size   = aConfigPtr->get("max_startup_size",   (long)0);
+    // max_size : size of the file above wich to create a new file instead of appending to it.
+    // Default (1024*1024=1Mo) creates a new file each time the current one grow above 1Mo.
+    long max_size           = aConfigPtr->get("max_size",           (long)1024*1024);
+
     /// @todo Save parameters to members
     std::string filename = aConfigPtr->get("filename", "log.txt");
     mpFile = fopen(filename.c_str(), "ab");
@@ -32,8 +40,6 @@ OutputFile::OutputFile(const Config::Ptr& aConfigPtr) :
     {
         LOGGER_THROW("file \"" << filename << "\" not opened");
     }
-    /// @todo Add other parameters : max_size, numer_of_file, append vs create...
-    long max_size = aConfigPtr->get("max_size", 1024*1024);
 }
 
 
