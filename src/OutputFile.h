@@ -44,7 +44,29 @@ public:
     virtual void output(const Channel::Ptr& aChannelPtr, const Log& aLog) const;
 
 private:
-    FILE* mpFile;   //!< File pointer
+    void open() const;
+    void close() const;
+    void test_rotate(const long aSize) const;
+
+private:
+    mutable FILE* mpFile;   //!< File pointer (mutable to be modified in the const output method)
+
+    /** 
+     * @brief "max_startup_size" Size of the file above wich to create a new file instead of appending to it (at startup).
+     *
+     * Default (0) creates a new file at each startup (never append to an existing one).
+    */
+    long mMaxStartupSize;
+
+    /** 
+     * @brief "max_size" Size of the file above wich to create a new file instead of appending to it (at runtime).
+     *
+     * Default (1024*1024=1Mo) creates a new file each time the current one grow above 1Mo.
+    */
+    long mMaxSize;
+    
+    std::string mFilename;      //!< @brief "filename"      Name of the log file 
+    std::string mFilenameOld;   //!< @brief "filename_old"  Name of the old log file
 };
 
 

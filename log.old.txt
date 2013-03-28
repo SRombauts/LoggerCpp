@@ -1,0 +1,17 @@
+2013-03-28 22:55:45.795  Tester               DBUG  log within a const method
+2013-03-28 22:55:45.797  TestLog              DBUG  Debug.
+2013-03-28 22:55:45.799  TestLog              INFO  Info.
+2013-03-28 22:55:45.801  TestLog              NOTE  Notice.
+2013-03-28 22:55:45.802  TestLog              WARN  Warning.
+2013-03-28 22:55:45.805  TestLog              WARN  Warning.
+2013-03-28 22:55:45.806  TestLog              EROR  Error.
+2013-03-28 22:55:45.808  TestLog              CRIT  Critic.
+2013-03-28 22:55:45.812  TestLog              DBUG  Variable = 75af0 test
+2013-03-28 22:55:45.814  TestLog              DBUG  Variable = 00076035 test
+2013-03-28 22:55:45.815  TestLog              DBUG  First logger to the Channel
+2013-03-28 22:55:45.818  TestLog              DBUG  Second logger to the Channel
+2013-03-28 22:55:45.819  OtherChannel         DBUG  Third logger, other Channel
+2013-03-28 22:55:45.822  OtherChannel         DBUG  third logger still active
+2013-03-28 22:55:45.824  TestLog              DBUG  first logger re-activated
+2013-03-28 22:55:45.825  TestLog              DBUG  second logger also re-activated
+2013-03-28 22:55:45.828  OtherChannel         DBUG  third logger always active
