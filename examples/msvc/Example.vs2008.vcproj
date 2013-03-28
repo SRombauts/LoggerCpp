@@ -4,7 +4,7 @@
 	Version="9,00"
 	Name="LoggerCpp"
 	ProjectGUID="{55109E5D-9402-4204-BAC7-6AC0649F8C98}"
-	RootNamespace="LoggerCpp"
+	RootNamespace="Example"
 	Keyword="Win32Proj"
 	TargetFrameworkVersion="196613"
 	>
