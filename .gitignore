@@ -8,7 +8,7 @@ Release
 *ipch
 *~
 
-log.txt
+log*.txt
 
 doc
 core

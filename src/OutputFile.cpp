@@ -33,8 +33,18 @@ OutputFile::OutputFile(const Config::Ptr& aConfigPtr) :
     mFilenameOld    = aConfigPtr->get("filename_old",       "log.old.txt");
 
     // Test the size of the existing log file, rename it and open a new one if needed
-    test_rotate(mMaxStartupSize);
-    if (NULL == mpFile)
+    struct stat statFile;
+    int ret = stat(mFilename.c_str(), &statFile);
+    if (0 == ret)
+    {
+        mSize = statFile.st_size;
+    }
+
+    if (mSize > mMaxStartupSize)
+    {
+        rotate();
+    }
+    else
     {
         open();
     }
@@ -62,25 +72,20 @@ void OutputFile::close() const
     if (NULL != mpFile)
     {
         fclose(mpFile);
-        mpFile = NULL;
+        mpFile  = NULL;
+        mSize   = 0;
     }
 }
 
-/// @todo Rotate a file : remove(), rename()
-void OutputFile::test_rotate(const long aSize) const
+// Rotate a file : close, remove, rename, open
+void OutputFile::rotate() const
 {
-    struct stat statFile;
-    memset((void*)&statFile, 0, sizeof(statFile)); 
-    stat(mFilename.c_str(), &statFile);
-    if (statFile.st_size > aSize)
-    {
-        close();
-        
-        remove(mFilenameOld.c_str());
-        rename(mFilename.c_str(), mFilenameOld.c_str());
+    close();
 
-        open();
-    }
+    remove(mFilenameOld.c_str());
+    rename(mFilename.c_str(), mFilenameOld.c_str());
+
+    open();
 }
 
 // Output the Log to the standard console using printf
@@ -88,16 +93,21 @@ void OutputFile::output(const Channel::Ptr& aChannelPtr, const Log& aLog) const
 {
     const Time& time = aLog.getTime();
 
-    test_rotate(mMaxSize);
+    if (mSize > mMaxSize)
+    {
+        rotate();
+    }
 
     if (NULL != mpFile)
     {
         // uses fprintf for atomic thread-safe operation
-        fprintf(mpFile, "%.4u-%.2u-%.2u %.2u:%.2u:%.2u.%.3u  %-20s %s  %s\n",
-                time.year, time.month, time.day,
-                time.hour, time.minute, time.second, time.ms,
-                aChannelPtr->getName().c_str(), Log::toString(aLog.getSeverity()), (aLog.getStream()).str().c_str());
+        int nbWritten = fprintf(mpFile, "%.4u-%.2u-%.2u %.2u:%.2u:%.2u.%.3u  %-20s %s  %s\n",
+                                time.year, time.month, time.day,
+                                time.hour, time.minute, time.second, time.ms,
+                                aChannelPtr->getName().c_str(), Log::toString(aLog.getSeverity()), (aLog.getStream()).str().c_str());
         fflush(stdout);
+
+        mSize += nbWritten;
     }
 }
 
