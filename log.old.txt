@@ -1,4 +1,0 @@
-2013-03-29 14:15:53.743  Tester               DBUG  log within a const method
-2013-03-29 14:15:53.743  TestLog              DBUG  Debug.
-2013-03-29 14:15:53.743  TestLog              INFO  Info.
-2013-03-29 14:15:53.743  TestLog              NOTE  Notice.
