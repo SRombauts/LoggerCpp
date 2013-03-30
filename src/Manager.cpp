@@ -26,6 +26,7 @@ namespace Log
 
 Channel::Map    Manager::mChannelMap;
 Output::Vector  Manager::mOutputList;
+Log::Level      Manager::mDefaultLevel = Log::eDebug;
 
 
 // Create and configure the Output objects.
@@ -80,7 +81,7 @@ Channel::Ptr Manager::get(const char* apChannelName)
     if (mChannelMap.end() != iChannelPtr) {
         ChannelPtr = iChannelPtr->second;
     } else {
-        ChannelPtr.reset(new Channel(apChannelName));
+        ChannelPtr.reset(new Channel(apChannelName, mDefaultLevel));
         mChannelMap[apChannelName] = ChannelPtr;
     }
 

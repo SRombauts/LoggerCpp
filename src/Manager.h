@@ -27,7 +27,7 @@ namespace Log
  *  The Manager keeps a map of all the named Channel objects
  * and share them on demand by new Logger objects created with the same name.
  *
- * @todo Thus the Manager is able to change the Log::Level of selected Channel object.
+ * Thus the Manager is able to change the Log::Level of selected Channel object.
  *
  * The Manager also keep a list of all configured Output object to output the Log objects.
  */
@@ -70,6 +70,13 @@ public:
     static void         output(const Channel::Ptr& aChannelPtr, const Log& aLog);
 
     /**
+     * @brief Set the default output Log::Level of any new Channel
+     */
+    static inline void setDefaultLevel (Log::Level aLevel) {
+        mDefaultLevel = aLevel;
+    }
+
+    /**
      * @brief Return the map of shared pointer of Channel objects
      */
     static inline Channel::Map  getChannelMap(void) {
@@ -79,6 +86,7 @@ public:
 private:
     static Channel::Map     mChannelMap;    //!< Map of shared pointer of Channel objects
     static Output::Vector   mOutputList;    //!< List of Output objects
+    static Log::Level       mDefaultLevel;  //!< Default Log::Level of any new Channel
 };
 
 

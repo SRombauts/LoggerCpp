@@ -45,7 +45,7 @@ public:
      * @param[in] apChannelName    String to identify origin of Log output by this Channel
      * @param[in] aChannelLevel    The default minimum Log::Level of severity from which to output Log
      */
-    Channel(const char* apChannelName, Log::Level aChannelLevel = Log::eDebug) :
+    Channel(const char* apChannelName, Log::Level aChannelLevel) :
         mName(apChannelName),
         mLevel(aChannelLevel)
     {}

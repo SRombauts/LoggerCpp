@@ -38,6 +38,13 @@ private:
  */
 int main (void)
 {
+    // Configure the default level of new channels
+#ifndef NDEBUG
+    Log::Manager::setDefaultLevel(Log::Log::eDebug);
+#else
+    Log::Manager::setDefaultLevel(Log::Log::eWarning);
+#endif
+
     /// @todo Add basic helpers function to the Config class ; a Factory, setString(), setInt(), setSize()...
     Log::Config::Vector configList;
     Log::Config::Ptr    configConsolePtr(new Log::Config("OutputConsole"));
