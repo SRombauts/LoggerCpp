@@ -10,6 +10,7 @@
  */
 
 #include "Manager.h"
+#include "Exception.h"
 
 #include "OutputConsole.h"
 #include "OutputFile.h"
@@ -59,7 +60,7 @@ void Manager::configure(const Config::Vector& aConfigList)
             outputPtr.reset(new OutputDebug((*iConfig)));
 #endif
         } else {
-            throw std::runtime_error("Unknown Output name");
+            LOGGER_THROW("Unknown Output name '" << configName << "'");
         }
         mOutputList.push_back(outputPtr);
     }
