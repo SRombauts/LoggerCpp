@@ -94,6 +94,24 @@ public:
      */
     long get(const char* apKey, const long aDefaultValue) const;
 
+public:
+    /**
+     * @brief Create the Config for a new Output
+     *
+     * @param[in,out]   aConfigList     Config list to complete with a new Output
+     * @param[in]       apOutputName    Name of the new Output
+     */
+
+    static void addOutput(Vector& aConfigList, const char* apOutputName);
+    /**
+     * @brief Set an option for the last added Output
+     *
+     * @param[in,out]   aConfigList Config list to complete with a new option value
+     * @param[in]       apKey       String key identifying the string value
+     * @param[in]       apValue     String value associated to the given key
+     */
+    static void setOption(Vector& aConfigList, const char* apKey, const char* apValue);
+
 private:
    std::string  mName;      //!< Name of the Config
    Values       mValues;    //!< Map of string values

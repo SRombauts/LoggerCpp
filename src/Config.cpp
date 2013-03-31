@@ -56,5 +56,17 @@ long Config::get(const char* apKey, long aDefaultValue) const
     return value;
 }
 
+// Create the Config for a new Output
+void Config::addOutput(Vector& aConfigList, const char* apOutputName)
+{
+    Log::Config::Ptr configPtr(new Log::Config(apOutputName));
+    aConfigList.push_back(configPtr);
+}
+
+// Set an option for the last added Output
+void Config::setOption(Vector& aConfigList, const char* apKey, const char* apValue)
+{
+    (*aConfigList.back()).setValue(apKey, apValue);
+}
 
 } // namespace Log

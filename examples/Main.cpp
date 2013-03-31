@@ -47,15 +47,12 @@ int main (void)
 
     /// @todo Add basic helpers function to the Config class ; a Factory, setString(), setInt(), setSize()...
     Log::Config::Vector configList;
-    Log::Config::Ptr    configConsolePtr(new Log::Config("OutputConsole"));
-    configList.push_back(configConsolePtr);
-    Log::Config::Ptr    configFilePtr(new Log::Config("OutputFile"));
-    configFilePtr->setValue("filename", "log.txt");
+    Log::Config::addOutput(configList, "OutputConsole");
+    Log::Config::addOutput(configList, "OutputFile");
+    Log::Config::setOption(configList, "filename", "log.txt");
 #ifdef WIN32
-    Log::Config::Ptr    configDebugPtr(new Log::Config("OutputDebug"));
-    configList.push_back(configDebugPtr);
+    Log::Config::addOutput(configList, "OutputDebug");
 #endif
-    configList.push_back(configFilePtr);
 
     Log::Logger logger("TestLog");
 
