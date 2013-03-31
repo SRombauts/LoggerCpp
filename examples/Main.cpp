@@ -19,7 +19,7 @@
 class Tester {
 public:
     Tester() :
-        mLogger("Tester")
+        mLogger("main.Tester")
     {
     }
 
@@ -38,28 +38,32 @@ private:
  */
 int main (void)
 {
-    // Configure the default level of new channels
+    // Configure the default severity Level of new Channel objects
 #ifndef NDEBUG
     Log::Manager::setDefaultLevel(Log::Log::eDebug);
 #else
-    Log::Manager::setDefaultLevel(Log::Log::eWarning);
+    Log::Manager::setDefaultLevel(Log::Log::eNotice);
 #endif
 
-    /// @todo Add basic helpers function to the Config class ; a Factory, setString(), setInt(), setSize()...
+    // Configure the Output objects
     Log::Config::Vector configList;
     Log::Config::addOutput(configList, "OutputConsole");
     Log::Config::addOutput(configList, "OutputFile");
-    Log::Config::setOption(configList, "filename", "log.txt");
+    Log::Config::setOption(configList, "filename",          "log.txt");
+    Log::Config::setOption(configList, "filename_old",      "log.old.txt");
+    Log::Config::setOption(configList, "max_startup_size",  "0");
+    Log::Config::setOption(configList, "max_size",          "10000");
 #ifdef WIN32
     Log::Config::addOutput(configList, "OutputDebug");
 #endif
 
-    Log::Logger logger("TestLog");
+    // Create a Logger object, using a "Main.Example" Channel
+    Log::Logger logger("Main.Example");
+    logger.warning() << "NO logs before configure()";
 
-    // Configure the Log Manager (create the Output objects)
     try
     {
-        logger.debug() << "NO logs before configure";
+        // Configure the Log Manager (create the Output objects)
         Log::Manager::configure(configList);
     }
     catch (std::exception& e)
@@ -67,16 +71,7 @@ int main (void)
         std::cerr << e.what();
     }
 
-    Tester tester;
-    tester.constTest();
-
-    logger.debug()  << "Debug.";
-    logger.info()   << "Info.";
-    logger.notice() << "Notice.";
-    logger.warning()<< "Warning.";
-
-    logger.setLevel(Log::Log::eWarning);
-
+    // Test outputs of various severity Level
     logger.debug()  << "Debug.";
     logger.info()   << "Info.";
     logger.notice() << "Notice.";
@@ -84,27 +79,42 @@ int main (void)
     logger.error()  << "Error.";
     logger.critic() << "Critic.";
 
+    // Modify the output Level of this Channel, and test various severity Level again
+    logger.setLevel(Log::Log::eWarning);
+    logger.debug()  << "NO Debug.";     // NO more debug logs
+    logger.info()   << "NO Info.";      // NO more info logs
+    logger.notice() << "NO Notice.";    // NO more notice logs
+    logger.warning()<< "Warning.";
+    logger.error()  << "Error.";
+    logger.critic() << "Critic.";
+
+    // Reset Level of the Channel, and test some common stream manipulations
     logger.setLevel(Log::Log::eDebug);
     logger.debug() << "Variable = " << std::hex << 0x75af0 << " test";
     logger.debug() << "Variable = " << std::right << std::setfill('0') << std::setw(8) << 76035 << " test";
 
-    Log::Logger logger2("TestLog");
-    Log::Logger logger3("OtherChannel");
+    // Create other loggers, sharing the "Main.Example" Channel, and creating a new one
+    Log::Logger logger2("Main.Example");
+    Log::Logger logger3("Main.OtherChannel");
     logger.debug() << "First logger to the Channel";
     logger2.debug() << "Second logger to the Channel";
     logger3.debug() << "Third logger, other Channel";
-    Log::Manager::get("TestLog")->setLevel(Log::Log::eInfo);
+    Log::Manager::get("example")->setLevel(Log::Log::eInfo);
     logger.debug() << "first logger inhibited";
     logger2.debug() << "second logger also disabled";
     logger3.debug() << "third logger still active";
-    Log::Manager::get("TestLog")->setLevel(Log::Log::eDebug);
+    Log::Manager::get("example")->setLevel(Log::Log::eDebug);
     logger.debug() << "first logger re-activated";
     logger2.debug() << "second logger also re-activated";
     logger3.debug() << "third logger always active";
 
+    // Create an object using a Logger as member variable
+    Tester tester;
+    tester.constTest();
+
     // Terminate the Log Manager (destroy the Output objects)
     Log::Manager::terminate();
-    logger.debug() << "NO more logs here";
+    logger.warning() << "NO more logs after terminate()";
 
     return 0;
 }
