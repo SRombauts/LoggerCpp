@@ -78,6 +78,7 @@ int main ()
     logger.debug() << "Variables ; '" << str << "', '" << ui << "', '" << dbl << "'";
     logger.debug() << "Hexa = " << std::hex << 0x75af0 << " test";
     logger.debug() << "Deci = " << std::right << std::setfill('0') << std::setw(8) << 76035 << " test";
+    logger.debug() << "sizeof(logger)=" << sizeof(logger);
 
     // Test outputs of various severity Level
     logger.debug()  << "Debug.";
