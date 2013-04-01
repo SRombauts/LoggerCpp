@@ -78,6 +78,8 @@ public:
 
     /**
      * @brief Return the map of shared pointer of Channel objects
+     *
+     * @todo replace by a "get channel/level map" generated on demand
      */
     static inline Channel::Map  getChannelMap(void) {
         return mChannelMap;

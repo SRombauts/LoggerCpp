@@ -82,6 +82,7 @@ Channel::Ptr Manager::get(const char* apChannelName)
     if (mChannelMap.end() != iChannelPtr) {
         ChannelPtr = iChannelPtr->second;
     } else {
+        // @todo Add a basic thread-safety security (throw if multiple threads create Loggers)
         ChannelPtr.reset(new Channel(apChannelName, mDefaultLevel));
         mChannelMap[apChannelName] = ChannelPtr;
     }
