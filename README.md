@@ -8,7 +8,7 @@ LoggerC++ (LoggerCpp) is a simple, elegant and efficient C++ logger library.
 - to keep dependencies to a minimum (STL and shared_ptr)
 - to be portable
 - to minimize cpu utilisation when no log are outputed
-- to be thread-safe
+- to be thread-safe (output logs in same channel accross multiple threads)
 - to be well documented with Doxygen tags
 - to use a permissive MIT license, similar to BSD or Boost, for proprietary/commercial usage
 
@@ -43,6 +43,50 @@ or copy at http://opensource.org/licenses/MIT)
 ### First sample demonstrates how to create a Logger and print some logs:
 
 ```C++
+int main ()
+{
+    // Configure the default severity Level of new Channel objects
+    Log::Manager::setDefaultLevel(Log::Log::eNotice);
+
+    // Setup the list of Config for the Output objects,
+    Log::Config::Vector configList;
+    Log::Config::addOutput(configList, "OutputConsole");
+    Log::Config::addOutput(configList, "OutputFile");
+    Log::Config::setOption(configList, "filename",          "log.txt");
+    Log::Config::setOption(configList, "max_size",          "10000");
+    // and configure the Log Manager (create the Output objects)
+    Log::Manager::configure(configList);
+    
+    // Create a Logger object, using a "Main.Example" Channel
+    Log::Logger logger("Main.Example");
+    
+    // Test outputs of various kind of variables, and some common stream manipulations.
+    std::string     str("string");
+    unsigned int    ui  = 123;
+    double          dbl = -0.023f;
+    logger.debug() << "Variables ; '" << str << "', '" << ui << "', '" << dbl << "'";
+    logger.debug() << "Hexa = " << std::hex << 0x75af0 << " test";
+    logger.debug() << "Deci = " << std::right << std::setfill('0') << std::setw(8) << 76035 << " test";
+
+    // Test outputs of various severity Level
+    logger.debug()  << "Debug.";
+    logger.info()   << "Info.";
+    logger.notice() << "Notice.";
+    logger.warning()<< "Warning.";
+    logger.error()  << "Error.";
+    logger.critic() << "Critic.";
+    
+    // Modify the output Level of the underlying Channel, and test various severity Level again
+    logger.setLevel(Log::Log::eWarning);
+    logger.debug()  << "NO Debug.";     // NO more debug logs
+    logger.info()   << "NO Info.";      // NO more info logs
+    logger.notice() << "NO Notice.";    // NO more notice logs
+    logger.warning()<< "Warning.";
+    logger.error()  << "Error.";
+    logger.critic() << "Critic.";
+
+    // Reset Level of the "Main.example" channel by its name
+    Log::Manager::get("Main.Example")->setLevel(Log::Log::eDebug);
 ```
 
 ## How to contribute

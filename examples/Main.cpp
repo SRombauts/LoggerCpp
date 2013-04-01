@@ -36,7 +36,7 @@ private:
 /**
  * @brief Simple example program
  */
-int main (void)
+int main ()
 {
     // Configure the default severity Level of new Channel objects
 #ifndef NDEBUG
@@ -70,6 +70,14 @@ int main (void)
     {
         std::cerr << e.what();
     }
+    
+    // Test outputs of various kind of variables, and some common stream manipulations.
+    std::string     str("string");
+    unsigned int    ui  = 123;
+    double          dbl = -0.023f;
+    logger.debug() << "Variables ; '" << str << "', '" << ui << "', '" << dbl << "'";
+    logger.debug() << "Hexa = " << std::hex << 0x75af0 << " test";
+    logger.debug() << "Deci = " << std::right << std::setfill('0') << std::setw(8) << 76035 << " test";
 
     // Test outputs of various severity Level
     logger.debug()  << "Debug.";
@@ -79,7 +87,7 @@ int main (void)
     logger.error()  << "Error.";
     logger.critic() << "Critic.";
 
-    // Modify the output Level of this Channel, and test various severity Level again
+    // Modify the output Level of the underlying Channel, and test various severity Level again
     logger.setLevel(Log::Log::eWarning);
     logger.debug()  << "NO Debug.";     // NO more debug logs
     logger.info()   << "NO Info.";      // NO more info logs
@@ -87,23 +95,23 @@ int main (void)
     logger.warning()<< "Warning.";
     logger.error()  << "Error.";
     logger.critic() << "Critic.";
-
-    // Reset Level of the Channel, and test some common stream manipulations
-    logger.setLevel(Log::Log::eDebug);
-    logger.debug() << "Variable = " << std::hex << 0x75af0 << " test";
-    logger.debug() << "Variable = " << std::right << std::setfill('0') << std::setw(8) << 76035 << " test";
-
+    
+    // Reset Level of the "Main.example" channel by its name
+    Log::Manager::get("Main.Example")->setLevel(Log::Log::eDebug);
+    
     // Create other loggers, sharing the "Main.Example" Channel, and creating a new one
     Log::Logger logger2("Main.Example");
     Log::Logger logger3("Main.OtherChannel");
     logger.debug() << "First logger to the Channel";
     logger2.debug() << "Second logger to the Channel";
     logger3.debug() << "Third logger, other Channel";
-    Log::Manager::get("example")->setLevel(Log::Log::eInfo);
-    logger.debug() << "first logger inhibited";
-    logger2.debug() << "second logger also disabled";
+    // Modify the Level of the "Main.example" channel by its name
+    Log::Manager::get("Main.Example")->setLevel(Log::Log::eInfo);
+    logger.debug() << "first logger inhibited";         // NO more debug logs for this logger
+    logger2.debug() << "second logger also disabled";   // NO more debug logs (sharing the same underlying channel)
     logger3.debug() << "third logger still active";
-    Log::Manager::get("example")->setLevel(Log::Log::eDebug);
+    // Reset the Level of the "Main.example" channel by its name
+    Log::Manager::get("Main.Example")->setLevel(Log::Log::eDebug);
     logger.debug() << "first logger re-activated";
     logger2.debug() << "second logger also re-activated";
     logger3.debug() << "third logger always active";
