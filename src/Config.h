@@ -14,7 +14,7 @@
 #include <vector>
 #include <map>
 
-// This includes "boost/shared_ptr.hpp" if LOGGER_USE_BOOST_SHARED_PTR is defined,
+// The following includes "boost/shared_ptr.hpp" if LOGGER_USE_BOOST_SHARED_PTR is defined,
 // or <memory> (or <tr1/memory>) when C++11 (or experimental C++0x) is available,
 // or a custom minimal shared_ptr implementation,
 // and imports the "shared_ptr" symbol inside the Log namespace (ie. Log::shared_ptr)
@@ -32,6 +32,9 @@ class Logger;
 /**
  * @brief   Configuration for an Output object
  * @ingroup LoggerCpp
+ *
+ *  A Config object is an associative container of strings key and values,
+ * with easy to use helper manipulation functions.
  */
 class Config
 {

@@ -27,9 +27,10 @@ namespace Log
  *  The Manager keeps a map of all the named Channel objects
  * and share them on demand by new Logger objects created with the same name.
  *
- * Thus the Manager is able to change the Log::Level of selected Channel object.
+ *  Thus the Manager is able to change the Log::Level of selected Channel object,
+ * impacting all the Logger objects using it.
  *
- * The Manager also keep a list of all configured Output object to output the Log objects.
+ * The Manager also keeps a list of all configured Output object to output the Log objects.
  */
 struct Manager
 {

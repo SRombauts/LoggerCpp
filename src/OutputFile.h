@@ -56,21 +56,28 @@ private:
     mutable long    mSize;  //!< @brief Current size of the log file (mutable to be modified in the const output method)
 
     /** 
-     * @brief "max_startup_size" Size of the file above which to create a new file instead of appending to it (at startup).
+     * @brief "max_startup_size" : Size of the file above which to create a new file instead of appending to it (at startup).
      *
      * Default (0) creates a new file at each startup (never append to an existing one).
     */
     long        mMaxStartupSize;
 
     /** 
-     * @brief "max_size" Size of the file above which to create a new file instead of appending to it (at runtime).
+     * @brief "max_size" : Size of the file above which to create a new file instead of appending to it (at runtime).
      *
      * Default (1024*1024=1Mo) creates a new file each time the current one grow above 1Mo.
     */
     long        mMaxSize;
     
-    std::string mFilename;      //!< @brief "filename"      Name of the log file 
-    std::string mFilenameOld;   //!< @brief "filename_old"  Name of the old log file
+    /**
+     * @brief "filename" : Name of the log file
+     */
+    std::string mFilename;
+
+    /**
+     * @brief "filename_old" : Name of the log file renamed after max_size is reach
+     */
+    std::string mFilenameOld;
 };
 
 

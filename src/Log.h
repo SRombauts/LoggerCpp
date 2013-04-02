@@ -28,7 +28,7 @@ class Logger;
  * @brief   A RAII (private) log object constructed by the Logger class
  * @ingroup LoggerCpp
  *
- * This represents a full line of log, at a certain Log::Level of severity.
+ * a Log represents a full line of log, at a certain Log::Level of severity.
  *
  * It is constructed and initialized by a call to Logger::debug(),
  * Logger::info(), ... or Logger::critic().
@@ -59,7 +59,7 @@ public:
     /**
      * @brief stream inserter operator
      *
-     * @param[in] aValue    Value to be formatted and insterted into the Log string stream
+     * @param[in] aValue    Value to be formatted and inserted into the Log string stream
      */
     template <typename T>
     Log& operator<< (const T& aValue)
@@ -95,6 +95,7 @@ public:
      *
      * @param[in] aLevel Log severity Level to convert
      */
+    /// @todo stringToLevel()
     static const char* toString(Log::Level aLevel);
 
 private:

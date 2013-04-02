@@ -26,7 +26,7 @@ namespace Log
  * @brief   A simple thread-safe logger class
  * @ingroup LoggerCpp
  *
- * This Logger is designed to be easy to use and efficient.
+ *  Logger is designed to be easy to use, light (size of a shared_ptr) and efficient.
  * It can be used as a member variable, and will not consume much CPU
  * if the log severity is below the Logger current Log::Level.
  *
@@ -76,7 +76,7 @@ public:
 
 private:
     /**
-     * @brief Output the Log. Used by the Log class destructor.
+     * @brief Output the Log. Used only by the Log class destructor.
      *
      * @param[in] aLog  The Log to output
      */

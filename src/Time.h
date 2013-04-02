@@ -20,6 +20,9 @@ namespace Log
  * @ingroup LoggerCpp
  *
  * Using a struct to enable easy direct access to public members.
+ *
+ * Under Windows, the time is given to the millisecond.
+ * Under Linux, the time is given to the microsecond.
  */
 struct Time
 {
@@ -40,7 +43,7 @@ struct Time
     int minute;  //!< minute  [0,59]
     int second;  //!< second  [0,59]
     int ms;      //!< millisecond
-    int us;      //!< microsecond
+    int us;      //!< microsecond (not under Windows)
 };
 
 
