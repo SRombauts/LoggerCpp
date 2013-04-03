@@ -103,6 +103,22 @@ void Manager::output(const Channel::Ptr& aChannelPtr, const Log& aLog)
     }
 }
 
+// Return the Config of Channel objects Log::Level
+Config::Ptr Manager::getChannelConfig(void)
+{
+    Config::Ptr ConfigPtr(new Config("ChannelConfig"));
+
+    Channel::Map::const_iterator iChannel;
+    for (iChannel  = mChannelMap.begin();
+         iChannel != mChannelMap.end();
+         ++iChannel)
+    {
+        ConfigPtr->setValue(iChannel->first.c_str(), Log::toString(iChannel->second->getLevel()));
+    }
+
+    return ConfigPtr;
+}
+
 
 } // namespace Log
 

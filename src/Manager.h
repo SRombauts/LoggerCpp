@@ -78,13 +78,9 @@ public:
     }
 
     /**
-     * @brief Return the map of shared pointer of Channel objects
-     *
-     * @todo replace by a "get channel/level map" generated on demand
+     * @brief Return the Config of Channel objects Log::Level
      */
-    static inline Channel::Map  getChannelMap(void) {
-        return mChannelMap;
-    }
+    static Config::Ptr  getChannelConfig(void);
 
 private:
     static Channel::Map     mChannelMap;    //!< Map of shared pointer of Channel objects
