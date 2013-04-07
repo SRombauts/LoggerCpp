@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="LoggerC++ : LoggerC++ (LoggerCpp) is a simple, elegant and efficient C++ logger library." />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>LoggerC++</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/SRombauts/LoggerCpp">View on GitHub</a>
+
+          <h1 id="project_title">LoggerC++</h1>
+          <h2 id="project_tagline">LoggerC++ (LoggerCpp) is a simple, elegant and efficient C++ logger library.</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/SRombauts/LoggerCpp/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/SRombauts/LoggerCpp/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h3>The goals of LoggerC++ are:</h3>
+
+<ul>
+<li>to keep dependencies to a minimum (STL and shared_ptr)</li>
+<li>to be portable</li>
+<li>to minimize cpu utilisation when no log are outputed</li>
+<li>to be thread-safe (output logs in same channel accross multiple threads)</li>
+<li>to be well documented with Doxygen tags</li>
+<li>to use a permissive MIT license, similar to BSD or Boost, for proprietary/commercial usage</li>
+</ul><h3>Limitations:</h3>
+
+<p>Thread-safety is only for Log outputs.
+You shall not dynamically create and destroy Logger objects in multiple threads.
+Instead, build them all at startup in you main thread, before other thread startup.
+Then you are allowed to use them all in parallel.</p>
+
+<h3> Suported platforms:</h3>
+
+<p>Developements and tests are done under the following OSs :</p>
+
+<ul>
+<li>Debian 7 (testing)</li>
+<li>Ubuntu 12.10</li>
+<li>Windows XP/7/8
+And following IDEs/Compilers</li>
+<li>GCC 4.7.x with a provided Makefile</li>
+<li>Eclipse CDT under Linux, using the provided Makefile</li>
+<li>Visual Studio Express 2008/2010/2012 for testing compatibility purpose</li>
+</ul><h3>Dependencies:</h3>
+
+<ul>
+<li>a STL implementation with RTTI (even an old one, like the one provided with VC6 should work).</li>
+<li>optionnaly: the C++ 11 std::shared_ptr or boost::shared_ptr (a minimal shared_ptr implementation is provided).</li>
+</ul><h3>Installation</h3>
+
+<p>To use this C++ Logger, you need to include the sources files into your project codebase.</p>
+
+<h3>License</h3>
+
+<p>Copyright (c) 2013 Sébastien Rombauts (<a href="mailto:sebastien.rombauts@gmail.com">sebastien.rombauts@gmail.com</a>)</p>
+
+<p>Distributed under the MIT License (MIT) (See accompanying file LICENSE.txt
+or copy at <a href="http://opensource.org/licenses/MIT">http://opensource.org/licenses/MIT</a>)</p>
+
+<h2>Getting started</h2>
+
+<h3>Principles</h3>
+
+<ul>
+<li>Add a small named Logger object to your code to output logs prefixed by the given name.
+A Logger is as small as a shared_ptr, typicaly 8 bytes.
+Use it as a member variable to your class, or as a free variable.</li>
+<li>Build a Log with standard stream manipulations (like with std::cout)
+but in a thread-safe manner: the Log is outputed atomically at the end of the line.</li>
+<li>Use one of the 6 Log Level, ranging from Debug to Critic in a standard fashion.</li>
+<li>Set the Channel Level of the Logger to dynamicaly filter Log to be outputed</li>
+<li>Multiple Logger objects with the same name will share the same underlying named Channel.
+Any of theses Logger can manipulate the Channel output Level.</li>
+<li>Configure the availlable Output objects, for console, file or MSVC Debugger output.</li>
+</ul><h3>First sample demonstrates how to create a Logger and print some logs:</h3>
+
+<div class="highlight"><pre><span class="kt">int</span> <span class="nf">main</span> <span class="p">()</span>
+<span class="p">{</span>
+    <span class="c1">// Configure the default severity Level of new Channel objects</span>
+    <span class="n">Log</span><span class="o">::</span><span class="n">Manager</span><span class="o">::</span><span class="n">setDefaultLevel</span><span class="p">(</span><span class="n">Log</span><span class="o">::</span><span class="n">Log</span><span class="o">::</span><span class="n">eNotice</span><span class="p">);</span>
+
+    <span class="c1">// Setup the list of Config for the Output objects,</span>
+    <span class="n">Log</span><span class="o">::</span><span class="n">Config</span><span class="o">::</span><span class="n">Vector</span> <span class="n">configList</span><span class="p">;</span>
+    <span class="n">Log</span><span class="o">::</span><span class="n">Config</span><span class="o">::</span><span class="n">addOutput</span><span class="p">(</span><span class="n">configList</span><span class="p">,</span> <span class="s">"OutputConsole"</span><span class="p">);</span>
+    <span class="n">Log</span><span class="o">::</span><span class="n">Config</span><span class="o">::</span><span class="n">addOutput</span><span class="p">(</span><span class="n">configList</span><span class="p">,</span> <span class="s">"OutputFile"</span><span class="p">);</span>
+    <span class="n">Log</span><span class="o">::</span><span class="n">Config</span><span class="o">::</span><span class="n">setOption</span><span class="p">(</span><span class="n">configList</span><span class="p">,</span> <span class="s">"filename"</span><span class="p">,</span>          <span class="s">"log.txt"</span><span class="p">);</span>
+    <span class="n">Log</span><span class="o">::</span><span class="n">Config</span><span class="o">::</span><span class="n">setOption</span><span class="p">(</span><span class="n">configList</span><span class="p">,</span> <span class="s">"max_size"</span><span class="p">,</span>          <span class="s">"10000"</span><span class="p">);</span>
+    <span class="c1">// and configure the Log Manager (create the Output objects)</span>
+    <span class="n">Log</span><span class="o">::</span><span class="n">Manager</span><span class="o">::</span><span class="n">configure</span><span class="p">(</span><span class="n">configList</span><span class="p">);</span>
+
+    <span class="c1">// Create a Logger object, using a "Main.Example" Channel</span>
+    <span class="n">Log</span><span class="o">::</span><span class="n">Logger</span> <span class="n">logger</span><span class="p">(</span><span class="s">"Main.Example"</span><span class="p">);</span>
+
+    <span class="c1">// Test outputs of various kind of variables, and some common stream manipulations.</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">string</span>     <span class="n">str</span><span class="p">(</span><span class="s">"string"</span><span class="p">);</span>
+    <span class="kt">unsigned</span> <span class="kt">int</span>    <span class="n">ui</span>  <span class="o">=</span> <span class="mi">123</span><span class="p">;</span>
+    <span class="kt">double</span>          <span class="n">dbl</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.023f</span><span class="p">;</span>
+    <span class="n">logger</span><span class="p">.</span><span class="n">debug</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">"Variables ; '"</span> <span class="o">&lt;&lt;</span> <span class="n">str</span> <span class="o">&lt;&lt;</span> <span class="s">"', '"</span> <span class="o">&lt;&lt;</span> <span class="n">ui</span> <span class="o">&lt;&lt;</span> <span class="s">"', '"</span> <span class="o">&lt;&lt;</span> <span class="n">dbl</span> <span class="o">&lt;&lt;</span> <span class="s">"'"</span><span class="p">;</span>
+    <span class="n">logger</span><span class="p">.</span><span class="n">debug</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">"Hexa = "</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">hex</span> <span class="o">&lt;&lt;</span> <span class="mh">0x75af0</span> <span class="o">&lt;&lt;</span> <span class="s">" test"</span><span class="p">;</span>
+    <span class="n">logger</span><span class="p">.</span><span class="n">debug</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">"Deci = "</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">right</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">setfill</span><span class="p">(</span><span class="sc">'0'</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">setw</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="mi">76035</span> <span class="o">&lt;&lt;</span> <span class="s">" test"</span><span class="p">;</span>
+
+    <span class="c1">// Test outputs of various severity Level</span>
+    <span class="n">logger</span><span class="p">.</span><span class="n">debug</span><span class="p">()</span>  <span class="o">&lt;&lt;</span> <span class="s">"Debug."</span><span class="p">;</span>
+    <span class="n">logger</span><span class="p">.</span><span class="n">info</span><span class="p">()</span>   <span class="o">&lt;&lt;</span> <span class="s">"Info."</span><span class="p">;</span>
+    <span class="n">logger</span><span class="p">.</span><span class="n">notice</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">"Notice."</span><span class="p">;</span>
+    <span class="n">logger</span><span class="p">.</span><span class="n">warning</span><span class="p">()</span><span class="o">&lt;&lt;</span> <span class="s">"Warning."</span><span class="p">;</span>
+    <span class="n">logger</span><span class="p">.</span><span class="n">error</span><span class="p">()</span>  <span class="o">&lt;&lt;</span> <span class="s">"Error."</span><span class="p">;</span>
+    <span class="n">logger</span><span class="p">.</span><span class="n">critic</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">"Critic."</span><span class="p">;</span>
+
+    <span class="c1">// Modify the output Level of the underlying Channel, and test various severity Level again</span>
+    <span class="n">logger</span><span class="p">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">Log</span><span class="o">::</span><span class="n">Log</span><span class="o">::</span><span class="n">eWarning</span><span class="p">);</span>
+    <span class="n">logger</span><span class="p">.</span><span class="n">debug</span><span class="p">()</span>  <span class="o">&lt;&lt;</span> <span class="s">"NO Debug."</span><span class="p">;</span>     <span class="c1">// NO more debug logs</span>
+    <span class="n">logger</span><span class="p">.</span><span class="n">info</span><span class="p">()</span>   <span class="o">&lt;&lt;</span> <span class="s">"NO Info."</span><span class="p">;</span>      <span class="c1">// NO more info logs</span>
+    <span class="n">logger</span><span class="p">.</span><span class="n">notice</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">"NO Notice."</span><span class="p">;</span>    <span class="c1">// NO more notice logs</span>
+    <span class="n">logger</span><span class="p">.</span><span class="n">warning</span><span class="p">()</span><span class="o">&lt;&lt;</span> <span class="s">"Warning."</span><span class="p">;</span>
+    <span class="n">logger</span><span class="p">.</span><span class="n">error</span><span class="p">()</span>  <span class="o">&lt;&lt;</span> <span class="s">"Error."</span><span class="p">;</span>
+    <span class="n">logger</span><span class="p">.</span><span class="n">critic</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">"Critic."</span><span class="p">;</span>
+
+    <span class="c1">// Reset Level of the "Main.example" channel by its name</span>
+    <span class="n">Log</span><span class="o">::</span><span class="n">Manager</span><span class="o">::</span><span class="n">get</span><span class="p">(</span><span class="s">"Main.Example"</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">setLevel</span><span class="p">(</span><span class="n">Log</span><span class="o">::</span><span class="n">Log</span><span class="o">::</span><span class="n">eDebug</span><span class="p">);</span>
+</pre></div>
+
+<h2>How to contribute</h2>
+
+<h3>GitHub website</h3>
+
+<p>The most efficient way to help and contribute to this wrapper project is to
+use the tools provided by GitHub:</p>
+
+<ul>
+<li>please fill bug reports and feature requests here: <a href="https://github.com/SRombauts/LoggerCpp/issues">https://github.com/SRombauts/LoggerCpp/issues</a>
+</li>
+<li>fork the repository, make some small changes and submit them with pull-request</li>
+</ul><h3>Contact</h3>
+
+<p>You can also email me directly, I will answer any questions and requests.</p>
+
+<h3>Coding Style Guidelines</h3>
+
+<p>The source code use the CamelCase naming style variant where :</p>
+
+<ul>
+<li>type names (class, struct, typedef, enums...) begins with a capital letter</li>
+<li>files (.cpp/.h) are named like the class they contains</li>
+<li>function and variable names begins with a lower case letter</li>
+<li>member variables begins with a 'm', function arguments begins with a 'a', boolean with a 'b', pointers with a 'p'</li>
+<li>each file, class, method and member variable is documented using Doxygen tags
+See also <a href="http://www.appinf.com/download/CppCodingStyleGuide.pdf">http://www.appinf.com/download/CppCodingStyleGuide.pdf</a> for good guidelines</li>
+</ul>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">LoggerC++ maintained by <a href="https://github.com/SRombauts">SRombauts</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
