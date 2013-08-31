@@ -286,4 +286,6 @@ shared_ptr<T> dynamic_pointer_cast(const shared_ptr<U>& ptr) // never throws
     }
 }
 
+#endif
+
 } // namespace Log
