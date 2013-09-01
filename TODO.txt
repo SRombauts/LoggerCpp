@@ -1,0 +1,23 @@
+Update shared_ptr to tag v1.0
+
+CMake
+test
+Travis CI
+
+Github Pages
+
+Release
+
+Manager: configure channels
+
+Add a basic thread-safety security (throw if multiple threads create Loggers)
+- Add a static Thread::getCurrentId()
+
+Searching for a more compact or standard output format
+- XML
+- HTML
+- json
+- db3
+- no SQL
+- google protocol buffer
+- message pack
