@@ -1,7 +1,6 @@
 Update shared_ptr to tag v1.0
 
 test
-Travis CI
 
 Github Pages
 
