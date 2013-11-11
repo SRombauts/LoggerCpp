@@ -31,7 +31,7 @@ OutputDebug::~OutputDebug() {
 
 // Output the Log to the Visual Studio debugger using OutputDebugString()
 void OutputDebug::output(const Channel::Ptr& aChannelPtr, const Log& aLog) const {
-    const Time&         time = aLog.getTime();
+    const DateTime&     time = aLog.getTime();
     char                buffer[256];
 
     // uses snprintf for atomic thread-safe operation

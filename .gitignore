@@ -1,6 +1,7 @@
 Debug
 Release
 build
+lib
 
 *.ncb
 *.suo
