@@ -78,7 +78,7 @@ void OutputFile::rotate() const {
 
 // Output the Log to the standard console using printf
 void OutputFile::output(const Channel::Ptr& aChannelPtr, const Log& aLog) const {
-    const Time& time = aLog.getTime();
+    const DateTime& time = aLog.getTime();
 
     if (mSize > mMaxSize) {
         rotate();

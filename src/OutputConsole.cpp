@@ -27,7 +27,7 @@ OutputConsole::~OutputConsole() {
 
 // Output the Log to the standard console using fprintf
 void OutputConsole::output(const Channel::Ptr& aChannelPtr, const Log& aLog) const {
-    const Time& time = aLog.getTime();
+    const DateTime& time = aLog.getTime();
 
     // uses fprintf for atomic thread-safe operation
     fprintf(stdout, "%.4u-%.2u-%.2u %.2u:%.2u:%.2u.%.3u  %-20s %s  %s\n",

@@ -1,5 +1,5 @@
 /**
- * @file    Time.cpp
+ * @file    DateTime.cpp
  * @ingroup LoggerCpp
  * @brief   Current time precise to the millisecond.
  *
@@ -9,7 +9,7 @@
  * or copy at http://opensource.org/licenses/MIT)
  */
 
-#include "LoggerCpp/Time.h"
+#include "LoggerCpp/DateTime.h"
 
 #ifdef WIN32
 #include <windows.h>
@@ -22,7 +22,7 @@ namespace Log {
 
 
 /// Constructor
-Time::Time(void) :
+DateTime::DateTime(void) :
     year(0),
     month(0),
     day(0),
@@ -35,7 +35,7 @@ Time::Time(void) :
 
 
 /// Set to current time
-void Time::make(void) {
+void DateTime::make(void) {
 #ifdef WIN32
     SYSTEMTIME now;
     GetLocalTime(&now);

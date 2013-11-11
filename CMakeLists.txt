@@ -39,6 +39,7 @@ include_directories ("${PROJECT_SOURCE_DIR}/include")
 add_library (LoggerCpp
  include/LoggerCpp/Channel.h
  include/LoggerCpp/Config.h
+ include/LoggerCpp/DateTime.h
  include/LoggerCpp/Exception.h
  include/LoggerCpp/Formatter.h
  include/LoggerCpp/Log.h
@@ -50,15 +51,14 @@ add_library (LoggerCpp
  include/LoggerCpp/OutputDebug.h
  include/LoggerCpp/OutputFile.h
  include/LoggerCpp/shared_ptr.hpp
- include/LoggerCpp/Time.h
  src/Config.cpp
+ src/DateTime.cpp
  src/Log.cpp
  src/Logger.cpp
  src/Manager.cpp
  src/OutputConsole.cpp
  src/OutputDebug.cpp
  src/OutputFile.cpp
- src/Time.cpp
 )
 
 # add the example executable, linked with the LoggerCpp library

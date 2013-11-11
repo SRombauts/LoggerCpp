@@ -1,5 +1,5 @@
 /**
- * @file    Time.h
+ * @file    DateTime.h
  * @ingroup LoggerCpp
  * @brief   Current time precise to the millisecond.
  *
@@ -23,11 +23,11 @@ namespace Log {
  * Under Windows, the time is given to the millisecond.
  * Under Linux, the time is given to the microsecond.
  */
-struct Time {
+struct DateTime {
     /**
      * @brief Constructor
      */
-    Time(void);
+    DateTime(void);
 
     /**
      * @brief Set to current time
