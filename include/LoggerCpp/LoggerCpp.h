@@ -23,17 +23,23 @@
 
 
 /**
- * @brief   Version numbers for LoggerC++
+ * @def     LOGGERCPP_VERSION
+ * @brief   Srting version numbers for LoggerC++
  * @ingroup LoggerCpp
  *
- * The [LOGGERCPP_VERSION] C preprocessor macro in the LoggerCpp.h header
+ * The LOGGERCPP_VERSION C preprocessor macro in the LoggerCpp.h header
  * evaluates to a string literal that is the LoggerC++ version in the
  * format "X.Y.Z" where X is the major version number
  * and Y is the minor version number and Z is the release number.
+ */
+#define LOGGERCPP_VERSION             "0.2.0"
+/**
+ * @def     LOGGERCPP_VERSION_NUMBER
+ * @brief   Numeric version numbers for LoggerC++
+ * @ingroup LoggerCpp
  *
- * The [LOGGERCPP_VERSION_NUMBER] C preprocessor macro resolves to an integer
+ * The LOGGERCPP_VERSION_NUMBER C preprocessor macro resolves to an integer
  * with the value (X*1000000 + Y*1000 + Z) where X, Y, and Z are the same
  * numbers used in [LOGGERCPP_VERSION].
  */
-#define LOGGERCPP_VERSION             "0.1.0"
-#define LOGGERCPP_VERSION_NUMBER      0001000
+#define LOGGERCPP_VERSION_NUMBER      0002000

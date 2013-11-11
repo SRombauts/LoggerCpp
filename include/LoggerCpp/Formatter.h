@@ -40,6 +40,8 @@ public:
      * @brief stream inserter operator
      *
      * @param[in] aValue    Value to be formatted and inserted into the string stream
+     *
+     * @return Current Formatter instance
      */
     template <typename T>
     Formatter& operator<< (const T& aValue)

@@ -60,6 +60,8 @@ public:
      * @brief stream inserter operator
      *
      * @param[in] aValue    Value to be formatted and inserted into the Log string stream
+     *
+     * @return Currents Log instance 
      */
     template <typename T>
     Log& operator<< (const T& aValue)
@@ -94,8 +96,11 @@ public:
      * @brief Convert a Level to its string representation
      *
      * @param[in] aLevel Log severity Level to convert
+     *
+     * @return Severity Level Description
+     *
+     * @todo stringToLevel()
      */
-    /// @todo stringToLevel()
     static const char* toString(Log::Level aLevel);
 
 private:
