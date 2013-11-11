@@ -42,9 +42,8 @@
     namespace Log {
     using std::tr1:shared_ptr;
     } // namespace Log
-#elif defined(__clang__)
-    // Clang 2.9 and above ? What is the most appropriate feature to check for shared_ptr support in Clang ?
-    __has_feature(cxx_nullptr)
+#elif defined(__clang__) && __has_feature(cxx_nullptr)
+    // Clang 2.9 and above ?
     #include <memory>
     namespace Log {
     using std::shared_ptr;
