@@ -74,13 +74,13 @@ add_custom_target(cpplint
 
 # add a cppcheck target to the "all" target
 add_custom_target(cppcheck
-    ALL
-    COMMAND cppcheck -j 4 cppcheck --enable=style --quiet ${CPPCHECK_ARG_TEMPLATE} ${PROJECT_SOURCE_DIR}/src
+ ALL
+ COMMAND cppcheck -j 4 cppcheck --enable=style --quiet ${CPPCHECK_ARG_TEMPLATE} ${PROJECT_SOURCE_DIR}/src
 )
 
 if (NOT DEFINED ENV{TRAVIS})
-     # add a Doxygen target to the "all" target
-     add_custom_target(doxygen
+    # add a Doxygen target to the "all" target
+    add_custom_target(doxygen
      ALL
      COMMAND doxygen Doxyfile > ${DEV_NULL}
      WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
