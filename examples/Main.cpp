@@ -8,7 +8,7 @@
  * or copy at http://opensource.org/licenses/MIT)
  */
 
-#include "../src/LoggerCpp.h"
+#include "LoggerCpp/LoggerCpp.h"
 
 #include <iostream>
 
@@ -44,6 +44,17 @@ int main ()
 #else
     Log::Manager::setDefaultLevel(Log::Log::eNotice);
 #endif
+
+    int val;
+    if (false)
+    {
+        val = 2;
+    }
+    if (true)
+    {
+        // TODO SRombauts : testing
+        int* p = new int(2);
+    }
 
     // Configure the Output objects
     Log::Config::Vector configList;

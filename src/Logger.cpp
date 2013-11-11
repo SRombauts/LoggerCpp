@@ -9,8 +9,8 @@
  * or copy at http://opensource.org/licenses/MIT)
  */
 
-#include "Logger.h"
-#include "Manager.h"
+#include "LoggerCpp/Logger.h"
+#include "LoggerCpp/Manager.h"
 
 #include <cassert>
 

@@ -11,7 +11,7 @@
 
 #ifdef WIN32
 
-#include "OutputDebug.h"
+#include "LoggerCpp/OutputDebug.h"
 
 #include <Windows.h>
 

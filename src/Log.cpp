@@ -9,8 +9,8 @@
  * or copy at http://opensource.org/licenses/MIT)
  */
 
-#include "Log.h"
-#include "Logger.h"
+#include "LoggerCpp/Log.h"
+#include "LoggerCpp/Logger.h"
 
 
 namespace Log

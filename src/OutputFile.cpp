@@ -9,8 +9,8 @@
  * or copy at http://opensource.org/licenses/MIT)
  */
 
-#include "OutputFile.h"
-#include "Exception.h"
+#include "LoggerCpp/OutputFile.h"
+#include "LoggerCpp/Exception.h"
 
 #include <cstdio>
 #include <sys/types.h>

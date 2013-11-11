@@ -9,7 +9,7 @@
  * or copy at http://opensource.org/licenses/MIT)
  */
 
-#include "Time.h"
+#include "LoggerCpp/Time.h"
 
 #ifdef WIN32
 #include <windows.h>

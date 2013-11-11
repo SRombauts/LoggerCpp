@@ -9,13 +9,13 @@
  * or copy at http://opensource.org/licenses/MIT)
  */
 
-#include "Manager.h"
-#include "Exception.h"
+#include "LoggerCpp/Manager.h"
+#include "LoggerCpp/Exception.h"
 
-#include "OutputConsole.h"
-#include "OutputFile.h"
+#include "LoggerCpp/OutputConsole.h"
+#include "LoggerCpp/OutputFile.h"
 #ifdef WIN32
-#include "OutputDebug.h"
+#include "LoggerCpp/OutputDebug.h"
 #endif
 
 #include <stdexcept>
@@ -97,7 +97,7 @@ void Manager::output(const Channel::Ptr& aChannelPtr, const Log& aLog)
 
     for (iOutputPtr  = mOutputList.begin();
          iOutputPtr != mOutputList.end();
-         iOutputPtr++)
+       ++iOutputPtr)
     {
         (*iOutputPtr)->output(aChannelPtr, aLog);
     }

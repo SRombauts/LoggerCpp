@@ -1,6 +1,5 @@
 Update shared_ptr to tag v1.0
 
-CMake
 test
 Travis CI
 
