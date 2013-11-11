@@ -18,11 +18,10 @@
 // or <memory> (or <tr1/memory>) when C++11 (or experimental C++0x) is available,
 // or a custom minimal shared_ptr implementation,
 // and imports the "shared_ptr" symbol inside the Log namespace (ie. Log::shared_ptr)
-#include "shared_ptr.hpp"
+#include "LoggerCpp/shared_ptr.hpp"
 
 
-namespace Log
-{
+namespace Log {
 
 
 // forward declaration
@@ -36,8 +35,7 @@ class Logger;
  *  A Config object is an associative container of strings key and values,
  * with easy to use helper manipulation functions.
  */
-class Config
-{
+class Config {
 public:
     /// @brief Shared Pointer to a Config object
     typedef shared_ptr<Config>                  Ptr;
@@ -52,7 +50,7 @@ public:
      *
      * @param[in] apName Name of the Config object
      */
-    Config(const char* apName);
+    explicit Config(const char* apName);
 
     /// @brief Non virtual destructor
     ~Config(void);
@@ -116,8 +114,8 @@ public:
     static void setOption(Vector& aConfigList, const char* apKey, const char* apValue);
 
 private:
-   std::string  mName;      //!< Name of the Config
-   Values       mValues;    //!< Map of string values
+    std::string mName;      ///< Name of the Config
+    Values      mValues;    ///< Map of string values
 };
 
 

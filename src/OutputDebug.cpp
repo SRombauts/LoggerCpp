@@ -18,28 +18,24 @@
 #include <cstdio>
 
 
-namespace Log
-{
+namespace Log {
 
 
 // Constructor
-OutputDebug::OutputDebug(const Config::Ptr& aConfigPtr)
-{
+OutputDebug::OutputDebug(const Config::Ptr& aConfigPtr) {
 }
 
 // Destructor
-OutputDebug::~OutputDebug()
-{
+OutputDebug::~OutputDebug() {
 }
 
 // Output the Log to the Visual Studio debugger using OutputDebugString()
-void OutputDebug::output(const Channel::Ptr& aChannelPtr, const Log& aLog) const
-{
+void OutputDebug::output(const Channel::Ptr& aChannelPtr, const Log& aLog) const {
     const Time&         time = aLog.getTime();
     char                buffer[256];
 
     // uses snprintf for atomic thread-safe operation
-    _snprintf(buffer, 256, "%.4u-%.2u-%.2u %.2u:%.2u:%.2u.%.3u  %-20s %s  %s\n",
+    _snprintf(buffer, sizeof(buffer), "%.4u-%.2u-%.2u %.2u:%.2u:%.2u.%.3u  %-20s %s  %s\n",
             time.year, time.month, time.day,
             time.hour, time.minute, time.second, time.ms,
             aChannelPtr->getName().c_str(), Log::toString(aLog.getSeverity()), (aLog.getStream()).str().c_str());

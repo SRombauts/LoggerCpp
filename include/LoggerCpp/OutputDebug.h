@@ -10,23 +10,21 @@
  */
 #pragma once
 
-#include "Output.h"
-#include "Config.h"
+#include "LoggerCpp/Output.h"
+#include "LoggerCpp/Config.h"
 
 
-namespace Log
-{
+namespace Log {
 
 
 /**
  * @brief   Output to the Visual Studio debugger using OutputDebugString()
  * @ingroup LoggerCpp
  */
-class OutputDebug : public Output
-{
+class OutputDebug : public Output {
 public:
     /// @brief Constructor : no config
-    OutputDebug(const Config::Ptr& aConfigPtr);
+    explicit OutputDebug(const Config::Ptr& aConfigPtr);
 
     /// @brief Destructor
     virtual ~OutputDebug();

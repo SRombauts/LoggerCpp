@@ -19,10 +19,10 @@
 #endif
 
 #include <stdexcept>
+#include <string>
 
 
-namespace Log
-{
+namespace Log {
 
 
 Channel::Map    Manager::mChannelMap;
@@ -31,9 +31,8 @@ Log::Level      Manager::mDefaultLevel = Log::eDebug;
 
 
 // Create and configure the Output objects.
-void Manager::configure(const Config::Vector& aConfigList)
-{
-    // List of all Output class ; those names are in the form 
+void Manager::configure(const Config::Vector& aConfigList) {
+    // List of all Output class ; those names are in the form
     // - "class Log::OutputConsole" under Visual Studio 2010
     // - "N3Log13OutputConsoleE" under GCC
     std::string outputConsole = typeid(OutputConsole).name();
@@ -43,10 +42,9 @@ void Manager::configure(const Config::Vector& aConfigList)
 #endif
 
     Config::Vector::const_iterator  iConfig;
-    for (iConfig  = aConfigList.begin();
-         iConfig != aConfigList.end();
-         ++iConfig)
-    {
+    for (  iConfig  = aConfigList.begin();
+           iConfig != aConfigList.end();
+         ++iConfig) {
         Output::Ptr         outputPtr;
         const std::string&  configName = (*iConfig)->getName();
 
@@ -67,15 +65,13 @@ void Manager::configure(const Config::Vector& aConfigList)
 }
 
 // Destroy the Output objects.
-void Manager::terminate(void)
-{
+void Manager::terminate(void) {
     // This effectively destroys the Output objects
     mOutputList.clear();
 }
 
 // Return the Channel corresponding to the provided name
-Channel::Ptr Manager::get(const char* apChannelName)
-{
+Channel::Ptr Manager::get(const char* apChannelName) {
     Channel::Ptr            ChannelPtr;
     Channel::Map::iterator  iChannelPtr = mChannelMap.find(apChannelName);
 
@@ -91,28 +87,24 @@ Channel::Ptr Manager::get(const char* apChannelName)
 }
 
 // Output the Log to all the active Output objects.
-void Manager::output(const Channel::Ptr& aChannelPtr, const Log& aLog)
-{
+void Manager::output(const Channel::Ptr& aChannelPtr, const Log& aLog) {
     Output::Vector::iterator    iOutputPtr;
 
-    for (iOutputPtr  = mOutputList.begin();
-         iOutputPtr != mOutputList.end();
-       ++iOutputPtr)
-    {
+    for (  iOutputPtr  = mOutputList.begin();
+           iOutputPtr != mOutputList.end();
+         ++iOutputPtr) {
         (*iOutputPtr)->output(aChannelPtr, aLog);
     }
 }
 
 // Return the Config of Channel objects Log::Level
-Config::Ptr Manager::getChannelConfig(void)
-{
+Config::Ptr Manager::getChannelConfig(void) {
     Config::Ptr ConfigPtr(new Config("ChannelConfig"));
 
     Channel::Map::const_iterator iChannel;
     for (iChannel  = mChannelMap.begin();
          iChannel != mChannelMap.end();
-         ++iChannel)
-    {
+         ++iChannel) {
         ConfigPtr->setValue(iChannel->first.c_str(), Log::toString(iChannel->second->getLevel()));
     }
 

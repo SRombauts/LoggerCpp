@@ -10,14 +10,13 @@
  */
 #pragma once
 
-#include "Time.h"
+#include "LoggerCpp/Time.h"
 
 #include <sstream>
 #include <iomanip>  // For easy use of parametric manipulators (setfill, setprecision) by client code
 
 
-namespace Log
-{
+namespace Log {
 
 
 // forward declaration
@@ -38,9 +37,8 @@ class Logger;
  * It contains all required information for further formating, printing and transmitting
  * by the Logger class.
  */
-class Log
-{
-   friend class Logger;
+class Log {
+    friend class Logger;
 
 public:
     /**
@@ -64,8 +62,7 @@ public:
      * @return Currents Log instance 
      */
     template <typename T>
-    Log& operator<< (const T& aValue)
-    {
+    Log& operator<< (const T& aValue) {
         if (NULL != mpStream) {
             *mpStream << aValue;
         }
@@ -118,10 +115,10 @@ private:
     /// @}
 
 private:
-   const Logger&        mLogger;    //!< Reference to the parent Logger
-   Level                mSeverity;  //!< Severity of this Log
-   Time                 mTime;      //!< Timestamp of the output
-   std::ostringstream*  mpStream;   //!< The underlying string stream
+    const Logger&       mLogger;    ///< Reference to the parent Logger
+    Level               mSeverity;  ///< Severity of this Log
+    Time                mTime;      ///< Timestamp of the output
+    std::ostringstream* mpStream;   ///< The underlying string stream
 };
 
 

@@ -10,14 +10,13 @@
  */
 #pragma once
 
-#include "Log.h"
-#include "Channel.h"
-#include "Output.h"
-#include "Config.h"
+#include "LoggerCpp/Log.h"
+#include "LoggerCpp/Channel.h"
+#include "LoggerCpp/Output.h"
+#include "LoggerCpp/Config.h"
 
 
-namespace Log
-{
+namespace Log {
 
 
 /**
@@ -32,8 +31,7 @@ namespace Log
  *
  * The Manager also keeps a list of all configured Output object to output the Log objects.
  */
-struct Manager
-{
+struct Manager {
 public:
     /**
      * @brief Create and configure the Output objects.
@@ -73,7 +71,7 @@ public:
     /**
      * @brief Set the default output Log::Level of any new Channel
      */
-    static inline void setDefaultLevel (Log::Level aLevel) {
+    static inline void setDefaultLevel(Log::Level aLevel) {
         mDefaultLevel = aLevel;
     }
 
@@ -83,9 +81,9 @@ public:
     static Config::Ptr  getChannelConfig(void);
 
 private:
-    static Channel::Map     mChannelMap;    //!< Map of shared pointer of Channel objects
-    static Output::Vector   mOutputList;    //!< List of Output objects
-    static Log::Level       mDefaultLevel;  //!< Default Log::Level of any new Channel
+    static Channel::Map     mChannelMap;    ///< Map of shared pointer of Channel objects
+    static Output::Vector   mOutputList;    ///< List of Output objects
+    static Log::Level       mDefaultLevel;  ///< Default Log::Level of any new Channel
 };
 
 

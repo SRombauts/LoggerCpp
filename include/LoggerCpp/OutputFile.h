@@ -10,27 +10,27 @@
  */
 #pragma once
 
-#include "Output.h"
-#include "Config.h"
+#include "LoggerCpp/Output.h"
+#include "LoggerCpp/Config.h"
+
+#include <string>
 
 
-namespace Log
-{
+namespace Log {
 
 
 /**
  * @brief   Output to the standard console using fprintf
  * @ingroup LoggerCpp
  */
-class OutputFile : public Output
-{
+class OutputFile : public Output {
 public:
     /**
      * @brief Constructor : open the output file
      *
      * @param[in] aConfigPtr    Config the output file with "filename"
      */
-    OutputFile(const Config::Ptr& aConfigPtr);
+    explicit OutputFile(const Config::Ptr& aConfigPtr);
 
     /// @brief Destructor : close the file
     virtual ~OutputFile();
@@ -52,8 +52,8 @@ private:
     void rotate() const;
 
 private:
-    mutable FILE*   mpFile; //!< @brief File pointer (mutable to be modified in the const output method)
-    mutable long    mSize;  //!< @brief Current size of the log file (mutable to be modified in the const output method)
+    mutable FILE*   mpFile; ///< @brief File pointer (mutable to be modified in the const output method)
+    mutable long    mSize;  ///< @brief Current size of the log file (mutable to be modified in the const output method)
 
     /** 
      * @brief "max_startup_size" : Size of the file above which to create a new file instead of appending to it (at startup).
@@ -68,7 +68,7 @@ private:
      * Default (1024*1024=1Mo) creates a new file each time the current one grow above 1Mo.
     */
     long        mMaxSize;
-    
+
     /**
      * @brief "filename" : Name of the log file
      */

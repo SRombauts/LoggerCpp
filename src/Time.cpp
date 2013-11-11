@@ -18,8 +18,7 @@
 #include <sys/time.h>
 #endif
 
-namespace Log
-{
+namespace Log {
 
 
 /// Constructor
@@ -31,14 +30,12 @@ Time::Time(void) :
     minute(0),
     second(0),
     ms(0),
-    us(0)
-{
+    us(0) {
 }
 
 
 /// Set to current time
-void Time::make(void)
-{
+void Time::make(void) {
 #ifdef WIN32
     SYSTEMTIME now;
     GetLocalTime(&now);
@@ -58,7 +55,7 @@ void Time::make(void)
 
     year    = timeinfo->tm_year + 1900;
     month   = timeinfo->tm_mon + 1;
-    day     = timeinfo->tm_mday ;
+    day     = timeinfo->tm_mday;
     hour    = timeinfo->tm_hour;
     minute  = timeinfo->tm_min;
     second  = timeinfo->tm_sec;

@@ -15,13 +15,11 @@
 #include <cassert>
 
 
-namespace Log
-{
+namespace Log {
 
 
 // Initialize a Logger utility object
-Logger::Logger(const char* apChannelName)
-{
+Logger::Logger(const char* apChannelName) {
     assert(NULL != apChannelName);
 
     mChannelPtr = Manager::get(apChannelName);
@@ -30,39 +28,31 @@ Logger::Logger(const char* apChannelName)
 }
 
 // Non virtual destructor
-Logger::~Logger(void)
-{
+Logger::~Logger(void) {
 }
 
 // Utility const method to produce Log objets, used to collect the stream to output
-Log Logger::debug(void) const
-{
+Log Logger::debug(void) const {
     return Log(*this, Log::eDebug);
 }
-Log Logger::info(void) const
-{
+Log Logger::info(void) const {
     return Log(*this, Log::eInfo);
 }
-Log Logger::notice(void) const
-{
+Log Logger::notice(void) const {
     return Log(*this, Log::eNotice);
 }
-Log Logger::warning(void) const
-{
+Log Logger::warning(void) const {
     return Log(*this, Log::eWarning);
 }
-Log Logger::error(void) const
-{
+Log Logger::error(void) const {
     return Log(*this, Log::eError);
 }
-Log Logger::critic(void) const
-{
+Log Logger::critic(void) const {
     return Log(*this, Log::eCritic);
 }
 
 // To be used only by the Log class
-void Logger::output(const Log& aLog) const
-{
+void Logger::output(const Log& aLog) const {
     Manager::output(mChannelPtr, aLog);
 }
 

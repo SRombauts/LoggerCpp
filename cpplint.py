@@ -2330,14 +2330,11 @@ def CheckSpacing(filename, clean_lines, linenum, nesting_state, error):
     # Comparisons made explicit for clarity -- pylint: disable-msg=C6403
     if (line.count('"', 0, commentpos) -
         line.count('\\"', 0, commentpos)) % 2 == 0:   # not in quotes
-      # Allow one space for new scopes, two spaces otherwise:
       if (not Match(r'^\s*{ //', line) and
-          ((commentpos >= 1 and
-            line[commentpos-1] not in string.whitespace) or
-           (commentpos >= 2 and
-            line[commentpos-2] not in string.whitespace))):
-        error(filename, linenum, 'whitespace/comments', 2,
-              'At least two spaces is best between code and comments')
+          (commentpos >= 1 and
+           line[commentpos-1] not in string.whitespace)):
+        error(filename, linenum, 'whitespace/comments', 3,
+              'At least one space is best between code and comments')
       # There should always be a space between the // (or /// or //! or //!<) and the comment
       commentend = commentpos + 2
       if commentend < len(line) and not line[commentend] == ' ':
@@ -3070,7 +3067,7 @@ def CheckIncludeLine(filename, clean_lines, linenum, include_state, error):
 
   # "include" should use the new style "foo/bar.h" instead of just "bar.h"
   if _RE_PATTERN_INCLUDE_NEW_STYLE.search(line):
-    error(filename, linenum, 'build/include', 2,
+    error(filename, linenum, 'build/include', 3,
           'Include the directory when naming .h files')
 
   # we shouldn't include a file more than once. actually, there are a
@@ -3101,11 +3098,11 @@ def CheckIncludeLine(filename, clean_lines, linenum, include_state, error):
       error_message = include_state.CheckNextIncludeOrder(
           _ClassifyInclude(fileinfo, include, is_system))
       if error_message:
-        error(filename, linenum, 'build/include_order', 4,
+        error(filename, linenum, 'build/include_order', 2,
               '%s. Should be: %s.h, c system, c++ system, other.' %
               (error_message, fileinfo.BaseName()))
       if not include_state.IsInAlphabeticalOrder(include):
-        error(filename, linenum, 'build/include_alpha', 4,
+        error(filename, linenum, 'build/include_alpha', 3,
               'Include "%s" not in alphabetical order' % include)
 
   # Look for any of the stream classes that are part of standard C++.

@@ -11,8 +11,7 @@
 #pragma once
 
 
-namespace Log
-{
+namespace Log {
 
 
 /**
@@ -24,8 +23,7 @@ namespace Log
  * Under Windows, the time is given to the millisecond.
  * Under Linux, the time is given to the microsecond.
  */
-struct Time
-{
+struct Time {
     /**
      * @brief Constructor
      */
@@ -36,14 +34,14 @@ struct Time
      */
     void make(void);
 
-    int year;    //!< year    [0,30827]
-    int month;   //!< month   [1,12]
-    int day;     //!< day     [1,31]
-    int hour;    //!< hour    [0,23]
-    int minute;  //!< minute  [0,59]
-    int second;  //!< second  [0,59]
-    int ms;      //!< millisecond
-    int us;      //!< microsecond (not under Windows)
+    int year;    ///< year    [0,30827]
+    int month;   ///< month   [1,12]
+    int day;     ///< day     [1,31]
+    int hour;    ///< hour    [0,23]
+    int minute;  ///< minute  [0,59]
+    int second;  ///< second  [0,59]
+    int ms;      ///< millisecond
+    int us;      ///< microsecond (not under Windows)
 };
 
 

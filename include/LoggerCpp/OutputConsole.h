@@ -10,23 +10,21 @@
  */
 #pragma once
 
-#include "Output.h"
-#include "Config.h"
+#include "LoggerCpp/Output.h"
+#include "LoggerCpp/Config.h"
 
 
-namespace Log
-{
+namespace Log {
 
 
 /**
  * @brief   Output to the standard console using fprintf() with stdout
  * @ingroup LoggerCpp
  */
-class OutputConsole : public Output
-{
+class OutputConsole : public Output {
 public:
     /// @brief Constructor : no config
-    OutputConsole(const Config::Ptr& aConfigPtr);
+    explicit OutputConsole(const Config::Ptr& aConfigPtr);
 
     /// @brief Destructor
     virtual ~OutputConsole();

@@ -14,8 +14,7 @@
 #include <string>
 
 
-namespace Log
-{
+namespace Log {
 
 /**
  * @brief   A standard string stream formatter with implicit string conversion
@@ -28,8 +27,7 @@ namespace Log
  *  A typical use case is to format a std::exception string message :
  * - throw std::runtime_error(Formatter() << "no value for key '" << apKey << "'");
  */
-class Formatter
-{
+class Formatter {
 public:
     /// @brief Constructor
     Formatter(void)    {}
@@ -44,15 +42,13 @@ public:
      * @return Current Formatter instance
      */
     template <typename T>
-    Formatter& operator<< (const T& aValue)
-    {
+    Formatter& operator<< (const T& aValue) {
         mStream << aValue;
         return (*this);
     }
 
     /// @brief std::string cast operator for implicit conversion
-    inline operator std::string () const
-    {
+    inline operator std::string() const {
         return mStream.str();
     }
 
@@ -63,7 +59,7 @@ private:
     /// @}
 
 private:
-   std::ostringstream   mStream;    //!< The underlying string stream
+    std::ostringstream   mStream;    ///< The underlying string stream
 };
 
 

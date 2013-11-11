@@ -10,16 +10,17 @@
  */
 #pragma once
 
-#include "Log.h"
-#include "Channel.h"
+#include "LoggerCpp/Log.h"
+#include "LoggerCpp/Channel.h"
+
+#include <string>
 
 
 /**
  * @brief   LoggerC++ (LoggerCpp) is a simple, elegant and efficient C++ logger library.
  * @ingroup LoggerCpp
 */
-namespace Log
-{
+namespace Log {
 
 
 /**
@@ -32,8 +33,7 @@ namespace Log
  *
  * @note A Logger object is copyable without any limitations
  */
-class Logger
-{
+class Logger {
     friend class Log;
 
 public:
@@ -42,7 +42,7 @@ public:
      *
      * @param[in] apChannelName    String to identify origin of Log output by this Logger
      */
-    Logger(const char* apChannelName);
+    explicit Logger(const char* apChannelName);
     /**
      * @brief Non virtual destructor
      */
@@ -83,7 +83,7 @@ private:
     void output(const Log& aLog) const;
 
 private:
-    Channel::Ptr  mChannelPtr;   //!< Shared pointer to the underlying Channel
+    Channel::Ptr  mChannelPtr;   ///< Shared pointer to the underlying Channel
 };
 
 

@@ -14,23 +14,19 @@
 #include <cstdio>
 
 
-namespace Log
-{
+namespace Log {
 
 
 // Constructor
-OutputConsole::OutputConsole(const Config::Ptr& aConfigPtr)
-{
+OutputConsole::OutputConsole(const Config::Ptr& aConfigPtr) {
 }
 
 // Destructor
-OutputConsole::~OutputConsole()
-{
+OutputConsole::~OutputConsole() {
 }
 
 // Output the Log to the standard console using fprintf
-void OutputConsole::output(const Channel::Ptr& aChannelPtr, const Log& aLog) const
-{
+void OutputConsole::output(const Channel::Ptr& aChannelPtr, const Log& aLog) const {
     const Time& time = aLog.getTime();
 
     // uses fprintf for atomic thread-safe operation

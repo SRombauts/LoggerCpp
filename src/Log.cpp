@@ -13,25 +13,22 @@
 #include "LoggerCpp/Logger.h"
 
 
-namespace Log
-{
+namespace Log {
 
 
 // Construct a RAII (private) log object for the Logger class
 Log::Log(const Logger& aLogger, Level aSeverity) :
     mLogger(aLogger),
     mSeverity(aSeverity),
-    mpStream(NULL)
-{
+    mpStream(NULL) {
     // Construct a stream only if the severity of the Log is above its Logger Log::Level
-    if (aSeverity >= aLogger.getLevel ()) {
+    if (aSeverity >= aLogger.getLevel()) {
         mpStream = new(std::ostringstream);
     }
 }
 
 // Destructor : output the Log string stream
-Log::~Log(void)
-{
+Log::~Log(void) {
     if (NULL != mpStream) {
         mTime.make();
         mLogger.output(*this);
@@ -42,8 +39,7 @@ Log::~Log(void)
 }
 
 // Convert a Level to its string representation
-const char* Log::toString (Log::Level aLevel)
-{
+const char* Log::toString(Log::Level aLevel) {
     const char* pString = NULL;
 
     switch (aLevel) {

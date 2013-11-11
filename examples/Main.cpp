@@ -28,7 +28,7 @@ public:
     }
 
 private:
-    Log::Logger mLogger; //!< A named logger to produce log
+    Log::Logger mLogger; ///< A named logger to produce log
 };
 
 

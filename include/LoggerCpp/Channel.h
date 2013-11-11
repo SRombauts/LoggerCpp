@@ -10,7 +10,7 @@
  */
 #pragma once
 
-#include "Log.h"
+#include "LoggerCpp/Log.h"
 
 #include <map>
 #include <string>
@@ -19,11 +19,10 @@
 // or <memory> (or <tr1/memory>) when C++11 (or experimental C++0x) is available,
 // or a custom minimal shared_ptr implementation,
 // and imports the "shared_ptr" symbol inside the Log namespace (ie. Log::shared_ptr)
-#include "shared_ptr.hpp"
+#include "LoggerCpp/shared_ptr.hpp"
 
 
-namespace Log
-{
+namespace Log {
 
 
 /**
@@ -35,8 +34,7 @@ namespace Log
  * Sharing a same Channel between multiple Logger enable changing the
  * Level of many Logger objects at once.
  */
-class Channel
-{
+class Channel {
 public:
     /// @brief Shared Pointer to a Channel object
     typedef shared_ptr<Channel>         Ptr;
@@ -65,7 +63,7 @@ public:
     }
 
     /// @brief Set the current output Log::Level of the Channel
-    inline void setLevel (Log::Level aLevel) {
+    inline void setLevel(Log::Level aLevel) {
         mLevel = aLevel;
     }
 
@@ -81,8 +79,8 @@ private:
     /// @}
 
 private:
-    std::string mName;  //!< Name of the Channel
-    Log::Level  mLevel; //!< Current Log::Level of the Channel
+    std::string mName;  ///< Name of the Channel
+    Log::Level  mLevel; ///< Current Log::Level of the Channel
 };
 
 
