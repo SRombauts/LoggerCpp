@@ -15,6 +15,11 @@
 #pragma once
 
 
+/// Compatibility with non-clang compilers.
+#ifndef __has_feature
+  #define __has_feature(x) 0
+#endif
+
 //
 // Try to detect the better shared_ptr to use, and then imports the symbol in the current namespace
 // => if you include this "shared_ptr.hpp" file inside your own namespace you will
