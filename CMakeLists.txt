@@ -79,21 +79,12 @@ add_custom_target(cppcheck
 )
 
 if (NOT DEFINED ENV{TRAVIS})
-    if (MSVC)
-        # add a Doxygen target to the "all" target
-        add_custom_target(doxygen
-         ALL
-         COMMAND doxygen Doxyfile > ${DEV_NULL}
-         WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
-        )
-    else()
-        # add a Doxygen target to the "all" target
-        add_custom_target(doxygen
-         ALL
-         COMMAND doxygen Logger.Doxyfile > /dev/null
-         WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
-        )
-    endif()
+     # add a Doxygen target to the "all" target
+     add_custom_target(doxygen
+     ALL
+     COMMAND doxygen Doxyfile > ${DEV_NULL}
+     WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
+    )
 else()
     # but no Doxygen under Travis CI: too costly and no real benefit
     message("no Doxygen target when TRAVIS is defined")

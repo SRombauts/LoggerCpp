@@ -15,9 +15,6 @@
 #pragma once
 
 
-namespace Log
-{
-
 //
 // Try to detect the better shared_ptr to use, and then imports the symbol in the current namespace
 // => if you include this "shared_ptr.hpp" file inside your own namespace you will
@@ -26,42 +23,55 @@ namespace Log
 #ifdef LOGGER_USE_BOOST_SHARED_PTR
     // Use Boost only if explicitly told
     #include <boost/shared_ptr.hpp>
+    namespace Log {
     using boost::shared_ptr;
+    } // namespace Log
 // Detect whether the compiler supports C++11 shared_ptr or its TR1 pre-version.
 #elif (defined(__GNUC__) && (__GNUC__ > 4 || \
       (__GNUC__ == 4 && __GNUC_MINOR__ > 2)) && \
       defined(__GXX_EXPERIMENTAL_CXX0X__))
     // GCC 4.3 and following have std::shared_ptr support when called with -std=c++0x (or -std=c++11 starting with GCC 4.7)
     #include <memory>
-    using std::shared_ptr
+    namespace Log {
+    using std::shared_ptr;
+    } // namespace Log
 #elif (defined(__GNUC__) && (__GNUC__ == 4) && \
       defined(__GXX_EXPERIMENTAL_CXX0X__))
     // GCC 4.0/4.1/4.2 have std::shared_ptr support when when called with -std=c++0x
     #include <tr1/memory>
+    namespace Log {
     using std::tr1:shared_ptr;
+    } // namespace Log
 #elif defined(__clang__)
     // Clang 2.9 and above ? What is the most appropriate feature to check for shared_ptr support in Clang ?
     __has_feature(cxx_nullptr)
     #include <memory>
+    namespace Log {
     using std::shared_ptr;
+    } // namespace Log
 #elif defined(_MSC_VER) && (_MSC_VER >= 1600)
     // Visual Studio 2010 compile by default in C++11 mode
     #include <memory>
+    namespace Log {
     using std::shared_ptr;
+    } // namespace Log
 #elif defined(_MSC_VER) && (_MSC_VER >= 1500)
     // Visual Studio 2008 : beware, TR1 is provided with the Service Pack 1 only !
     #include <memory>
+    namespace Log {
     using std::tr1:shared_ptr;
+    } // namespace Log
 #else
 
 
 #include <cstddef>      // NULL
 #include <algorithm>    // std::swap
+#include <cassert>
 
 // can be replaced by other error mechanism
-#include <cassert>
 #define SHARED_ASSERT(x)    assert(x)
 
+namespace Log {
 
 /**
  * @brief minimal implementation of smart pointer, a subset of the C++11 std::shared_ptr or boost::shared_ptr.
@@ -74,9 +84,10 @@ template<class T>
 class shared_ptr
 {
 public:
-   typedef T element_type;
+    /// The type of the managed object, aliased as member type
+    typedef T element_type;
 
-   /// @brief Default constructor
+    /// @brief Default constructor
     shared_ptr(void) throw() : // never throws
         px(NULL),
         pn(NULL)
@@ -286,6 +297,6 @@ shared_ptr<T> dynamic_pointer_cast(const shared_ptr<U>& ptr) // never throws
     }
 }
 
-#endif
-
 } // namespace Log
+
+#endif
