@@ -1,6 +1,8 @@
 LoggerC++
 ---------
 
+![LoggerC++ build status](https://api.travis-ci.org/SRombauts/LoggerCpp.png "LoggerC++ build status")
+
 LoggerC++ (LoggerCpp) is a simple, elegant and efficient C++ logger library.
 
 ### The goals of LoggerC++ are:
@@ -127,3 +129,10 @@ The source code use the CamelCase naming style variant where :
 - member variables begins with a 'm', function arguments begins with a 'a', boolean with a 'b', pointers with a 'p'
 - each file, class, method and member variable is documented using Doxygen tags
 See also http://www.appinf.com/download/CppCodingStyleGuide.pdf for good guidelines
+
+### Continuous Integration
+
+This project is continuously tested under Ubuntu Linux with the gcc and clang compilers
+using the Travis CI community service with the above CMake building and testing procedure.
+
+Detailed results can be seen online: https://travis-ci.org/SRombauts/LoggerCpp
