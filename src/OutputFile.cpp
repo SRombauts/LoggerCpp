@@ -86,7 +86,7 @@ void OutputFile::output(const Channel::Ptr& aChannelPtr, const Log& aLog) const 
 
     if (NULL != mpFile) {
         // uses fprintf for atomic thread-safe operation
-        int nbWritten = fprintf(mpFile, "%.4u-%.2u-%.2u %.2u:%.2u:%.2u.%.3u  %-20s %s  %s\n",
+        int nbWritten = fprintf(mpFile, "%.4u-%.2u-%.2u %.2u:%.2u:%.2u.%.3u  %-12s %s %s\n",
                                 time.year, time.month, time.day,
                                 time.hour, time.minute, time.second, time.ms,
                                 aChannelPtr->getName().c_str(), Log::toString(aLog.getSeverity()),

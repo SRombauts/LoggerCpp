@@ -113,7 +113,7 @@ int main ()
     
     // Create other loggers, sharing the "Main.Example" Channel, and creating a new one
     Log::Logger logger2("Main.Example");
-    Log::Logger logger3("Main.OtherChannel");
+    Log::Logger logger3("Main.Other");
     logger.debug() << "First logger to the Channel";
     logger2.debug() << "Second logger to the Channel";
     logger3.debug() << "Third logger, other Channel";

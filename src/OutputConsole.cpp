@@ -30,7 +30,7 @@ void OutputConsole::output(const Channel::Ptr& aChannelPtr, const Log& aLog) con
     const DateTime& time = aLog.getTime();
 
     // uses fprintf for atomic thread-safe operation
-    fprintf(stdout, "%.4u-%.2u-%.2u %.2u:%.2u:%.2u.%.3u  %-20s %s  %s\n",
+    fprintf(stdout, "%.4u-%.2u-%.2u %.2u:%.2u:%.2u.%.3u  %-12s %s %s\n",
             time.year, time.month, time.day,
             time.hour, time.minute, time.second, time.ms,
             aChannelPtr->getName().c_str(), Log::toString(aLog.getSeverity()), (aLog.getStream()).str().c_str());
