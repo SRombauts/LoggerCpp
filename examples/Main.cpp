@@ -135,6 +135,8 @@ int main ()
     // Show how to get the current Channel configuration (to save it to a file, for instance)
     Log::Manager::get("Main.OtherChannel")->setLevel(Log::Log::eNotice);
     Log::Config::Ptr ChannelConfigPtr = Log::Manager::getChannelConfig();
+    // Show how to set the current Channel configuration (restored from a file, for instance)
+    Log::Manager::setChannelConfig(ChannelConfigPtr);
 
     // Terminate the Log Manager (destroy the Output objects)
     Log::Manager::terminate();

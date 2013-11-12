@@ -94,11 +94,18 @@ public:
      *
      * @param[in] aLevel Log severity Level to convert
      *
-     * @return Severity Level Description
-     *
-     * @todo stringToLevel()
+     * @return Severity Level description
      */
     static const char* toString(Log::Level aLevel);
+
+    /**
+     * @brief Convert a string representation of a Level to its corresponding value
+     *
+     * @param[in] apLevel Log severity string Level
+     *
+     * @return Severity Level value
+     */
+    static Log::Level  toLevel(const char* apLevel);
 
 private:
     /**

@@ -12,6 +12,8 @@
 #include "LoggerCpp/Log.h"
 #include "LoggerCpp/Logger.h"
 
+#include <cstring>
+
 
 namespace Log {
 
@@ -53,6 +55,25 @@ const char* Log::toString(Log::Level aLevel) {
     }
 
     return pString;
+}
+
+
+/**
+ * @brief Convert a string representation of a Level to its corresponding value
+ *
+ * @param[in] apLevel Log severity string Level
+ */
+Log::Level Log::toLevel(const char* apLevel) {
+    Log::Level level;
+
+    if      (0 == strncmp(apLevel, "DBUG", 4))  level = Log::eDebug;
+    else if (0 == strncmp(apLevel, "INFO", 4))  level = Log::eInfo;
+    else if (0 == strncmp(apLevel, "NOTE", 4))  level = Log::eNotice;
+    else if (0 == strncmp(apLevel, "WARN", 4))  level = Log::eWarning;
+    else if (0 == strncmp(apLevel, "EROR", 4))  level = Log::eError;
+    else /* (0 == strncmp(apLevel, "CRIT", 4)*/ level = Log::eCritic;   // NOLINT(whitespace/newline)
+
+    return level;
 }
 
 

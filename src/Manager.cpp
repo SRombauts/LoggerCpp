@@ -97,7 +97,7 @@ void Manager::output(const Channel::Ptr& aChannelPtr, const Log& aLog) {
     }
 }
 
-// Return the Config of Channel objects Log::Level
+// Serialize the current Log::Level of Channel objects and return them as a Config instance
 Config::Ptr Manager::getChannelConfig(void) {
     Config::Ptr ConfigPtr(new Config("ChannelConfig"));
 
@@ -111,6 +111,17 @@ Config::Ptr Manager::getChannelConfig(void) {
     return ConfigPtr;
 }
 
+// Set the Log::Level of Channel objects from the provided Config instance
+void Manager::setChannelConfig(const Config::Ptr& aConfigPtr) {
+    const Config::Values& ConfigValues = aConfigPtr->getValues();
+
+    Config::Values::const_iterator iValue;
+    for (iValue  = ConfigValues.begin();
+         iValue != ConfigValues.end();
+         ++iValue) {
+        Manager::get(iValue->first.c_str())->setLevel(Log::toLevel(iValue->second.c_str()));
+    }
+}
 
 } // namespace Log
 

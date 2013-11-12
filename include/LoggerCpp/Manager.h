@@ -36,6 +36,8 @@ public:
     /**
      * @brief Create and configure the Output objects.
      *
+     * @see setChannelConfig()
+     *
      * @param[in] aConfigList   List of Config for Output objects
      */
     static void         configure(const Config::Vector& aConfigList);
@@ -76,9 +78,14 @@ public:
     }
 
     /**
-     * @brief Return the Config of Channel objects Log::Level
+     * @brief Serialize the current Log::Level of Channel objects and return them as a Config instance
      */
-    static Config::Ptr  getChannelConfig(void);
+    static Config::Ptr getChannelConfig(void);
+
+    /**
+     * @brief Set the Log::Level of Channel objects from the provided Config instance
+     */
+    static void setChannelConfig(const Config::Ptr& aConfigPtr);
 
 private:
     static Channel::Map     mChannelMap;    ///< Map of shared pointer of Channel objects
