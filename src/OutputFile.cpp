@@ -22,7 +22,7 @@ namespace Log {
 
 // Open the output file
 OutputFile::OutputFile(const Config::Ptr& aConfigPtr) :
-    mpFile(NULL) {
+    mpFile(nullptr) {
     assert(aConfigPtr);
 
     mMaxStartupSize = aConfigPtr->get("max_startup_size",   (long)0);
@@ -52,16 +52,16 @@ OutputFile::~OutputFile() {
 // Open the file
 void OutputFile::open() const {
     mpFile = fopen(mFilename.c_str(), "ab");
-    if (NULL == mpFile) {
+    if (nullptr == mpFile) {
         LOGGER_THROW("file \"" << mFilename << "\" not opened");
     }
 }
 
 // Close the file if it is opened
 void OutputFile::close() const {
-    if (NULL != mpFile) {
+    if (nullptr != mpFile) {
         fclose(mpFile);
-        mpFile  = NULL;
+        mpFile  = nullptr;
         mSize   = 0;
     }
 }
@@ -84,7 +84,7 @@ void OutputFile::output(const Channel::Ptr& aChannelPtr, const Log& aLog) const 
         rotate();
     }
 
-    if (NULL != mpFile) {
+    if (nullptr != mpFile) {
         // uses fprintf for atomic thread-safe operation
         int nbWritten = fprintf(mpFile, "%.4u-%.2u-%.2u %.2u:%.2u:%.2u.%.3u  %-12s %s %s\n",
                                 time.year, time.month, time.day,

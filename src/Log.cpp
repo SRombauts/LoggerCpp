@@ -22,7 +22,7 @@ namespace Log {
 Log::Log(const Logger& aLogger, Level aSeverity) :
     mLogger(aLogger),
     mSeverity(aSeverity),
-    mpStream(NULL) {
+    mpStream(nullptr) {
     // Construct a stream only if the severity of the Log is above its Logger Log::Level
     if (aSeverity >= aLogger.getLevel()) {
         mpStream = new(std::ostringstream);
@@ -31,18 +31,18 @@ Log::Log(const Logger& aLogger, Level aSeverity) :
 
 // Destructor : output the Log string stream
 Log::~Log(void) {
-    if (NULL != mpStream) {
+    if (nullptr != mpStream) {
         mTime.make();
         mLogger.output(*this);
 
         delete mpStream;
-        mpStream = NULL;
+        mpStream = nullptr;
     }
 }
 
 // Convert a Level to its string representation
 const char* Log::toString(Log::Level aLevel) {
-    const char* pString = NULL;
+    const char* pString = nullptr;
 
     switch (aLevel) {
         case Log::eDebug:   pString = "DBUG"; break;

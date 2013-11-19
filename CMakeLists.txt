@@ -51,6 +51,7 @@ add_library (LoggerCpp
  include/LoggerCpp/OutputDebug.h
  include/LoggerCpp/OutputFile.h
  include/LoggerCpp/shared_ptr.hpp
+ include/LoggerCpp/Utils.h
  src/Config.cpp
  src/DateTime.cpp
  src/Log.cpp

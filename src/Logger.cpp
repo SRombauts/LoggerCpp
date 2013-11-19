@@ -20,7 +20,7 @@ namespace Log {
 
 // Initialize a Logger utility object
 Logger::Logger(const char* apChannelName) {
-    assert(NULL != apChannelName);
+    assert(nullptr != apChannelName);
 
     mChannelPtr = Manager::get(apChannelName);
 

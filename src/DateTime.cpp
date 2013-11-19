@@ -10,6 +10,7 @@
  */
 
 #include "LoggerCpp/DateTime.h"
+#include "LoggerCpp/Utils.h"
 
 #ifdef WIN32
 #include <windows.h>
@@ -50,7 +51,7 @@ void DateTime::make(void) {
     us      = 0;
 #else
     struct timeval now;
-    gettimeofday(&now, NULL);
+    gettimeofday(&now, nullptr);
     struct tm* timeinfo = localtime(&now.tv_sec);
 
     year    = timeinfo->tm_year + 1900;

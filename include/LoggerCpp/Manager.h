@@ -56,7 +56,7 @@ public:
      *
      * @param[in] apChannelName String to identify the underlying Channel of a Logger
      *
-     * @return Pointer to the corresponding Channel (never NULL)
+     * @return Pointer to the corresponding Channel (never nullptr)
      */
     static Channel::Ptr get(const char* apChannelName);
 
