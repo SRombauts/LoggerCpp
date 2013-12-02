@@ -125,7 +125,7 @@ private:
 private:
     const Logger&       mLogger;    ///< Reference to the parent Logger
     Level               mSeverity;  ///< Severity of this Log
-    DateTime                mTime;      ///< Timestamp of the output
+    DateTime            mTime;      ///< Timestamp of the output
     std::ostringstream* mpStream;   ///< The underlying string stream
 };
 

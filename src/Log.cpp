@@ -57,12 +57,7 @@ const char* Log::toString(Log::Level aLevel) {
     return pString;
 }
 
-
-/**
- * @brief Convert a string representation of a Level to its corresponding value
- *
- * @param[in] apLevel Log severity string Level
- */
+// Convert a string representation of a Level to its corresponding value
 Log::Level Log::toLevel(const char* apLevel) {
     Log::Level level;
 

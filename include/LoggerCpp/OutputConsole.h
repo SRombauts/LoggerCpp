@@ -29,6 +29,26 @@ public:
     /// @brief Destructor
     virtual ~OutputConsole();
 
+#ifdef _WIN32
+    /**
+     * @brief Convert a Level to a Win32 console color text attribute
+     *
+     * @param[in] aLevel Log severity Level to convert
+     *
+     * @return Win32 console color text attribute
+     */
+    static unsigned short toWin32Attribute(Log::Level aLevel);
+#else // _WIN32
+   /**
+     * @brief Convert a Level to an ANSI escape color code
+     *
+     * @param[in] aLevel Log severity Level to convert
+     *
+     * @return ANSI escape code for console color output
+     */
+    static unsigned int toEscapeCode(Log::Level aLevel);
+#endif // _WIN32
+
     /**
      * @brief Output the Log to the standard console using fprintf
      *
