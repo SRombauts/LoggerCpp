@@ -83,6 +83,9 @@ void OutputConsole::output(const Channel::Ptr& aChannelPtr, const Log& aLog) con
             time.year, time.month, time.day,
             time.hour, time.minute, time.second, time.ms,
             aChannelPtr->getName().c_str(), Log::toString(aLog.getSeverity()), (aLog.getStream()).str().c_str());
+#ifdef _WIN32
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
+#endif // _WIN32
     fflush(stdout);
 }
 
