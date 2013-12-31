@@ -8,8 +8,6 @@ project(LoggerCpp)
 
 # Define useful variables to handle OS/Compiler differences
 if (MSVC)
-    set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} /MT")
-    set(CMAKE_CXX_FLAGS_DEBUG   "${CMAKE_CXX_FLAGS_DEBUG} /MTd")
     set(CPPLINT_ARG_OUTPUT      "--output=vs7")
     set(CPPCHECK_ARG_TEMPLATE   "--template=vs")
     set(DEV_NULL                "NUL")
@@ -23,14 +21,7 @@ else()
 #   add_definitions (-std=c++0x)  # -std=c++11
 endif()
 set(CPPLINT_ARG_VERBOSE "--verbose=3")
-
-# List all sources/headers files
-# used only for cpplint: adding a file still require modifing the CMakeLists.txt
-# so that CMake know that it should rebuild the project (and better practice)
-file(GLOB all_source_files
-    "${PROJECT_SOURCE_DIR}/include/LoggerCpp/*.h"
-    "${PROJECT_SOURCE_DIR}/src/*.cpp"
-)
+set(CPPLINT_ARG_LINELENGTH "--linelength=120")
 
 # All includes are relative to the "include" directory
 include_directories ("${PROJECT_SOURCE_DIR}/include")
@@ -66,26 +57,46 @@ add_library (LoggerCpp
 add_executable(LoggerCpp_Example examples/Main.cpp)
 target_link_libraries (LoggerCpp_Example LoggerCpp ${SYSTEM_LIBRARIES})
 
-# add a cpplint target to the "all" target
-add_custom_target(LoggerCpp_cpplint
- ALL
- COMMAND python cpplint.py ${CPPLINT_ARG_OUTPUT} ${CPPLINT_ARG_VERBOSE} ${all_source_files}
- WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
-)
 
-# add a cppcheck target to the "all" target
-add_custom_target(LoggerCpp_cppcheck
- ALL
- COMMAND cppcheck -j 4 cppcheck --enable=style --quiet ${CPPCHECK_ARG_TEMPLATE} ${PROJECT_SOURCE_DIR}/src
-)
+# Optional additional targets:
 
-if (NOT DEFINED ENV{TRAVIS})
-    # add a Doxygen target to the "all" target
-    add_custom_target(LoggerCpp_doxygen
+option(LOGGERCPP_RUN_CPPLINT "Run cpplint.py tool for Google C++ Styleguide." ON)
+if (LOGGERCPP_RUN_CPPLINT)
+    # List all sources/headers files for cpplint:
+    # adding a file still require explicittly modifing the CMakeLists.txt
+    # so that CMake know that it should rebuild the project (it is best practice)
+    file(GLOB all_source_files
+        "${PROJECT_SOURCE_DIR}/include/LoggerCpp/*.h"
+        "${PROJECT_SOURCE_DIR}/src/*.cpp"
+    )
+
+    # add a cpplint target to the "all" target
+    add_custom_target(LoggerCpp_cpplint
      ALL
-     COMMAND doxygen Doxyfile > ${DEV_NULL}
+     COMMAND python cpplint.py ${CPPLINT_ARG_OUTPUT} ${CPPLINT_ARG_VERBOSE} ${all_source_files}
      WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
     )
+endif()
+
+option(LOGGERCPP_RUN_CPPCHECK "Run cppcheck C++ static analysis tool." ON)
+if (LOGGERCPP_RUN_CPPCHECK)
+  # add a cppcheck target to the "all" target
+  add_custom_target(LoggerCpp_cppcheck
+   ALL
+   COMMAND cppcheck -j 4 cppcheck --enable=style --quiet ${CPPCHECK_ARG_TEMPLATE} ${PROJECT_SOURCE_DIR}/src
+  )
+endif()
+
+if (NOT DEFINED ENV{TRAVIS})
+    option(LOGGERCPP_RUN_DOXYGEN "Run Doxygen C++ documentation tool." ON)
+    if (LOGGERCPP_RUN_DOXYGEN)
+        # add a Doxygen target to the "all" target
+        add_custom_target(LoggerCpp_doxygen
+         ALL
+         COMMAND doxygen Doxyfile > ${DEV_NULL}
+         WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
+        )
+    endif()
 else()
     # but no Doxygen under Travis CI: too costly and no real benefit
     message("no Doxygen target when TRAVIS is defined")
