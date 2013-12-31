@@ -2,15 +2,26 @@ Debug
 Release
 build
 lib
+doc
 
+CMakeCache.txt
+CMakeFiles
+*.cmake
+*.dir
+
+*.sln
+*.vcproj*
+*.vcxproj*
 *.ncb
 *.suo
 *.user
 *sdf
 *ipch
+*.make
+Makefile
+.settings
+
 *~
 
 log*.txt
-
-doc
 core
