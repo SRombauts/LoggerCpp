@@ -63,25 +63,25 @@ add_library (LoggerCpp
 )
 
 # add the example executable, linked with the LoggerCpp library
-add_executable(Example examples/Main.cpp)
-target_link_libraries (Example LoggerCpp ${SYSTEM_LIBRARIES})
+add_executable(LoggerCpp_Example examples/Main.cpp)
+target_link_libraries (LoggerCpp_Example LoggerCpp ${SYSTEM_LIBRARIES})
 
 # add a cpplint target to the "all" target
-add_custom_target(cpplint
+add_custom_target(LoggerCpp_cpplint
  ALL
  COMMAND python cpplint.py ${CPPLINT_ARG_OUTPUT} ${CPPLINT_ARG_VERBOSE} ${all_source_files}
  WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
 )
 
 # add a cppcheck target to the "all" target
-add_custom_target(cppcheck
+add_custom_target(LoggerCpp_cppcheck
  ALL
  COMMAND cppcheck -j 4 cppcheck --enable=style --quiet ${CPPCHECK_ARG_TEMPLATE} ${PROJECT_SOURCE_DIR}/src
 )
 
 if (NOT DEFINED ENV{TRAVIS})
     # add a Doxygen target to the "all" target
-    add_custom_target(doxygen
+    add_custom_target(LoggerCpp_doxygen
      ALL
      COMMAND doxygen Doxyfile > ${DEV_NULL}
      WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
