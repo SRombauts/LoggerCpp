@@ -44,7 +44,7 @@ namespace Utils {
 #else   // _MSC_VER
 #if (__cplusplus < 201103L) && !defined(__GXX_EXPERIMENTAL_CXX0X__) // before C++11 on GCC4.7 and Visual Studio 2010
 #ifndef HAVE_NULLPTR
-#define HAVE_NULLPTR
+#define HAVE_NULLPTR    ///< A macro to avoid double definition of nullptr
 /**
  * @brief nullptr_t is the type of the null pointer literal, nullptr.
 */
