@@ -32,20 +32,19 @@
     using boost::shared_ptr;
     } // namespace Log
 // Detect whether the compiler supports C++11 shared_ptr or its TR1 pre-version.
-#elif (defined(__GNUC__) && (__GNUC__ > 4 || \
-      (__GNUC__ == 4 && __GNUC_MINOR__ > 2)) && \
-      defined(__GXX_EXPERIMENTAL_CXX0X__))
+#elif (defined(__GNUC__) && \
+       (__GNUC__ > 4 || (__GNUC__ == 4 && __GNUC_MINOR__ > 2)) && \
+       defined(__GXX_EXPERIMENTAL_CXX0X__))
     // GCC 4.3 and following have std::shared_ptr support when called with -std=c++0x (or -std=c++11 starting with GCC 4.7)
     #include <memory>
     namespace Log {
     using std::shared_ptr;
     } // namespace Log
-#elif (defined(__GNUC__) && (__GNUC__ == 4) && \
-      defined(__GXX_EXPERIMENTAL_CXX0X__))
+#elif (defined(__GNUC__) && (__GNUC__ == 4) && defined(__GXX_EXPERIMENTAL_CXX0X__))
     // GCC 4.0/4.1/4.2 have std::shared_ptr support when when called with -std=c++0x
     #include <tr1/memory>
     namespace Log {
-    using std::tr1:shared_ptr;
+    using std::tr1::shared_ptr;
     } // namespace Log
 #elif defined(__clang__) && __has_feature(cxx_nullptr)
     // Clang 2.9 and above ?
