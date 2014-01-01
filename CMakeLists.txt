@@ -18,7 +18,7 @@ else()
     set(CPPCHECK_ARG_TEMPLATE   "--template=gcc")
     set(DEV_NULL                "/dev/null")
     set(SYSTEM_LIBRARIES        "rt")
-#   add_definitions (-std=c++0x)  # -std=c++11
+    add_definitions (-std=c++0x)  # -std=c++11
 endif()
 set(CPPLINT_ARG_VERBOSE "--verbose=3")
 set(CPPLINT_ARG_LINELENGTH "--linelength=120")
@@ -53,14 +53,17 @@ add_library (LoggerCpp
  src/OutputFile.cpp
 )
 
-# add the example executable, linked with the LoggerCpp library
-add_executable(LoggerCpp_Example examples/Main.cpp)
-target_link_libraries (LoggerCpp_Example LoggerCpp ${SYSTEM_LIBRARIES})
-
 
 # Optional additional targets:
 
-option(LOGGERCPP_RUN_CPPLINT "Run cpplint.py tool for Google C++ Styleguide." ON)
+option(LOGGERCPP_BUILD_EXAMPLE "Build the example of LoggerCpp." ON)
+if (LOGGERCPP_BUILD_EXAMPLE)
+    # add the example executable, linked with the LoggerCpp library
+    add_executable(LoggerCpp_Example examples/Main.cpp)
+    target_link_libraries (LoggerCpp_Example LoggerCpp ${SYSTEM_LIBRARIES})
+endif ()
+
+option(LOGGERCPP_RUN_CPPLINT "Run cpplint.py tool for Google C++ StyleGuide." ON)
 if (LOGGERCPP_RUN_CPPLINT)
     # List all sources/headers files for cpplint:
     # adding a file still require explicittly modifing the CMakeLists.txt
