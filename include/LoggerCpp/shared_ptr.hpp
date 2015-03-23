@@ -62,7 +62,7 @@
     // Visual Studio 2008 : beware, TR1 is provided with the Service Pack 1 only !
     #include <memory>
     namespace Log {
-    using std::tr1:shared_ptr;
+    using std::tr1::shared_ptr;
     } // namespace Log
 #else
 
