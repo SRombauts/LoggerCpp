@@ -36,7 +36,7 @@ namespace Utils {
 
 #ifdef _MSC_VER
 #if _MSC_VER < 1600
-/// A macro to enable the use of the nullptr keyword (NULL on older MSVC compilers, as they does not accept "nullptr_t")
+/// A macro to enable the use of the nullptr keyword (NULL on older MSVC compilers, as they do not accept "nullptr_t")
 #ifndef nullptr
 #define nullptr NULL
 #endif  // nullptr
