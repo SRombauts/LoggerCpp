@@ -45,17 +45,6 @@ int main ()
     Log::Manager::setDefaultLevel(Log::Log::eNotice);
 #endif
 
-    int val;
-    if (false)
-    {
-        val = 2;
-    }
-    if (true)
-    {
-        // TODO SRombauts : testing
-        int* p = new int(2);
-    }
-
     // Configure the Output objects
     Log::Config::Vector configList;
     Log::Config::addOutput(configList, "OutputConsole");
