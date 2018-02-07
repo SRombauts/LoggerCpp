@@ -22,6 +22,7 @@ namespace Log {
 
 // Constructor
 OutputConsole::OutputConsole(const Config::Ptr& aConfigPtr) {
+    (void)aConfigPtr;
 }
 
 // Destructor

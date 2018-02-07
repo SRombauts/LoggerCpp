@@ -10,7 +10,7 @@
 
 #include "LoggerCpp/LoggerCpp.h"
 
-#include <iostream>
+#include <iostream> // used for cerr messages
 
 
 /**
