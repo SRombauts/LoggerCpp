@@ -60,8 +60,8 @@ void DateTime::make(void) {
     hour    = timeinfo->tm_hour;
     minute  = timeinfo->tm_min;
     second  = timeinfo->tm_sec;
-    ms      = now.tv_usec / 1000;
-    us      = now.tv_usec % 1000;
+    ms      = static_cast<int>(now.tv_usec / 1000);
+    us      = static_cast<int>(now.tv_usec % 1000);
 #endif
 }
 
