@@ -9,8 +9,8 @@
  * or copy at http://opensource.org/licenses/MIT)
  */
 
-#include "LoggerCpp/Log.h"
-#include "LoggerCpp/Logger.h"
+#include <LoggerCpp/Log.h>
+#include <LoggerCpp/Logger.h>
 
 #include <cstring>
 

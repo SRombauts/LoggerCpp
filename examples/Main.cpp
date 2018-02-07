@@ -8,7 +8,7 @@
  * or copy at http://opensource.org/licenses/MIT)
  */
 
-#include "LoggerCpp/LoggerCpp.h"
+#include <LoggerCpp/LoggerCpp.h>
 
 #include <iostream> // used for cerr messages
 

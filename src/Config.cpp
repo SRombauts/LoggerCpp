@@ -9,8 +9,8 @@
  * or copy at http://opensource.org/licenses/MIT)
  */
 
-#include "LoggerCpp/Config.h"
-#include "LoggerCpp/Exception.h"
+#include <LoggerCpp/Config.h>
+#include <LoggerCpp/Exception.h>
 
 #include <cstdlib>
 

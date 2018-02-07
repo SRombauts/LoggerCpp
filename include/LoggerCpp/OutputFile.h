@@ -10,8 +10,8 @@
  */
 #pragma once
 
-#include "LoggerCpp/Output.h"
-#include "LoggerCpp/Config.h"
+#include <LoggerCpp/Output.h>
+#include <LoggerCpp/Config.h>
 
 #include <string>
 

@@ -10,8 +10,8 @@
  */
 #pragma once
 
-#include "LoggerCpp/Log.h"
-#include "LoggerCpp/Channel.h"
+#include <LoggerCpp/Log.h>
+#include <LoggerCpp/Channel.h>
 
 #include <string>
 

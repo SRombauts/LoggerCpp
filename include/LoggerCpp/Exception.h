@@ -10,7 +10,7 @@
  */
 #pragma once
 
-#include "LoggerCpp/Formatter.h"
+#include <LoggerCpp/Formatter.h>
 
 #include <stdexcept>
 #include <cassert>

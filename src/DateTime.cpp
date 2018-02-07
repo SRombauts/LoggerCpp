@@ -9,8 +9,8 @@
  * or copy at http://opensource.org/licenses/MIT)
  */
 
-#include "LoggerCpp/DateTime.h"
-#include "LoggerCpp/Utils.h"
+#include <LoggerCpp/DateTime.h>
+#include <LoggerCpp/Utils.h>
 
 #ifdef WIN32
 #include <windows.h>

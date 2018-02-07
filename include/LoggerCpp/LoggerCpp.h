@@ -18,8 +18,8 @@
 
 
 // Include useful headers of LoggerC++
-#include "LoggerCpp/Logger.h"
-#include "LoggerCpp/Manager.h"
+#include <LoggerCpp/Logger.h>
+#include <LoggerCpp/Manager.h>
 
 
 /**

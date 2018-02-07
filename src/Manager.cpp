@@ -9,13 +9,13 @@
  * or copy at http://opensource.org/licenses/MIT)
  */
 
-#include "LoggerCpp/Manager.h"
-#include "LoggerCpp/Exception.h"
+#include <LoggerCpp/Manager.h>
+#include <LoggerCpp/Exception.h>
 
-#include "LoggerCpp/OutputConsole.h"
-#include "LoggerCpp/OutputFile.h"
+#include <LoggerCpp/OutputConsole.h>
+#include <LoggerCpp/OutputFile.h>
 #ifdef WIN32
-#include "LoggerCpp/OutputDebug.h"
+#include <LoggerCpp/OutputDebug.h>
 #endif
 
 #include <stdexcept>

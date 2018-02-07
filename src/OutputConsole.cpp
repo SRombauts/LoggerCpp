@@ -9,7 +9,7 @@
  * or copy at http://opensource.org/licenses/MIT)
  */
 
-#include "LoggerCpp/OutputConsole.h"
+#include <LoggerCpp/OutputConsole.h>
 
 #include <cstdio>
 

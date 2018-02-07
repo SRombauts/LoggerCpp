@@ -18,7 +18,7 @@
 // or <memory> (or <tr1/memory>) when C++11 (or experimental C++0x) is available,
 // or a custom minimal shared_ptr implementation,
 // and imports the "shared_ptr" symbol inside the Log namespace (ie. Log::shared_ptr)
-#include "LoggerCpp/shared_ptr.hpp"
+#include <LoggerCpp/shared_ptr.hpp>
 
 
 namespace Log {
