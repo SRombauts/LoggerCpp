@@ -91,7 +91,7 @@ void OutputFile::output(const Channel::Ptr& aChannelPtr, const Log& aLog) const 
                                 time.hour, time.minute, time.second, time.ms,
                                 aChannelPtr->getName().c_str(), Log::toString(aLog.getSeverity()),
                                 (aLog.getStream()).str().c_str());
-        fflush(stdout);
+        fflush(mpFile);
 
         mSize += nbWritten;
     }
