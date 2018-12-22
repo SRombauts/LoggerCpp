@@ -7,7 +7,7 @@
  * and imports the symbol "shared_ptr" inside the current namespace (ie. Log::shared_ptr).
  *  If no std::shared_ptr is available, it defines a minimal shared_ptr implementation.
  *
- * Copyright (c) 2013 Sebastien Rombauts (sebastien.rombauts@gmail.com)
+ * Copyright (c) 2013-2018 Sebastien Rombauts (sebastien.rombauts@gmail.com)
  *
  * Distributed under the MIT License (MIT) (See accompanying file LICENSE.txt
  * or copy at http://opensource.org/licenses/MIT)
