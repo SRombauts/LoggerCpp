@@ -3,7 +3,7 @@
  * @ingroup LoggerCpp
  * @brief   The static class that manage the registered channels and outputs
  *
- * Copyright (c) 2013 Sebastien Rombauts (sebastien.rombauts@gmail.com)
+ * Copyright (c) 2013-2018 Sebastien Rombauts (sebastien.rombauts@gmail.com)
  *
  * Distributed under the MIT License (MIT) (See accompanying file LICENSE.txt
  * or copy at http://opensource.org/licenses/MIT)
@@ -14,6 +14,10 @@
 
 #include <LoggerCpp/OutputConsole.h>
 #include <LoggerCpp/OutputFile.h>
+
+#ifdef __unix__
+#include <LoggerCpp/OutputSyslog.h>
+#endif
 #ifdef WIN32
 #include <LoggerCpp/OutputDebug.h>
 #endif
@@ -37,6 +41,9 @@ void Manager::configure(const Config::Vector& aConfigList) {
     // - "N3Log13OutputConsoleE" under GCC
     std::string outputConsole = typeid(OutputConsole).name();
     std::string outputFile    = typeid(OutputFile).name();
+#ifdef __unix__
+    std::string outputSyslog  = typeid(OutputSyslog).name();
+#endif
 #ifdef WIN32
     std::string outputDebug   = typeid(OutputDebug).name();
 #endif
@@ -53,6 +60,10 @@ void Manager::configure(const Config::Vector& aConfigList) {
             outputPtr.reset(new OutputConsole((*iConfig)));
         } else if (std::string::npos != outputFile.find(configName)) {
             outputPtr.reset(new OutputFile((*iConfig)));
+#ifdef __unix__
+        } else if (std::string::npos != outputSyslog.find(configName)) {
+            outputPtr.reset(new OutputSyslog((*iConfig)));
+#endif
 #ifdef WIN32
         } else if (std::string::npos != outputDebug.find(configName)) {
             outputPtr.reset(new OutputDebug((*iConfig)));

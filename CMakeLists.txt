@@ -1,4 +1,4 @@
-# Copyright (c) 2013 Sebastien Rombauts (sebastien.rombauts@gmail.com)
+# Copyright (c) 2013-2018 Sebastien Rombauts (sebastien.rombauts@gmail.com)
 #
 # Distributed under the MIT License (MIT) (See accompanying file LICENSE.txt
 # or copy at http://opensource.org/licenses/MIT)
@@ -41,6 +41,7 @@ add_library (LoggerCpp
  include/LoggerCpp/OutputConsole.h
  include/LoggerCpp/OutputDebug.h
  include/LoggerCpp/OutputFile.h
+ include/LoggerCpp/OutputSyslog.h
  include/LoggerCpp/shared_ptr.hpp
  include/LoggerCpp/Utils.h
  src/Config.cpp
@@ -51,6 +52,7 @@ add_library (LoggerCpp
  src/OutputConsole.cpp
  src/OutputDebug.cpp
  src/OutputFile.cpp
+ src/OutputSyslog.cpp
 )
 
 
