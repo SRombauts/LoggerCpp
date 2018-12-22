@@ -1,7 +1,7 @@
 LoggerC++
 ---------
 
-![LoggerC++ build status](https://api.travis-ci.org/SRombauts/LoggerCpp.png "LoggerC++ build status")
+[![Travis CI Linux Build Status](https://travis-ci.org/SRombauts/LoggerCpp.svg)](https://travis-ci.org/SRombauts/LoggerCpp "Travis CI Linux Build Status")
 
 LoggerC++ (LoggerCpp) is a simple, elegant and efficient C++ logger library.
 
@@ -21,16 +21,14 @@ You shall not dynamically create and destroy Logger objects in multiple threads.
 Instead, build them all at startup in you main thread, before other thread startup.
 Then you are allowed to use them all in parallel.
 
-### Suported platforms:
+### Suported platforms:
 
 Developements and tests are done under the following OSs :
-- Debian 7 (testing)
-- Ubuntu 12.10
-- Windows XP/7/8
+- Ubuntu 14.04 and 16.04
+- Windows 10
 And following IDEs/Compilers
-- GCC 4.7.x with a provided Makefile
-- Eclipse CDT under Linux, using the provided Makefile
-- Visual Studio Express 2008/2010/2012 for testing compatibility purpose
+- GCC 4.8 and clang 5
+- Visual Studio Community 2017
 
 ### Dependencies:
 
